@@ -7,16 +7,22 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './resources/js/**/*.vue',
+        './resources/js/**/*.tsx',
     ],
 
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                unifrak: ["UnifrakturCook", 'cursive'],
-                fontTwo: ['FontTwo', 'sans-serif'],
+                primary: ['UnifrakturCook', 'cursive'],
+                secondary: ['Poppins', 'sans-serif'],
             },
+            backgroundColor: {
+                page: ['background-color', '#d9dcdb']
+            },
+            textColor: {
+                textColorDefault: ['color', '#063223d8']
+            }
         },
     },
 
