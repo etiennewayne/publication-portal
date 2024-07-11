@@ -2,10 +2,11 @@
 
 ### Application Requirements (Windows)
     Install the following:
-        Composer -> https://getcomposer.org/
-        Git -> https://git-scm.com/
-        XAMPP -> https://www.apachefriends.org/download.html
-        NodeJS -> https://nodejs.org/en
+
+    <a href="https://getcomposer.org/">Composer</a>
+    <a href="https://git-scm.com/">Git</a>
+    <a href="https://www.apachefriends.org/download.html">XAMPP</a>
+    <a href="https://nodejs.org/en">NodeJS</a>
 
 ### Tech 
     Laravel
