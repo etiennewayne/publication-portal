@@ -1,5 +1,12 @@
 ## PUBLICATION PORTAL
 
+### Application Requirements (Windows)
+    Install the following:
+        Composer -> https://getcomposer.org/
+        Git -> https://git-scm.com/
+        XAMPP -> https://www.apachefriends.org/download.html
+        NodeJS -> https://nodejs.org/en
+
 ### Tech 
     Laravel
     VueJS
