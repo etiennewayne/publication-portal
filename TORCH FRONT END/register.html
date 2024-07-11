@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/root.css" />
+        <link rel="stylesheet" href="./css/auth.css" />
+        <link rel="stylesheet" href="./css/form.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container">
+            <div class="top_header log_in">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="index.html">
+                            <img src="img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+            </div>
+            <main>
+                <div class="auth_form_container register">
+                    <h2>Register An Account</h2>
+                    <div class="message error">
+                        <p>Invalid Register Credentials</p>
+                    </div>
+                    <form action="" enctype="multipart/form-data">
+                        <div class="form_group">
+                            <div class="form_content">
+                                <input
+                                    type="text"
+                                    name="firstname"
+                                    placeholder="Firstname" />
+                                <small>firstname field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <input
+                                    type="text"
+                                    name="middlename"
+                                    placeholder="Middlename" />
+                                <small>middlename field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <input
+                                    type="text"
+                                    name="lastname"
+                                    placeholder="Lastname" />
+                                <small>lastname field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <div class="form_content">
+                                <input
+                                    type="text"
+                                    name="student_id"
+                                    placeholder="Student Id" />
+                                <small>student ID field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email" />
+                                <small>email field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password" />
+                                <small>password field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <div class="form_content">
+                                <p class="penName">Pen Name(Optional)</p>
+                                <input
+                                    type="text"
+                                    name="penname"
+                                    placeholder="Pen Name" />
+                                <small>penname is required</small>
+                            </div>
+                            <div class="form_content">
+                                <p class="label">
+                                    <a class="uploadQR" href="">Scan QR </a>or
+                                    Upload QR
+                                </p>
+                                <input type="file" name="banner" />
+                                <small>Title field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_content btn">
+                            <input
+                                type="submit"
+                                value="Register"
+                                class="btn login primary" />
+                        </div>
+                    </form>
+                    <div class="note">
+                        <p>
+                            Note: Only bonafide TCGC students are legible to
+                            register.
+                        </p>
+                    </div>
+                    <p class="register_btn">
+                        Already have an account?
+                        <a href="./login.html">Log In</a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

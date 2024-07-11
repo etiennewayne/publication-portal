@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/root.css" />
+        <link rel="stylesheet" href="./css/auth.css" />
+        <link rel="stylesheet" href="./css/form.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container">
+            <div class="top_header log_in">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="index.html">
+                            <img src="img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+            </div>
+            <div class="auth_form_container">
+                <h2>Log In</h2>
+                <div class="message error">
+                    <p>Invalid Log In Credentials</p>
+                </div>
+                <form>
+                    <div class="form_content">
+                        <input type="email" name="email" placeholder="Email" />
+                        <small>email field is required</small>
+                    </div>
+                    <div class="form_content">
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password" />
+                        <small>password field is required</small>
+                    </div>
+                    <div class="form_content btn">
+                        <input
+                            type="submit"
+                            value="Log In"
+                            class="btn login primary" />
+                    </div>
+                </form>
+                <p class="register_btn">
+                    Don't have an account?
+                    <a href="./register.html">Register</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
