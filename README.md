@@ -16,4 +16,6 @@
 ### Installation
 
 Clone the repository or run the command (only the collaborator can clone this repo)
+```bash    
     git clone https://github.com/etiennewayne/publication-portal.git
+```
