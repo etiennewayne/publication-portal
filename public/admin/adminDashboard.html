@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="../css/root.css" />
+        <link rel="stylesheet" href="../css/admin/admindashboard.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container dashboard">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="../index.html">
+                            <img src="../img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="../img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Admin</h6>
+                    <div class="sidebar_content">
+                        <a href="./adminDashboard.html" class="active"
+                            ><i class="bx bxs-dashboard"></i>Dashboard</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./addUser.html"
+                            ><i class="bx bxs-user-plus"></i>Add User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageUser.html"
+                            ><i class="bx bxs-user-detail"></i>Manage User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reviewArticle.html"
+                            ><i class="bx bx-message-check"></i>Review
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageArticle.html"
+                            ><i class="bx bxs-message-alt-detail"></i>Manage
+                            Articles</a
+                        >
+                    </div>
+                </div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Catagories</h6>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-basketball"></i>Sport</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bx-news"></i>News</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-edit-alt"></i>Editorial</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxl-soundcloud"></i>Feature</a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_content_logout">
+                    <form action="{{ route('logout') }}" method="POST">
+                        <!-- @csrf @method('DELETE') -->
+                        <button><i class="bx bx-log-out"></i>Log Out</button>
+                    </form>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./adminDashboard.html" class="active">Dashboard</a>
+                <a href="./addUser.html">User Management </a>
+                <a href="">Article Management </a>
+                <a href="">Task Tracking </a>
+                <a href="">Add Task</a>
+                <a href="">Newletter</a>
+            </nav>
+            <main class="dashboard">
+                <div class="banner_container">
+                    <div class="img_container banner">
+                        <img src="../img/1169891.jpg" alt="" />
+                    </div>
+                    <a href="./editProfile.html" class="editprofile"
+                        ><i class="bx bxs-edit"></i
+                    ></a>
+                </div>
+                <div class="user_info">
+                    <div class="img_container profile">
+                        <img src="../img/looool.jpg " alt="" />
+                    </div>
+                    <div class="info">
+                        <h2>Jesel L. Zapanta</h2>
+                        <small>Admin</small>
+                    </div>
+                </div>
+                <div class="analytics">
+                    <h1>Graph/Analytics/Generate Reports</h1>
+                </div>
+            </main>
+        </div>
+        <script src="../js/script.js"></script>
+    </body>
+</html>

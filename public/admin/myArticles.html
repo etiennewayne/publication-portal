@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="../css/root.css" />
+        <link rel="stylesheet" href="../css/admin/articleManagement.css" />
+        <link rel="stylesheet" href="../css/form.css" />
+        <link rel="stylesheet" href="../css/table.css" />
+        <link rel="stylesheet" href="../css/modal.css" />
+        <link rel="stylesheet" href="../css/article.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container dashboard">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="../index.html">
+                            <img src="../img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="../img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Admin</h6>
+                    <div class="sidebar_content">
+                        <a href="./adminDashboard.html" class="active"
+                            ><i class="bx bxs-dashboard"></i>Dashboard</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./addUser.html"
+                            ><i class="bx bxs-user-plus"></i>Add User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageUser.html"
+                            ><i class="bx bxs-user-detail"></i>Manage User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reviewArticle.html"
+                            ><i class="bx bx-message-check"></i>Review
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageArticle.html"
+                            ><i class="bx bxs-message-alt-detail"></i>Manage
+                            Articles</a
+                        >
+                    </div>
+                </div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Catagories</h6>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-basketball"></i>Sport</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bx-news"></i>News</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-edit-alt"></i>Editorial</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxl-soundcloud"></i>Feature</a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_content_logout">
+                    <div class="sidebar_content">
+                        <a href="./login.html"
+                            ><i class="bx bx-log-in"></i>Log In</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./adminDashboard.html">Dashboard</a>
+                <a href="./addUser.html">User Management </a>
+                <a href="./writeArticle.html" class="active"
+                    >Article Management
+                </a>
+                <a href="">Task Tracking </a>
+                <a href="">Add Task</a>
+                <a href="">Newletter</a>
+            </nav>
+            <main>
+                <div class="bottom_nav">
+                    <div class="page_title">
+                        <h2>Write Article</h2>
+                    </div>
+                    <div class="options">
+                        <a href="./writeArticle.html">Write Article</a>
+                        <a href="./myArticles.html" class="active"
+                            >My Articles</a
+                        >
+                        <a href="">All Articles</a>
+                        <a href="./pending.html">Pending</a>
+                    </div>
+                </div>
+                <div class="myArticles">
+                    <table id="table" class="table wrap" style="width: 100%" ;>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Rating</th>
+                                <th>Views</th>
+                                <th>Comments</th>
+                                <th>Reading Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td class="action_btns">
+                                    <div class="show" id="openModalBtn">
+                                        <i class="bx bx-show"></i>
+                                    </div>
+                                    <div class="featured_btn">
+                                        <i class="bx bxs-badge-check"></i>
+                                    </div>
+                                    <div class="delete">
+                                        <i class="bx bxs-trash"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="profile" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>View Article</h2>
+                            <div class="article_container">
+                                <h2 class="article_title">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit , ea? Lorem ipsum dolor sit
+                                    amet consectetur adipisicing elit. Error,
+                                    et.
+                                </h2>
+                                <div class="article_info">
+                                    <div class="post_info">
+                                        <div class="img_container author">
+                                            <img
+                                                src="../img/looool.jpg"
+                                                alt="" />
+                                        </div>
+                                        <div class="author_info">
+                                            <small
+                                                >By
+                                                <span
+                                                    >Jessel Zapanta</span
+                                                ></small
+                                            >
+                                            <small>10: 29 PM</small>
+                                        </div>
+                                    </div>
+                                    <div class="category_btn">
+                                        <a href="" class="category_title"
+                                            >News</a
+                                        >
+                                    </div>
+                                </div>
+                                <div class="infographic">
+                                    <div class="img_container thumbnail">
+                                        <img
+                                            src="../img/TORCH INFOGRAPHICS (1).png"
+                                            alt="" />
+                                    </div>
+                                    <div class="caption">
+                                        <p>
+                                            Caption:
+                                            <span>
+                                                Jessel Lorem ipsum dolor sit
+                                                amet consectetur adipisicing
+                                                elit. Blanditiis hic doloremque,
+                                                iusto quas maiores odio aliquid
+                                                consequuntur inventore possimus
+                                                labore? Lorem ipsum dolor sit
+                                                amet, consectetur adipisicing
+                                                elit. Maxime a blanditiis
+                                                voluptatum autem cum expedita
+                                                enim deserunt nesciunt ullam
+                                                tempore recusandae pariatur ab
+                                                error accusamus ipsam deleniti
+                                                dolores, iste sunt.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text_to_speech">
+                                    <div class="controls">
+                                        <span>
+                                            <i class="bx bx-volume-full"></i>
+                                            <i class="bx bx-pause-circle"></i>
+                                            <i class="bx bx-repeat"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="body">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur,
+                                        adipisicing elit. Culpa quibusdam,
+                                        soluta aliquid ipsa atque error, illum
+                                        saepe vel, libero iusto non odio fugiat
+                                        veniam delectus. Illum, facere
+                                        voluptatem delectus quisquam harum hic
+                                        est officia porro, ipsa mollitia odit
+                                        obcaecati doloribus. Velit nesciunt
+                                        mollitia esse eum aspernatur corporis
+                                        eaque animi aliquam magni aut? Pariatur
+                                        quaerat iste enim, dolorum minus
+                                        praesentium officiis similique, odit
+                                        molestiae perferendis cupiditate et in
+                                        numquam, illo eveniet ex! Consectetur
+                                        saepe nesciunt commodi harum deserunt
+                                        neque, natus praesentium temporibus
+                                        eaque porro officiis nobis. Nobis ab
+                                        velit nihil, voluptas sit ut officiis
+                                        vel, saepe ullam quisquam, provident
+                                        libero blanditiis.
+                                    </p>
+                                </div>
+                                <div class="reactions">
+                                    <div class="rate">
+                                        <p>3.0</p>
+                                        <div class="star">
+                                            <i class="bx bxs-star"></i>
+                                            <i class="bx bxs-star"></i>
+                                            <i class="bx bxs-star"></i>
+                                            <i class="bx bx-star"></i>
+                                            <i class="bx bx-star"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>6 <span>Comments</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="line"></div>
+                <div class="footer_content">
+                    <div class="torch">
+                        <h2>The Torch Publication</h2>
+                        <p>
+                            The Torch is Tangub City Global College's official
+                            publication. "Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social">
+                            <i class="bx bxl-facebook-circle"></i>
+                            <a href="">The Torch</a>
+                        </div>
+                        <div class="social">
+                            <i class="bx bxs-envelope"></i>
+                            <a href="">torch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <small class="copy"
+                    >©Torch Publication| All Rights Reserved</small
+                >
+            </footer>
+        </div>
+        <script src="../js/script.js"></script>
+        <script>
+            // Get the modal
+            var profile = document.getElementById("profile");
+
+            // Get the button that opens the modal
+            var exit = document.getElementById("openModalBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            exit.onclick = function () {
+                profile.style.display = "block";
+            };
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                profile.style.display = "none";
+            };
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == profile) {
+                    profile.style.display = "none";
+                }
+            };
+        </script>
+    </body>
+</html>

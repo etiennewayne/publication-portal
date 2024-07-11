@@ -14,6 +14,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                unifrak: ["UnifrakturCook", 'cursive'],
+                fontTwo: ['FontTwo', 'sans-serif'],
             },
         },
     },
