@@ -1,6 +1,6 @@
 ## PUBLICATION PORTAL
 
-## Tech: 
+### Tech: 
     Laravel 
     VueJS
     Mysql
