@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="../css/root.css" />
+        <link rel="stylesheet" href="../css/admin/userManagement.css" />
+        <link rel="stylesheet" href="../css/form.css" />
+        <link rel="stylesheet" href="../css/table.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container dashboard">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="../index.html">
+                            <img src="../img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="../img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Admin</h6>
+                    <div class="sidebar_content">
+                        <a href="./adminDashboard.html" class="active"
+                            ><i class="bx bxs-dashboard"></i>Dashboard</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./addUser.html"
+                            ><i class="bx bxs-user-plus"></i>Add User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageUser.html"
+                            ><i class="bx bxs-user-detail"></i>Manage User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reviewArticle.html"
+                            ><i class="bx bx-message-check"></i>Review
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageArticle.html"
+                            ><i class="bx bxs-message-alt-detail"></i>Manage
+                            Articles</a
+                        >
+                    </div>
+                </div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Catagories</h6>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-basketball"></i>Sport</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bx-news"></i>News</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-edit-alt"></i>Editorial</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxl-soundcloud"></i>Feature</a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_content_logout">
+                    <div class="sidebar_content">
+                        <a href="./login.html"
+                            ><i class="bx bx-log-in"></i>Log In</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./adminDashboard.html">Dashboard</a>
+                <a href="./addUser.html" class="active">User Management </a>
+                <a href="./writeArticle.html">Article Management </a>
+                <a href="">Task Tracking </a>
+                <a href="">Add Task</a>
+                <a href="">Newletter</a>
+            </nav>
+            <main>
+                <div class="bottom_nav">
+                    <div class="page_title">
+                        <h2>Manage User</h2>
+                    </div>
+                    <div class="options">
+                        <a href="./addUser.html">Add User</a>
+                        <a href="./manageUser.html" class="active"
+                            >Manage User</a
+                        >
+                        <a href="./application.html">Contributor Application</a>
+                    </div>
+                </div>
+                <div class="manageUser">
+                    <table id="table" class="table wrap" style="width: 100%" ;>
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Middlename</th>
+                                <th>Lastname</th>
+                                <th>User Role</th>
+                                <th>Position</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>test</td>
+                                <td class="action_btns">
+                                    <div class="show" id="openModalBtn">
+                                        <i class="bx bx-show"></i>
+                                    </div>
+                                    <div class="delete">
+                                        <i class="bx bxs-trash"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="profile" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>User Profile</h2>
+                            <div class="view_profile">
+                                <div class="img_container user">
+                                    <img src="../img/looool.jpg" alt="" />
+                                </div>
+                                <form action="">
+                                    <div class="form_group">
+                                        <div class="form_content">
+                                            <input
+                                                type="text"
+                                                name="student_id"
+                                                placeholder="Student ID" />
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                        <div class="form_content">
+                                            <select name="userole">
+                                                <option value="student">
+                                                    Student
+                                                </option>
+                                                <option value="student">
+                                                    Admin
+                                                </option>
+                                                <option value="student">
+                                                    Editor
+                                                </option>
+                                                <option value="writer">
+                                                    Writer
+                                                </option>
+                                                <option value="student">
+                                                    Designer
+                                                </option>
+                                            </select>
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                        <div class="form_content">
+                                            <select
+                                                name="position"
+                                                class="position_select">
+                                                <option>Position</option>
+                                                <option>None(Student)</option>
+                                                <option>
+                                                    Contributor(Student)
+                                                </option>
+                                                <option>Adviser(Admin)</option>
+                                                <option>
+                                                    Assistant Adviser(Admin)
+                                                </option>
+                                                <option>
+                                                    Editor in Chief(Editor)
+                                                </option>
+                                                <option>
+                                                    Associate Editor(Editor)
+                                                </option>
+                                                <option>
+                                                    Managing Editor(Editor)
+                                                </option>
+                                                <option>Sport(Writer)</option>
+                                                <option>News(Writer)</option>
+                                                <option>
+                                                    Editorial(Writer)
+                                                </option>
+                                                <option>Feature(Writer)</option>
+                                                <option>
+                                                    Copywriter(Writer)
+                                                </option>
+                                                <option>
+                                                    Layout Artisrt(Designer)
+                                                </option>
+                                                <option>
+                                                    Graphic Artist(Designer)
+                                                </option>
+                                            </select>
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="form_group">
+                                        <div class="form_content">
+                                            <input
+                                                type="text"
+                                                name="firstname"
+                                                placeholder="Firstname" />
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                        <div class="form_content">
+                                            <input
+                                                type="text"
+                                                name="middlename"
+                                                placeholder="Middlename" />
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                        <div class="form_content">
+                                            <input
+                                                type="text"
+                                                name="lastname"
+                                                placeholder="Lastname" />
+                                            <small
+                                                >student ID field is
+                                                required</small
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <div class="form_content btn">
+                                        <input
+                                            type="submit"
+                                            value="Update"
+                                            class="btn" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="line"></div>
+                <div class="footer_content">
+                    <div class="torch">
+                        <h2>The Torch Publication</h2>
+                        <p>
+                            The Torch is Tangub City Global College's official
+                            publication. "Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social">
+                            <i class="bx bxl-facebook-circle"></i>
+                            <a href="">The Torch</a>
+                        </div>
+                        <div class="social">
+                            <i class="bx bxs-envelope"></i>
+                            <a href="">torch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <small class="copy"
+                    >©Torch Publication| All Rights Reserved</small
+                >
+            </footer>
+        </div>
+        <script src="../js/script.js"></script>
+        <script>
+            // Get the modal
+            var profile = document.getElementById("profile");
+
+            // Get the button that opens the modal
+            var exit = document.getElementById("openModalBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            exit.onclick = function () {
+                profile.style.display = "block";
+            };
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                profile.style.display = "none";
+            };
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == profile) {
+                    profile.style.display = "none";
+                }
+            };
+        </script>
+    </body>
+</html>

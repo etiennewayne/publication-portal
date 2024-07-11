@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="css/root.css" />
+        <link rel="stylesheet" href="css/freedom.css" />
+        <link rel="stylesheet" href="css/form.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="index.html">
+                            <img src="img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <!-- Show if  Auth -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="./img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./login.html"
+                        ><i class="bx bx-log-in"></i>Log In</a
+                    >
+                </div>
+                <!-- show when Auth -->
+                <div class="sidebar_content">
+                    <a href="./admin/adminDashboard.html"
+                        ><i class="bx bxs-dashboard"></i>Dashboard</a
+                    >
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Navigation</h6>
+                    <div class="sidebar_content">
+                        <a href="./index.html"
+                            ><i class="bx bxs-basketball"></i>Home</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reccommedation.html"
+                            ><i class="bx bxs-basketball"></i>Recommendation</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./torchFeed.html"
+                            ><i class="bx bxs-basketball"></i>The Torch
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""
+                            ><i class="bx bxs-basketball"></i>Freedom Wall</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="./reccommedation.html">Recommendation</a>
+                <a href="./torchFeed.html">The Torch Articles</a>
+                <a href="./studentFeed.html">Students Feed</a>
+                <a href="./freedomWall.html" class="active">Freedom Wall</a>
+            </nav>
+            <main>
+                <!-- <div class="message notfound">
+                    <p>No Article Found</p>
+                </div> -->
+                <div class="freedom_header">
+                    <h1>THE TORCH FREEDOM WALL</h1>
+                </div>
+                <div class="modal_btns">
+                    <div class="policy" id="openPolicy">
+                        <button>View Our Policy</button>
+                    </div>
+                    <div class="write" id="openWrite">
+                        <button>Write Something!</button>
+                    </div>
+                </div>
+                <!-- Modal For Policy -->
+                <div id="modalPolicy" class="modal">
+                    <div class="modal_content">
+                        <span class="close" id="closePolicy">&times;</span>
+                        <div class="policy_container">
+                            <div class="title">
+                                <h2>The Torch Freedom Wall Policy</h2>
+                            </div>
+                            <p id="modalText">
+                                Welcome to the Torch Freedom Wall, a platform
+                                for open and respectful expression. By using
+                                this platform, you agree to communicate
+                                respectfully, avoiding hate speech, bullying,
+                                harassment, and discrimination. Offensive
+                                content, such as vulgar or obscene posts, is not
+                                allowed, and feedback should always be
+                                constructive. Please do not share personal
+                                information, including addresses, phone numbers,
+                                or sensitive data about yourself or others.
+                                While you may post anonymously, all posts must
+                                comply with this policy. Ensure that your posts
+                                are relevant to the platform’s purpose, and
+                                avoid spam, repetitive content, and
+                                advertisements. Respect intellectual property
+                                rights and do not post content that infringes on
+                                these rights. Posts are monitored to ensure
+                                compliance with this policy. Users can report
+                                posts that violate the guidelines, and these
+                                reports will be reviewed with appropriate
+                                actions taken. Violations may result in the
+                                removal of posts from the platform.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal for Write something -->
+                <div id="modalWrite" class="modal">
+                    <div class="modal_content write_content">
+                        <span class="close" id="closeWrite">&times;</span>
+                        <div class="title">
+                            <h2>Write Something</h2>
+                        </div>
+                        <div class="write_container">
+                            <div class="write_something">
+                                <form>
+                                    <div class="form_content">
+                                        <p class="label">Message:</p>
+
+                                        <textarea
+                                            class="message"
+                                            name="message"
+                                            id="message"
+                                            rows="10"></textarea>
+                                        <small>Message field is required</small>
+                                    </div>
+                                    <div class="form_content">
+                                        <p class="label">
+                                            How are you feeling?
+                                        </p>
+                                        <select name="" id="">
+                                            <option value="happy">
+                                                😃Happy
+                                            </option>
+                                            <option value="sad">😔Sad</option>
+                                            <option value="annoyed">
+                                                😤Annoyed
+                                            </option>
+                                            <option value="proud">
+                                                😊Proud
+                                            </option>
+                                            <option value="drained">
+                                                🫠Drained
+                                            </option>
+                                            <option value="inlove">
+                                                😍Inlove
+                                            </option>
+                                            <option value="calm">😎Calm</option>
+                                            <option value="excited">
+                                                🤩Excited
+                                            </option>
+                                            <option value="angry">
+                                                😡Angry
+                                            </option>
+                                            <option value="down">😟Dowm</option>
+                                        </select>
+                                    </div>
+                                    <div class="form_content btn">
+                                        <input
+                                            type="submit"
+                                            value="Post"
+                                            class="btn primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="freedom_wall">
+                    <div class="freedom_container">
+                        <!-- card -->
+                        <div class="card">
+                            <div class="user">
+                                <div class="user_info_container">
+                                    <i class="bx bxs-user-circle"></i>
+                                    <div class="user_info">
+                                        <p>Anonymous</p>
+                                        <small class="date">06/07/2024</small>
+                                    </div>
+                                </div>
+                                <div class="report">
+                                    <i class="reportBtn bx bx-error-circle"></i>
+                                    <div class="report_modal">
+                                        <form action="">
+                                            <input
+                                                type="submit"
+                                                value="Report"
+                                                class="btn primary" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_content">
+                                <a href="./freedom.html"
+                                    >Hello this is the torch freedom wall site.
+                                    Posts are monitored to ensure compliance
+                                    with this policy. Users can report posts
+                                    that violate the guidelines, and these
+                                    reports will be reviewed with appropriate
+                                    actions taken. Violations may result in the
+                                    removal of posts from the platform.</a
+                                >
+                                <div class="tts">
+                                    <i class="bx bx-volume-full"></i>
+                                </div>
+                            </div>
+                            <div class="card_reaction">
+                                <div class="reaction">
+                                    <div class="like">
+                                        <span>30</span>
+                                        <i class="bx bxs-like"></i>
+                                    </div>
+                                    <div class="dislike">
+                                        <span>10</span>
+                                        <i class="bx bxs-dislike"></i>
+                                    </div>
+                                </div>
+                                <div class="emoji">
+                                    <p>Feeling<span>😎</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <div class="user">
+                                <div class="user_info_container">
+                                    <i class="bx bxs-user-circle"></i>
+                                    <div class="user_info">
+                                        <p>Anonymous</p>
+                                        <small class="date">06/07/2024</small>
+                                    </div>
+                                </div>
+                                <div class="report">
+                                    <i class="reportBtn bx bx-error-circle"></i>
+                                    <div class="report_modal">
+                                        <form action="">
+                                            <input
+                                                type="submit"
+                                                value="Report"
+                                                class="btn primary" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_content">
+                                <a href="">Lorem ipsumdsad , aut.</a>
+                                <div class="tts">
+                                    <i class="bx bx-volume-full"></i>
+                                </div>
+                            </div>
+                            <div class="card_reaction">
+                                <div class="reaction">
+                                    <div class="like">
+                                        <span>30</span>
+                                        <i class="bx bxs-like"></i>
+                                    </div>
+                                    <div class="dislike">
+                                        <span>10</span>
+                                        <i class="bx bxs-dislike"></i>
+                                    </div>
+                                </div>
+                                <div class="emoji">
+                                    <p>Feeling<span>😎</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <div class="user">
+                                <div class="user_info_container">
+                                    <i class="bx bxs-user-circle"></i>
+                                    <div class="user_info">
+                                        <p>Anonymous</p>
+                                        <small class="date">06/07/2024</small>
+                                    </div>
+                                </div>
+                                <div class="report">
+                                    <i class="reportBtn bx bx-error-circle"></i>
+                                    <div class="report_modal">
+                                        <form action="">
+                                            <input
+                                                type="submit"
+                                                value="Report"
+                                                class="btn primary" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_content">
+                                <a href=""
+                                    >Lorem ipsumdsad , a da dsad dsadasdsa
+                                    dsadsaut.</a
+                                >
+                                <div class="tts">
+                                    <i class="bx bx-volume-full"></i>
+                                </div>
+                            </div>
+                            <div class="card_reaction">
+                                <div class="reaction">
+                                    <div class="like">
+                                        <span>30</span>
+                                        <i class="bx bxs-like"></i>
+                                    </div>
+                                    <div class="dislike">
+                                        <span>10</span>
+                                        <i class="bx bxs-dislike"></i>
+                                    </div>
+                                </div>
+                                <div class="emoji">
+                                    <p>Feeling<span>😎</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <div class="user">
+                                <div class="user_info_container">
+                                    <i class="bx bxs-user-circle"></i>
+                                    <div class="user_info">
+                                        <p>Anonymous</p>
+                                        <small class="date">06/07/2024</small>
+                                    </div>
+                                </div>
+                                <div class="report">
+                                    <i class="reportBtn bx bx-error-circle"></i>
+                                    <div class="report_modal">
+                                        <form action="">
+                                            <input
+                                                type="submit"
+                                                value="Report"
+                                                class="btn primary" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_content">
+                                <a href=""
+                                    >dsagagafasdsa fsafas fsafsafsafLorem
+                                    ipsumdsad , aut.</a
+                                >
+                                <div class="tts">
+                                    <i class="bx bx-volume-full"></i>
+                                </div>
+                            </div>
+                            <div class="card_reaction">
+                                <div class="reaction">
+                                    <div class="like">
+                                        <span>30</span>
+                                        <i class="bx bxs-like"></i>
+                                    </div>
+                                    <div class="dislike">
+                                        <span>10</span>
+                                        <i class="bx bxs-dislike"></i>
+                                    </div>
+                                </div>
+                                <div class="emoji">
+                                    <p>Feeling<span>😎</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card">
+                            <div class="user">
+                                <div class="user_info_container">
+                                    <i class="bx bxs-user-circle"></i>
+                                    <div class="user_info">
+                                        <p>Anonymous</p>
+                                        <small class="date">06/07/2024</small>
+                                    </div>
+                                </div>
+                                <div class="report">
+                                    <i class="reportBtn bx bx-error-circle"></i>
+                                    <div class="report_modal">
+                                        <form action="">
+                                            <input
+                                                type="submit"
+                                                value="Report"
+                                                class="btn primary" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_content">
+                                <a href=""
+                                    >Lorem dadsadsadsadipsumdsad , aut.</a
+                                >
+                                <div class="tts">
+                                    <i class="bx bx-volume-full"></i>
+                                </div>
+                            </div>
+                            <div class="card_reaction">
+                                <div class="reaction">
+                                    <div class="like">
+                                        <span>30</span>
+                                        <i class="bx bxs-like"></i>
+                                    </div>
+                                    <div class="dislike">
+                                        <span>10</span>
+                                        <i class="bx bxs-dislike"></i>
+                                    </div>
+                                </div>
+                                <div class="emoji">
+                                    <p>Feeling<span>😎</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <div class="to_top">
+                <i class="bx bx-up-arrow-alt"></i>
+            </div>
+            <div class="to_top">
+                <i class="bx bx-up-arrow-alt"></i>
+            </div>
+            <footer>
+                <div class="line"></div>
+                <div class="footer_content">
+                    <div class="torch">
+                        <h2>The Torch Publication</h2>
+                        <p>
+                            The Torch is Tangub City Global College's official
+                            publication. "Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social">
+                            <i class="bx bxl-facebook-circle"></i>
+                            <a href="">The Torch</a>
+                        </div>
+                        <div class="social">
+                            <i class="bx bxs-envelope"></i>
+                            <a href="">torch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <small class="copy"
+                    >©Torch Publication| All Rights Reserved</small
+                >
+            </footer>
+        </div>
+        <script src="./js/totop.js"></script>
+        <script src="./js/script.js"></script>
+    </body>
+</html>

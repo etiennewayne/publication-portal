@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="../css/root.css" />
+        <link rel="stylesheet" href="../css/admin/articleManagement.css" />
+        <link rel="stylesheet" href="../css/form.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container dashboard">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="../index.html">
+                            <img src="../img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="../img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Admin</h6>
+                    <div class="sidebar_content">
+                        <a href="./adminDashboard.html" class="active"
+                            ><i class="bx bxs-dashboard"></i>Dashboard</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./addUser.html"
+                            ><i class="bx bxs-user-plus"></i>Add User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageUser.html"
+                            ><i class="bx bxs-user-detail"></i>Manage User</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reviewArticle.html"
+                            ><i class="bx bx-message-check"></i>Review
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./manageArticle.html"
+                            ><i class="bx bxs-message-alt-detail"></i>Manage
+                            Articles</a
+                        >
+                    </div>
+                </div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Catagories</h6>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-basketball"></i>Sport</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bx-news"></i>News</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxs-edit-alt"></i>Editorial</a>
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""><i class="bx bxl-soundcloud"></i>Feature</a>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_content_logout">
+                    <div class="sidebar_content">
+                        <a href="./login.html"
+                            ><i class="bx bx-log-in"></i>Log In</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./adminDashboard.html">Dashboard</a>
+                <a href="./addUser.html">User Management </a>
+                <a href="./writeArticle.html" class="active"
+                    >Article Management
+                </a>
+                <a href="">Task Tracking </a>
+                <a href="">Add Task</a>
+                <a href="">Newletter</a>
+            </nav>
+            <main>
+                <div class="bottom_nav">
+                    <div class="page_title">
+                        <h2>Write Article</h2>
+                    </div>
+                    <div class="options">
+                        <a href="./writeArticle.html" class="active"
+                            >Write Article</a
+                        >
+                        <a href="./myArticles.html">My Articles</a>
+                        <a href="./writeArticle.html">All Articles</a>
+                        <a href="">Pending</a>
+                    </div>
+                </div>
+                <div class="writeArticle">
+                    <form action="" enctype="multipart/form-data">
+                        <div class="form_group">
+                            <div class="form_content">
+                                <p class="label">Article Title</p>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    placeholder="Title" />
+                                <small>Title field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <p class="label">Article Category</p>
+                                <select name="category" class="category_select">
+                                    <option value="sport">Sport</option>
+                                    <option value="news">News</option>
+                                    <option value="editorial">Editorial</option>
+                                    <option value="feature">Feature</option>
+                                    <option value="feature">Posting</option>
+                                </select>
+                                <small>student ID field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <div class="form_content">
+                                <p class="label">Thumbnail Caption</p>
+                                <input
+                                    type="text"
+                                    name="caption"
+                                    placeholder="Caption" />
+                                <small>caption field is required</small>
+                            </div>
+                            <div class="form_content">
+                                <p class="label">Upload Thumbnail</p>
+                                <input type="file" />
+                                <small>Title field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_group">
+                            <div class="form_content">
+                                <p class="label">Article Body</p>
+                                <textarea
+                                    name="body"
+                                    class="body"
+                                    rows="10"></textarea>
+                                <small>student ID field is required</small>
+                            </div>
+                        </div>
+                        <div class="form_content btn">
+                            <input
+                                type="submit"
+                                value="Publish Article"
+                                class="btn" />
+                        </div>
+                    </form>
+                </div>
+            </main>
+            <footer>
+                <div class="line"></div>
+                <div class="footer_content">
+                    <div class="torch">
+                        <h2>The Torch Publication</h2>
+                        <p>
+                            The Torch is Tangub City Global College's official
+                            publication. "Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social">
+                            <i class="bx bxl-facebook-circle"></i>
+                            <a href="">The Torch</a>
+                        </div>
+                        <div class="social">
+                            <i class="bx bxs-envelope"></i>
+                            <a href="">torch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <small class="copy"
+                    >©Torch Publication| All Rights Reserved</small
+                >
+            </footer>
+        </div>
+        <script src="../js/script.js"></script>
+    </body>
+</html>

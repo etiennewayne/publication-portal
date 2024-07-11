@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="css/root.css" />
+        <link rel="stylesheet" href="css/freedom.css" />
+        <link rel="stylesheet" href="css/form.css" />
+        <title>THE TORCH</title>
+    </head>
+    <body>
+        <div class="main_container">
+            <div class="top_header">
+                <div class="logo">
+                    <div class="img_container logo">
+                        <a href="index.html">
+                            <img src="img/torch.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="system_title">
+                    <h1>The Torch</h1>
+                    <h2>Publication System</h2>
+                </div>
+                <div class="menu_container">
+                    <!-- <i id="menu_btn" class="bx bx-menu menu_btn"></i> -->
+                    <!-- Show if  Auth -->
+                    <div class="img_container user_profile" id="menu_btn">
+                        <img src="./img/looool.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./login.html"
+                        ><i class="bx bx-log-in"></i>Log In</a
+                    >
+                </div>
+                <!-- show when Auth -->
+                <div class="sidebar_content">
+                    <a href="./admin/adminDashboard.html"
+                        ><i class="bx bxs-dashboard"></i>Dashboard</a
+                    >
+                </div>
+                <div class="line"></div>
+                <div class="sidebar_links">
+                    <h6 class="sidebar_title">Navigation</h6>
+                    <div class="sidebar_content">
+                        <a href="./index.html"
+                            ><i class="bx bxs-basketball"></i>Home</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./reccommedation.html"
+                            ><i class="bx bxs-basketball"></i>Recommendation</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href="./torchFeed.html"
+                            ><i class="bx bxs-basketball"></i>The Torch
+                            Articles</a
+                        >
+                    </div>
+                    <div class="sidebar_content">
+                        <a href=""
+                            ><i class="bx bxs-basketball"></i>Freedom Wall</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="./reccommedation.html">Recommendation</a>
+                <a href="./torchFeed.html">The Torch Articles</a>
+                <a href="./studentFeed.html">Students Feed</a>
+                <a href="./freedomWall.html" class="active">Freedom Wall</a>
+            </nav>
+            <main>
+                <!-- <div class="message notfound">
+                    <p>No Article Found</p>
+                </div> -->
+
+                <div class="freedom_container single">
+                    <!-- card -->
+                    <div class="card">
+                        <div class="user">
+                            <div class="user_info_container">
+                                <i class="bx bxs-user-circle"></i>
+                                <div class="user_info">
+                                    <p>Anonymous</p>
+                                    <small class="date">06/07/2024</small>
+                                </div>
+                            </div>
+                            <div class="report">
+                                <i
+                                    id="reportBtn"
+                                    class="bx bx-error-circle"></i>
+                                <div class="report_modal" id="report_modal">
+                                    <form action="">
+                                        <input
+                                            type="submit"
+                                            value="Report"
+                                            class="btn primary" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <p>
+                                The Torch is Tangub City Global College's
+                                official publication. "Lorem ipsum dolor sit
+                                amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore
+                                magna aliqua Lorem ipsum, dolor sit amet
+                                consectetur adipisicing elit. Odit, praesentium
+                                veritatis! Voluptatem voluptate debitis ex
+                                aspernatur molestiae reprehenderit laudantium
+                                laboriosam! Dolorem iusto repellendus inventore
+                                corrupti animi libero adipisci optio tempora
+                                quod, deleniti, nulla eius beatae esse labore
+                                provident consectetur tempore deserunt ullam
+                                sequi dicta quae eum! Accusamus quia porro sunt
+                                repellendus nobis accusantium distinctio ducimus
+                                suscipit atque, provident blanditiis fugiat
+                                adipisci, velit nisi, voluptatibus laborum aut
+                                veritatis? Tempore earum fugiat rem quibusdam
+                                voluptates recusandae obcaecati esse magni,
+                                veritatis id architecto pariatur sapiente. Quod
+                                laboriosam nisi corporis sapiente quibusdam
+                                debitis, mollitia architecto porro voluptate
+                                veniam, vero nostrum sed? Sequi, ducimus hic. .
+                            </p>
+                            <div class="tts">
+                                <i class="bx bx-volume-full"></i>
+                            </div>
+                        </div>
+                        <div class="card_reaction">
+                            <div class="reaction">
+                                <div class="like">
+                                    <span>30</span>
+                                    <i class="bx bxs-like"></i>
+                                </div>
+                                <div class="dislike">
+                                    <span>10</span>
+                                    <i class="bx bxs-dislike"></i>
+                                </div>
+                            </div>
+                            <div class="emoji">
+                                <p>Feeling<span>😎</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <div class="to_top">
+                <i class="bx bx-up-arrow-alt"></i>
+            </div>
+            <footer>
+                <div class="line"></div>
+                <div class="footer_content">
+                    <div class="torch">
+                        <h2>The Torch Publication</h2>
+                        <p>
+                            The Torch is Tangub City Global College's official
+                            publication. "Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                    <div class="socials">
+                        <div class="social">
+                            <i class="bx bxl-facebook-circle"></i>
+                            <a href="">The Torch</a>
+                        </div>
+                        <div class="social">
+                            <i class="bx bxs-envelope"></i>
+                            <a href="">torch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <small class="copy"
+                    >©Torch Publication| All Rights Reserved</small
+                >
+            </footer>
+        </div>
+        <script src="./js/totop.js"></script>
+        <script src="./js/script.js"></script>
+        <script>
+            // single report
+            var report_btn = document.getElementById("reportBtn");
+            var report = document.getElementById("report_modal");
+
+            report_btn.addEventListener("click", () => {
+                // alert("jafjaklj");
+                report.classList.toggle("show");
+            });
+        </script>
+    </body>
+</html>
