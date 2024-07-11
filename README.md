@@ -17,5 +17,20 @@
 
 Clone the repository or run the command (only the collaborator can clone this repo)
 ```bash    
-    git clone https://github.com/etiennewayne/publication-portal.git
+git clone https://github.com/etiennewayne/publication-portal.git
+```
+
+Go to the repository (repo-name is publication-portal)
+```bash
+cd repo-name
+```
+
+Install the vendor
+```bash
+composer install
+```
+
+Install the node_modules
+```bash
+npm install
 ```
