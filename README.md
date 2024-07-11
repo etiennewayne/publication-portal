@@ -1,12 +1,12 @@
 ## PUBLICATION PORTAL
 
 ### Application Requirements (Windows)
-    Install the following:
+Install the following:
 
-    <a href="https://getcomposer.org/">Composer</a>
-    <a href="https://git-scm.com/">Git</a>
-    <a href="https://www.apachefriends.org/download.html">XAMPP</a>
-    <a href="https://nodejs.org/en">NodeJS</a>
+<a href="https://getcomposer.org/">Composer</a>
+<a href="https://git-scm.com/">Git</a>
+<a href="https://www.apachefriends.org/download.html">XAMPP</a>
+<a href="https://nodejs.org/en">NodeJS</a>
 
 ### Tech 
     Laravel
