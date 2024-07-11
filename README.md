@@ -34,3 +34,15 @@ Install the node_modules
 ```bash
 npm install
 ```
+
+Run the server
+```bash
+php artisan serve
+```
+
+Open new bash/cmd, be sure you are on the root directory of the repository
+```bash
+npm run dev
+```
+
+Browse the application on localhost:8000
