@@ -1,16 +1,13 @@
+import Authenticated from '@/Layouts/AuthenticatedLayout'
 import React from 'react'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-function AdminDashboard() {
+export default function AdminDashboard() {
   return (
     <>
-        <AuthenticatedLayout>
-            <div>
-                ADMIN DASHBOARD
-            </div>
-        </AuthenticatedLayout>
+        <Authenticated user={prop.auth.user}>
+          <div>AdminDashboard</div>
+        </Authenticated>
+       
     </>
   )
 }
-
-export default AdminDashboard
