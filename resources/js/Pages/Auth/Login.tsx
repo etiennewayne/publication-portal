@@ -1,16 +1,24 @@
-import { useEffect, FormEventHandler } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import { useEffect, FormEventHandler, useState, ChangeEvent } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
+import ApplicationLogo from '@/Components/ApplicationLogo';
+
+
+
+import { IconField } from 'primereact/iconfield';
+import { InputIcon } from 'primereact/inputicon';
+        
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
+
+import { Button } from 'primereact/button';
+import classNames from 'classnames'; 
+import axios from 'axios';
+import { log } from 'console';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
+    const { data, setData, post, errors, reset } = useForm({
+        username: '',
         password: '',
         remember: false,
     });
@@ -23,90 +31,69 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
         post(route('login'));
+
+        console.log(errors);
+        
     };
 
     return (
-        <GuestLayout>
+        <>
+        <div className='min-h-screen flex justify-center items-center bg-page-1'>
             <Head title="Log in" />
 
-            <div className="flex px-2 gap-2 mt-3 ml-6">
 
-                <Link href="/">
-                    <img width="60" src="/img/the-torch.png" alt="" />
-                </Link>
-
-                <div className="bg-green-950 w-1"></div>
-
-                <div className="text-green-950">
-                    <h1 className="font-unifrak text-2xl">The Torch</h1>
-                    <h2 className="font-bold tracking-widest">PUBLICATION SYSTEM</h2>
-                </div>
-            </div>
-
-
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
+            <div className='bg-white p-6 shadow-md rounded-md w-full m-3 sm:w-[400px]'>
+                <div className='mb-5'>
+                    <ApplicationLogo></ApplicationLogo>
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                <div className='font-extrabold text-2xl mb-7'>LOGIN</div>
+                <form onSubmit={submit}>
+                    
+                    <div className='mb-2'>
+                        <IconField iconPosition="right">
+                            <InputIcon className="pi pi-search"> </InputIcon>
+                            <InputText
+                                id='username'
+                                placeholder='Username'
+                                value={data.username}
+                                className='w-full'
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    setData('username', e.target.value)
+                                }
+                            />
+                        </IconField>
+                    </div>
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
+                    <div className="mt-4">
+                        <Password
+                            id="password"
+                            value={data.password}
+                            onChange={(e) => setData('password', e.target.value)}
+                            inputClassName="w-full"
+                            placeholder='Password'
+                            className="w-full"
+                            toggleMask
+                            pt={{ 
+                                input: {  className: '' },
+                                iconField: { root: { className: 'w-full' } } 
+                            }}
                         />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
+                    </div>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
-            
-        </GuestLayout>
+                    <div className='mt-4'>
+                        <Button icon="pi pi-sign-in" iconPos='right' label="LOGIN" />
+                    </div>
+
+                </form>
+            </div> 
+            {/* card */}
+
+        </div>
+  
+        </>
     );
 }

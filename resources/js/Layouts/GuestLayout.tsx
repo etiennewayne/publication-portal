@@ -1,35 +1,40 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import MenuBtn from '@/Components/MenuBtn';
-import { Link } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
         <div className="bg-page-1">
-            <div className='relative w-[1366px] mx-20 border border-red-700'>
-                <header className="flex py-4 absolute w-full justify-between z-10 bg-page-1">
-                    
+
+            {/* page container */}
+            <div className='relative w-full
+                xl:max-w-screen-xl xl:mx-auto
+                '>
+
+                <header className="flex items-center justify-between z-10 bg-page-1
+                    w-full px-4
+                    fixed top-0 h-[100px]  
+                    sm:px-0 sm:mx-auto
+                    xl:max-w-screen-xl">
                     <ApplicationLogo />
-                
-                    <div className="relative right-0">
+                    
+                    <div className="">
                         <MenuBtn  />
                     </div>
-
                 </header>
                 
-                <nav>
-                    <a href="/index.html" className="active">Home</a>
-                    <a href="/reccommedation.html">Recommendation</a>
-                    <a href="/torchFeed.html">The Torch Articles</a>
+                <div className="custom-nav">
+                    <a href="/" className="active">Home</a>
+                    <a href="/reccommedation">Recommendation</a>
+                    <a href="/torch-feed">The Torch Articles</a>
                     <a href="/studentFeed.html">Students Feed</a>
                     <a href="/freedomWall.html">Freedom Wall</a>
-                </nav>
+                </div>
 
                 {children}
                 
             </div>
             
-
         </div>
     );
 }

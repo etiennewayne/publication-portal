@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
 
-function MenuBtn() {
+export default function MenuBtn() {
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
@@ -74,5 +74,3 @@ function MenuBtn() {
         </>
     )
 }
-
-export default MenuBtn

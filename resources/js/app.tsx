@@ -5,6 +5,12 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
+
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import { PrimeReactProvider } from 'primereact/api';
+import 'primeicons/primeicons.css';
+
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -13,7 +19,12 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <PrimeReactProvider value={{ unstyled: false }}>
+                <App {...props} /> 
+            </PrimeReactProvider>
+            
+        );
     },
     progress: {
         color: '#4B5563',
