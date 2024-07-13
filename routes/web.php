@@ -36,3 +36,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::resource('/admin/dashboard', App\Http\Controllers\Admin\AdminDashboardController::class);

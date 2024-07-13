@@ -31,69 +31,74 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('login'));
-
-        console.log(errors);
-        
+        post(route('login'))
     };
 
     return (
         <>
-        <div className='min-h-screen flex justify-center items-center bg-page-1'>
-            <Head title="Log in" />
+            <div className='min-h-screen flex justify-center items-center bg-page-1'>
+                <Head title="Log in" />
 
 
-            <div className='bg-white p-6 shadow-md rounded-md w-full m-3 sm:w-[400px]'>
-                <div className='mb-5'>
-                    <ApplicationLogo></ApplicationLogo>
-                </div>
+                <div className='bg-white p-6 shadow-md rounded-md w-full m-3 sm:w-[400px]'>
+                    <div className='mb-5'>
+                        <ApplicationLogo></ApplicationLogo>
+                    </div>
 
-                <div className='font-extrabold text-2xl mb-7'>LOGIN</div>
-                <form onSubmit={submit}>
-                    
-                    <div className='mb-2'>
-                        <IconField iconPosition="right">
-                            <InputIcon className="pi pi-search"> </InputIcon>
-                            <InputText
-                                id='username'
-                                placeholder='Username'
-                                value={data.username}
-                                className='w-full'
-                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                    setData('username', e.target.value)
-                                }
+                    <div className='font-extrabold text-2xl mb-7'>LOGIN</div>
+
+                    <form onSubmit={submit}>
+                        
+                        <div className='mb-2'>
+                            <IconField iconPosition="right">
+                                <InputIcon className="pi pi-search"> </InputIcon>
+                                <InputText
+                                    id='username'
+                                    placeholder='Username'
+                                    invalid={errors.username ? true : false}
+                                    value={data.username}
+                                    required
+                                    className='w-full'
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        setData('username', e.target.value)
+                                    }
+                                />
+                            </IconField>
+                            {errors ? (
+                                <small className='text-red-500'>
+                                    {errors.username}
+                                </small>
+                            ) : ''}
+                        </div>
+
+
+                        <div className="mt-4">
+                            <Password
+                                id="password"
+                                value={data.password}
+                                onChange={(e) => setData('password', e.target.value)}
+                                inputClassName="w-full"
+                                placeholder='Password'
+                                required
+                                className="w-full"
+                                toggleMask
+                                pt={{ 
+                                    input: {  className: '' },
+                                    iconField: { root: { className: 'w-full' } } 
+                                }}
                             />
-                        </IconField>
-                    </div>
 
+                        </div>
 
-                    <div className="mt-4">
-                        <Password
-                            id="password"
-                            value={data.password}
-                            onChange={(e) => setData('password', e.target.value)}
-                            inputClassName="w-full"
-                            placeholder='Password'
-                            className="w-full"
-                            toggleMask
-                            pt={{ 
-                                input: {  className: '' },
-                                iconField: { root: { className: 'w-full' } } 
-                            }}
-                        />
+                        <div className='mt-4'>
+                            <Button icon="pi pi-sign-in" iconPos='right' label="LOGIN" />
+                        </div>
 
-                    </div>
+                    </form>
+                </div> 
+                {/* card */}
 
-                    <div className='mt-4'>
-                        <Button icon="pi pi-sign-in" iconPos='right' label="LOGIN" />
-                    </div>
-
-                </form>
-            </div> 
-            {/* card */}
-
-        </div>
-  
+            </div>
         </>
     );
 }
