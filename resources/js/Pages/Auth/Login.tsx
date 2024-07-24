@@ -1,37 +1,63 @@
 import { useEffect, FormEventHandler, useState, ChangeEvent } from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 
+import { InfoCircleOutlined, LoginOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
 
 
-import { IconField } from 'primereact/iconfield';
-import { InputIcon } from 'primereact/inputicon';
-        
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-
-import { Button } from 'primereact/button';
-import classNames from 'classnames'; 
 import axios from 'axios';
+
 import { log } from 'console';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
-    
-    const { data, setData, post, errors, reset } = useForm({
+
+    // const { data, setData, post, errors, reset } = useForm({
+    //     username: '',
+    //     password: '',
+    //     remember: false,
+    // });
+
+    const [form] = Form.useForm();
+
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({
         username: '',
-        password: '',
-        remember: false,
+        password: ''
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            //reset('password');
         };
     }, []);
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-        post(route('login'))
+    const submit = (values: object) => {
+        setLoading(true)
+        setErrors({
+            username: '',
+            password: ''
+        })
+
+        console.log(values)
+        axios.post('/login', values).then(res=>{
+
+            if(res.data.role === 'ADMINISTRATOR'){
+                router.visit('/admin/dashboard')
+            }
+
+            if(res.data.role === 'USER'){
+                router.visit('/dashboard')
+            }
+
+            //console.log(res.data)
+            setLoading(false)
+
+        }).catch(err => {
+            setErrors(err.response.data.errors)
+            setLoading(false)
+        })
+        
     };
 
     return (
@@ -46,55 +72,57 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     </div>
 
                     <div className='font-extrabold text-2xl mb-7'>LOGIN</div>
-
-                    <form onSubmit={submit}>
                         
-                        <div className='mb-2'>
-                            <IconField iconPosition="right">
-                                <InputIcon className="pi pi-search"> </InputIcon>
-                                <InputText
-                                    id='username'
-                                    placeholder='Username'
-                                    invalid={errors.username ? true : false}
-                                    value={data.username}
-                                    required
-                                    className='w-full'
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        setData('username', e.target.value)
+                    <div className='mb-2'>
+
+                        <Form
+                            form={form}
+                            layout="vertical"
+                            onFinish={submit}
+                            autoComplete='off'
+                            initialValues={{
+                                username: '',
+                                password: '',
+                            }}>
+
+                            <Form.Item label="USERNAME" 
+                                name="username"
+                                required 
+                                tooltip="This is a required field"
+                                validateStatus={errors.username ? 'error' : ''}
+                                help={errors.username ? errors.username[0] : ''}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Please input your Username!",
                                     }
-                                />
-                            </IconField>
-                            {errors ? (
-                                <small className='text-red-500'>
-                                    {errors.username}
-                                </small>
-                            ) : ''}
-                        </div>
+                                ]}>
+                                <Input placeholder="Username" size="large" />
+                            </Form.Item>
 
+                            <Form.Item label="PASSWORD" 
+                                name="password"
+                                required 
+                                tooltip="This is a required field"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Please input your Password!",
+                                    }
+                                ]}>
+                                <Input placeholder="Password" size="large" type="password"/>
+                            </Form.Item>
 
-                        <div className="mt-4">
-                            <Password
-                                id="password"
-                                value={data.password}
-                                onChange={(e) => setData('password', e.target.value)}
-                                inputClassName="w-full"
-                                placeholder='Password'
-                                required
-                                className="w-full"
-                                toggleMask
-                                pt={{ 
-                                    input: {  className: '' },
-                                    iconField: { root: { className: 'w-full' } } 
-                                }}
-                            />
+                            <div className='flex justify-end'>
+                                <Button type="primary" 
+                                    htmlType="submit"
+                                    icon={<LoginOutlined />} size='large' loading={loading}>
+                                    Login
+                                </Button>
+                            </div>
+                        </Form>
+                    </div>
 
-                        </div>
-
-                        <div className='mt-4'>
-                            <Button icon="pi pi-sign-in" iconPos='right' label="LOGIN" />
-                        </div>
-
-                    </form>
                 </div> 
                 {/* card */}
 

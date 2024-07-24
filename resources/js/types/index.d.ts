@@ -1,5 +1,8 @@
 export interface User {
+	data(data: any): unknown;
     id: number;
+    username: string,
+    sex: string,
     name: string;
     email: string;
     email_verified_at: string;

@@ -24,8 +24,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "antd": "^5.19.3",
         "classnames": "^2.5.1",
-        "primeicons": "^7.0.0",
-        "primereact": "^10.7.0"
+        "primeicons": "^7.0.0"
     }
 }

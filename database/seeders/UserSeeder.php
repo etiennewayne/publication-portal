@@ -23,6 +23,15 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('1'),
                 'role' => 'ADMINISTRATOR',
             ],
+
+            [
+                'username' => 'user',
+                'name' => 'MELDHEE',
+                'sex' => 'FEMALE',
+                'email' => 'user@publication.org',
+                'password' => Hash::make('1'),
+                'role' => 'USER',
+            ],
            
         ];
 
