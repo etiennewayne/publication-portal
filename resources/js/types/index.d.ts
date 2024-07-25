@@ -1,5 +1,5 @@
 export interface User {
-	role: any;
+	role: string;
 	data(data: any): unknown;
     id: number;
     user_id: number;
@@ -16,3 +16,17 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
 };
+
+export interface Article {
+	data(data: any): unknown;
+    article_id: number;
+    title: string;
+    article_content: string,
+    author: string,
+    encoded_by: string;
+    modified_by: string;
+    date_published: string;
+    is_published: number;
+    is_featured: number;
+    views: number;
+}

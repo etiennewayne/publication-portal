@@ -52,6 +52,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'delete'])->name('admin.users.delete');
 
 
+    Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
+    Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
+    Route::post('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'store'])->name('admin.articles.store');
+    Route::post('/admin/articles-update/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'update'])->name('admin.articles.update');
+    Route::get('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'show'])->name('admin.articles.show');
+    Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'getData'])->name('admin.articles.getdata');
+    Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'delete'])->name('admin.articles.delete');
+
+
 });
 
 require __DIR__.'/auth.php';

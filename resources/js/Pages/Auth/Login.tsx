@@ -64,7 +64,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 <Head title="Log in" />
 
 
-                <div className='bg-white p-6 shadow-md rounded-md w-full m-3 sm:w-[400px]'>
+                <div className='bg-white p-6 drop-shadow-2xl shadow-lg rounded-md w-full m-3 sm:w-[400px]'>
                     <div className='mb-5'>
                         <ApplicationLogo></ApplicationLogo>
                     </div>
@@ -108,16 +108,15 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                                         message: "Please input your Password!",
                                     }
                                 ]}>
-                                <Input placeholder="Password" size="large" type="password"/>
+                                <Input.Password placeholder="Password" size="large"/>
                             </Form.Item>
 
-                            <div className='flex justify-end'>
-                                <Button type="primary" 
-                                    htmlType="submit"
-                                    icon={<LoginOutlined />} size='large' loading={loading}>
-                                    Login
-                                </Button>
-                            </div>
+                            <Button 
+                                className='w-full bg-[#0c251c] font-bold text-white hover:text-green-50'
+                                htmlType="submit"
+                                icon={<LoginOutlined />} size='large' loading={loading}>
+                                Login
+                            </Button>
                         </Form>
                     </div>
 

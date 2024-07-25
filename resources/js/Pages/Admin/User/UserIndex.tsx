@@ -26,7 +26,6 @@ export default function UserIndex({ auth }: PageProps) {
 	
 	const [form] = Form.useForm();
 
-
     const [data, setData] = useState<User[]>([]);
     const [loading, setLoading] = useState(false);
     const [total, setTotal] = useState(0);
@@ -42,6 +41,7 @@ export default function UserIndex({ auth }: PageProps) {
     const [id, setId] = useState(0);
 	
 	const getData = async () => {
+
         setLoading(true)
         const params = [
             `perpage=${perPage}`,
@@ -49,7 +49,7 @@ export default function UserIndex({ auth }: PageProps) {
         ].join('&');
 
 		try{
-			const res = await axios.get<User[]>(`/admin/get-users?${params}`);
+			const res = await axios.get<{ data: User[] }>(`/admin/get-users?${params}`);
 			setData(res.data.data)
 			setLoading(false)
 		}catch(err){
@@ -311,8 +311,6 @@ export default function UserIndex({ auth }: PageProps) {
 					</Form.Item></>
 
 				) : ''}
-
-                
 
                 <Form.Item
                     name="name"
