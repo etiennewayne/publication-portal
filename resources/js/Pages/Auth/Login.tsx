@@ -38,8 +38,6 @@ export default function Login({ status, canResetPassword }: { status?: string, c
             username: '',
             password: ''
         })
-
-        console.log(values)
         axios.post('/login', values).then(res=>{
 
             if(res.data.role === 'ADMINISTRATOR'){

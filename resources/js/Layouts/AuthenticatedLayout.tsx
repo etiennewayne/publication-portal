@@ -22,15 +22,13 @@ export default function Authenticated(
                                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
-                            </div>
+                          
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
-
+                            <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                Dashboard
+                            </NavLink>
                             <Dropdown>
                                 <Dropdown.Trigger>
                                     <span className="inline-flex rounded-md">
