@@ -4,3 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+/* overiding some antd styles */
+.primary-button {
+    background-color: #0d4928 !important;
+    border: 1px solid #0d4928 ;
+    color: white !important;
+  }
+  
+  .primary-button:hover {
+    border: 1px solid #116135 !important;
+    background-color: #116135 !important;
+  }

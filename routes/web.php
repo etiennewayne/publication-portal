@@ -52,6 +52,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'delete'])->name('admin.users.delete');
 
 
+    Route::get('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'index'])->name('admin.categories.index');
+    Route::get('/admin/categories/create', [App\Http\Controllers\Admin\AdminCategoryController::class, 'create'])->name('admin.categories.create');
+    Route::post('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'store'])->name('admin.categories.store');
+    Route::post('/admin/categories-update/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'update'])->name('admin.categories.update');
+    Route::get('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'show'])->name('admin.categories.show');
+    Route::get('/admin/get-categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'getData'])->name('admin.categories.getdata');
+    Route::delete('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'delete'])->name('admin.categories.delete');
+    
+
     Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
     Route::post('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'store'])->name('admin.articles.store');
@@ -79,3 +88,9 @@ Route::get('/applogout', function(Request $req){
     return redirect('/');
 });
 
+
+
+
+Route::get('/ck-editor', function () {
+    return Inertia::render('CKEditor');
+});

@@ -24,6 +24,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-react": "^8.0.0",
         "antd": "^5.19.3",
         "classnames": "^2.5.1",
         "primeicons": "^7.0.0"

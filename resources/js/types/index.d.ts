@@ -30,3 +30,12 @@ export interface Article {
     is_featured: number;
     views: number;
 }
+
+// cateogires
+export interface Category {
+	data(data: any): unknown;
+    category_id: number;
+    category: string;
+    active: number;
+   
+}
