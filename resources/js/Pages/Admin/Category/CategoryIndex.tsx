@@ -40,19 +40,25 @@ export default function UserIndex({ auth }: PageProps) {
 
     const [id, setId] = useState(0);
 	
-	const getData = async () => {
+	interface ApiResponse<T> {
+		data: T;
+	}
 
+
+	const getData = async () => {
         setLoading(true)
         const params = [
+			`search=${search}`,
             `perpage=${perPage}`,
             `page=${page}`
         ].join('&');
 
 		try{
-			const res = await axios.get<{ data: Category[] }>(`/admin/get-categories?${params}`);
+			const res = await axios.get<ApiResponse<Category[]>>(`/admin/get-categories?${params}`);
 			setData(res.data.data)
 			setLoading(false)
 		}catch(err){
+			setLoading(false)
 			console.log(err)
 		}
     }
@@ -84,6 +90,7 @@ export default function UserIndex({ auth }: PageProps) {
 			const response = await axios.get<Category>(`/admin/categories/${id}`);
 			form.setFields([
 				{ name: 'category', value: response.data.category },
+				{ name: 'active', value: response.data.active },
 				
 			]);
 		}catch(err){
@@ -105,8 +112,9 @@ export default function UserIndex({ auth }: PageProps) {
 	}
 
 	const handleDeleteClick = async (id:number) => {
-		const res = await axios.delete('/admin/categories/{id}');
+		const res = await axios.delete('/admin/categories/' +id);
 		if(res.data.status === 'deleted'){
+			openNotification('bottomRight', 'Deleted!', 'Category successfully deleted.')
 			getData()
 		}
 	}
@@ -116,7 +124,7 @@ export default function UserIndex({ auth }: PageProps) {
 		if(id > 0){
 			try{
 				const res = await axios.put('/admin/categories/' + id, values)
-				if(res.data.status === 'saved'){
+				if(res.data.status === 'updated'){
 					openNotification('bottomRight', 'Updated!', 'Category successfully update.')
 					form.resetFields()
 					setOpen(false)
@@ -149,13 +157,12 @@ export default function UserIndex({ auth }: PageProps) {
 
 	return (
 		<Authenticated user={auth.user}>
-			<Head title="User Management"></Head>
+			<Head title="Category Management"></Head>
 			{contextHolder}
 			<div className='flex mt-10 justify-center items-center'>
 				{/* card */}
 				<div className='p-6 w-full overflow-auto mx-2 bg-white shadow-sm rounded-md
-					sm:w-[740px]
-					md:w-[990px]'>
+					sm:w-[740px]'>
 					{/* card header */}
 					<div className="font-bold mb-4">List of Category</div>
 					{/* card body */}
@@ -167,7 +174,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 							<Column title="Id" dataIndex="category_id"/>
 							<Column title="Category" dataIndex="category" key="category"/>
-							<Column title="Active" dataIndex="active" key="active" render={(_, active)=>(
+							<Column title="Active" dataIndex="active" key="active" render={(active:boolean)=>(
 								active ? (
 									<span className='bg-green-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>YES</span>
 								) : (

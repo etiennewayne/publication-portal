@@ -49,16 +49,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'update'])->name('admin.users.update');
     Route::get('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'show'])->name('admin.users.show');
     Route::get('/admin/get-users', [App\Http\Controllers\Admin\AdminUserController::class, 'getData'])->name('admin.users.create');
-    Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'delete'])->name('admin.users.delete');
+    Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 
 
     Route::get('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin/categories/create', [App\Http\Controllers\Admin\AdminCategoryController::class, 'create'])->name('admin.categories.create');
     Route::post('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'store'])->name('admin.categories.store');
-    Route::post('/admin/categories-update/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'update'])->name('admin.categories.update');
+    Route::put('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'update'])->name('admin.categories.update');
     Route::get('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'show'])->name('admin.categories.show');
     Route::get('/admin/get-categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'getData'])->name('admin.categories.getdata');
-    Route::delete('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'delete'])->name('admin.categories.delete');
+    Route::delete('/admin/categories/{id}', [App\Http\Controllers\Admin\AdminCategoryController::class, 'destroy'])->name('admin.categories.destroy');
     
 
     Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/articles-update/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'update'])->name('admin.articles.update');
     Route::get('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'show'])->name('admin.articles.show');
     Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'getData'])->name('admin.articles.getdata');
-    Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'delete'])->name('admin.articles.delete');
+    Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'destroy'])->name('admin.articles.destroy');
 
 
 });

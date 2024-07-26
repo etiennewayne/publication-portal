@@ -8,7 +8,7 @@ export interface User {
     name: string;
     email: string;
     email_verified_at: string;
-    active: number
+    active: boolean
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
@@ -36,6 +36,6 @@ export interface Category {
 	data(data: any): unknown;
     category_id: number;
     category: string;
-    active: number;
+    active: boolean;
    
 }

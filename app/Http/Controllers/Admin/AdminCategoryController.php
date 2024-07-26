@@ -18,8 +18,12 @@ class AdminCategoryController extends Controller
     }
 
     public function getData(Request $req){
-        return Category::where('category', 'like', $req->cat . '%')
+        return Category::where('category', 'like', $req->search . '%')
             ->paginate($req->perpage);
+    }
+
+    public function show($id){
+        return Category::find($id);
     }
 
 
@@ -31,7 +35,7 @@ class AdminCategoryController extends Controller
 
         Category::create([
             'category' => strtoupper($req->category),
-            'active' => $req->active
+            'active' => $req->active ? 1 : 0
         ]);
 
         return response()->json([
@@ -41,13 +45,14 @@ class AdminCategoryController extends Controller
 
 
     public function update(Request $req, $id){
+
         $req->validate([
             'category' => ['required','string', 'unique:categories,category,' . $id . ',category_id']
         ]);
 
         $data = Category::find($id);
         $data->category = strtoupper($req->category);
-        $data->active = $req->active;
+        $data->active = $req->active ? 1 : 0;
         $data->save();
 
 
