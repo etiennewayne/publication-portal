@@ -17,10 +17,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 import { NotificationPlacement } from 'antd/es/notification/interface';
+import { log } from 'console';
 
 
 const { Column } = Table;
-
+const { Search } = Input;
 
 export default function UserIndex({ auth }: PageProps) {
 	
@@ -46,9 +47,11 @@ export default function UserIndex({ auth }: PageProps) {
 
 
 	const getData = async () => {
+
         setLoading(true)
+		const s = document.getElementById('search') as HTMLInputElement;
         const params = [
-			`search=${search}`,
+			`search=${s.value}`,
             `perpage=${perPage}`,
             `page=${page}`
         ].join('&');
@@ -167,6 +170,15 @@ export default function UserIndex({ auth }: PageProps) {
 					<div className="font-bold mb-4">List of Category</div>
 					{/* card body */}
 					<div>
+						<div className='mb-2'>
+						<Search placeholder="Search..." 
+							enterButton="Search"
+							size="large"
+							id="search"
+							// onChange={(e) => setSearch(e.target.value)}
+							loading={loading}
+							onSearch={getData} />
+						</div>
 						<Table dataSource={data}
 							loading={loading}
 							rowKey={(data) => data.category_id}
@@ -212,7 +224,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 						<div className='flex flex-end mt-2'>
 							<Button className='ml-auto' 
-								shape="round" icon={<FileAddOutlined />} 
+								icon={<FileAddOutlined />} 
 								type="primary" onClick={handClickNew}>
 								New
 							</Button>     
