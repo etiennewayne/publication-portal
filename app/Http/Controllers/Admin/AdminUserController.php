@@ -56,7 +56,7 @@ class AdminUserController extends Controller
     }
 
     public function update(Request $req, $id){ 
-        return $req;
+        //return $req;
         $req->validate([
             'username' => ['required', 'string', 'unique:users,username,'. $id . ',user_id'],
             'name' => ['required', 'string'],

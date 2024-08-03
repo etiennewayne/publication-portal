@@ -121,7 +121,7 @@ export default function UserIndex({ auth }: PageProps) {
 		if(id > 0){
 			try{
 				const res = await axios.put('/admin/users/' + id, values)
-				if(res.data.status === 'saved'){
+				if(res.data.status === 'updated'){
 					openNotification('bottomRight', 'Updated!', 'User successfully update.')
 					form.resetFields()
 					setOpen(false)
@@ -380,8 +380,10 @@ export default function UserIndex({ auth }: PageProps) {
                     >
                         <Select
                             options={[
-                                { value: 'USER', label: 'USER' },
-                                { value: 'STAFF', label: 'STAFF' },
+                                { value: 'STUDENT', label: 'STUDENT' },
+                                { value: 'WRITER', label: 'WRITER' },
+                                { value: 'EDITOR', label: 'EDITOR' },
+                                { value: 'DESIGNER', label: 'DESIGNER' },
                                 { value: 'ADMINISTRATOR', label: 'ADMINISTRATOR' },
                             ]}
                         />

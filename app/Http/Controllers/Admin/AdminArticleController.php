@@ -35,9 +35,16 @@ class AdminArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
+        $req->validate([
+            'title' => ['required', 'string'],
+            'author' => ['required', 'string'],
+            'content' => ['required'],
+        ]);
+
+        return $req;
     }
 
     /**
