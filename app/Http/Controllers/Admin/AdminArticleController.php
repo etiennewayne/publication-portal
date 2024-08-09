@@ -45,6 +45,20 @@ class AdminArticleController extends Controller
         ]);
 
         return $req;
+
+        //parseFunction
+        //Article::create();
+    }
+
+
+    function imageParser($content){
+        //parse the content
+
+        //file_put_content()
+        
+        //store()
+
+        //return filename
     }
 
     /**
