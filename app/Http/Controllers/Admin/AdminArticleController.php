@@ -52,10 +52,14 @@ class AdminArticleController extends Controller
 
 
     function imageParser($content){
+        //HTMLDom /storage/article_images
         //parse the content
+        //<base 0
+        //base64 1
+        //base64 2
 
         //file_put_content()
-        
+
         //store()
 
         //return filename

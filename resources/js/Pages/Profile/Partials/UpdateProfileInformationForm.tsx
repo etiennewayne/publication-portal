@@ -4,8 +4,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 import { PageProps } from '@/types';
+import axios from 'axios';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }: { mustVerifyEmail: boolean, status?: string, className?: string }) {
     const user = usePage<PageProps>().props.auth.user;
@@ -14,12 +15,26 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
         name: user.name,
         email: user.email,
     });
+    
+    const [loading, setLoading] = useState(false)
+    const [modal, setModal] = useState(false)
 
     const submit: FormEventHandler = (e) => {
+        setLoading(true)
         e.preventDefault();
 
-        patch(route('profile.update'));
+        //patch(route('profile.update'));
+        axios.patch(route('profile.update')).then(res=>{
+            //res.data
+            if(res.data.status === 'saved'){
+                setLoading(false)
+                setModal(false)
+
+                alert('saved')
+            }
+        })
     };
+
 
     return (
         <section className={className}>
@@ -30,6 +45,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     Update your account's profile information and email address.
                 </p>
             </header>
+
+            {loading &&
+            (
+                <div className='absolute z-20 bg-black h-min'>
+                    Loading gif
+                </div>
+            )}
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
