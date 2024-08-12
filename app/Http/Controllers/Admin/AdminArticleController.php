@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Inertia\Inertia;
 
+use App\Utilities\AhoCorasick; // Import the AhoCorasick class
+
 class AdminArticleController extends Controller
 {
     /**
@@ -43,6 +45,29 @@ class AdminArticleController extends Controller
             'author' => ['required', 'string'],
             'content' => ['required'],
         ]);
+
+        // Build the Trie
+        // $badWords = Word::pluck('name')->toArray();//todo might change to word insted of name
+        // $ahoCorasick = new AhoCorasick();
+        // foreach ($badWords as $badWord) {
+        //     $ahoCorasick->insert(strtolower($badWord));
+        // }
+        // $ahoCorasick->buildFailureLinks();
+
+        // // Check if the article title contains any bad words using Aho-Corasick
+        // if ($ahoCorasick->search(strtolower($data['title']))) {
+        //     return redirect()->back()->withErrors(['title' => 'The title contains inappropriate content.']);
+        // }
+
+        // // Check if the article body contains any bad words using Aho-Corasick
+        // if ($ahoCorasick->search(strtolower($data['body']))) {
+        //     return redirect()->back()->withErrors(['body' => 'The body contains inappropriate content.']);
+        // }
+
+        // // Check if the article body contains any bad words using Aho-Corasick
+        // if ($ahoCorasick->search(strtolower($data['caption']))) {
+        //     return redirect()->back()->withErrors(['caption' => 'The caption contains inappropriate content.']);
+        // }
 
         return $req;
 
