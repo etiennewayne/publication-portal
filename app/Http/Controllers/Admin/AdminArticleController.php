@@ -59,6 +59,7 @@ class AdminArticleController extends Controller
         Article::create([
             'title' => ucfirst($req->title),
             'article_content' => $req->article_content,
+            'category_id' => $req->category,
             'author' => $req->author,
             'encoded_by' => $user->user_id,
             'featured_image' => $imgFilename,

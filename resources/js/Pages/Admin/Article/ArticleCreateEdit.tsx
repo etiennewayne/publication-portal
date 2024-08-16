@@ -141,7 +141,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 			try{
 				const res = await axios.patch('/admin/articles/' + id, values)
 				if(res.data.status === 'updated'){
-					openNotification('bottomRight', 'Updated!', 'User successfully update.')
+					openNotification('bottomRight', 'Updated!', 'Article successfully update.')
 					form.resetFields()
 					setLoading(false)
 
@@ -157,7 +157,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 			try{
 				const res = await axios.post('/admin/articles', values)
 				if(res.data.status === 'saved'){
-					openNotification('bottomRight', 'Saved!', 'User successfully save.')
+					openNotification('bottomRight', 'Saved!', 'Article successfully save.')
 					form.resetFields()
 					setLoading(false)
 				}
@@ -193,6 +193,8 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 	return (
 		<Authenticated user={auth.user}>
 
+			{contextHolder}
+
 			<div className='flex justify-center mt-6'>
 
 				{/* card */}
@@ -207,7 +209,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 							author: '',
 							content: '',
 							featured_image: '',
-							category: '',
+							category: 0,
 							date_published: null,
 							is_featured: false,
 							is_published: false,
@@ -241,7 +243,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 								<Select>
 									{
 										categories?.map(cat => (
-											<Select.Option key={cat.category_id} value={cat.category}>
+											<Select.Option key={cat.category_id} value={cat.category_id}>
 												{cat.category}
 											</Select.Option>
 										))
