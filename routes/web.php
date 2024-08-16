@@ -44,9 +44,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
-    Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
-
+    // Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
+    // Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
+    // Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
+  
 
     Route::get('/admin/users', [App\Http\Controllers\Admin\AdminUserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/users/create', [App\Http\Controllers\Admin\AdminUserController::class, 'create'])->name('admin.users.create');
@@ -73,6 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'show'])->name('admin.articles.show');
     Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'getData'])->name('admin.articles.getdata');
     Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'destroy'])->name('admin.articles.destroy');
+    Route::post('/temp-upload', [App\Http\Controllers\Admin\AdminArticleController::class, 'tempUpload']);
+    Route::post('/temp-remove/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'removeUpload']);
 
 
 });

@@ -17,6 +17,7 @@ class Article extends Model
         'author',
         'encoded_by',
         'modified_by',
+        'featured_image',
         'date_published',
         'is_published',
         'is_featured',

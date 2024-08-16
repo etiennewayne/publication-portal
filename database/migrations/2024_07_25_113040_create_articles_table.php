@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id('article_id');
             $table->string('title')->nullable();
             $table->text('article_content')->nullable();
+            
+            $table->unsignedBigInteger('category_id');
+
             $table->string('author')->nullable();
             $table->string('encoded_by')->nullable();
             $table->string('modified_by')->nullable();
-            $table->dateTime('date_published')->nullable();
+            $table->string('featured_image')->nullable();
+            $table->date('date_published')->nullable();
             $table->tinyInteger('is_published')->default(0);
             $table->tinyInteger('is_featured')->default(0);
             $table->integer('views')->default(0);

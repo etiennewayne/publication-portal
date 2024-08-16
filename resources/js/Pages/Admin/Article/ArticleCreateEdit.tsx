@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Head, router } from '@inertiajs/react'
+import { Head, router, usePage } from '@inertiajs/react'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import {
@@ -41,15 +41,19 @@ import {
 
 import 'ckeditor5/ckeditor5.css';
 
-import { FileAddOutlined, LikeOutlined, 
-    DeleteOutlined, EditOutlined, 
-	EyeInvisibleOutlined,EyeTwoTone,
-    QuestionCircleOutlined } from '@ant-design/icons';
+import { 
+	UploadOutlined, SaveOutlined
+} from '@ant-design/icons';
 
-import { Card, Space, 
-    Pagination, Button, Modal,
+import {
+	Button, Modal,
     Form, Input, Select, Checkbox,
-    notification } from 'antd';
+	UploadProps,
+    notification, 
+	message,
+	Upload,
+	DatePicker,
+	Flex} from 'antd';
 
 import { Article, Category, PageProps } from '@/types';
 
@@ -57,19 +61,65 @@ import { NotificationPlacement } from 'antd/es/notification/interface';
 
 import axios from 'axios';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
-    
+
+
 export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PageProps}) {
 
+	const { props } = usePage<PageProps>();
+	const csrfToken: string = props.auth.csrf_token ?? ''; // Ensure csrfToken is a string
+  
+	console.log('id', id)
+	
 	const [form] = Form.useForm();
+
 	const [errors, setErrors] = useState<any>(false);
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 
-	useEffect(()=>{
-		//load categories upon mounting the component
-		loadCategories()
 
+	useEffect(()=>{
+		loadCategories()
 	},[])
+
+	
+	const uploadProps: UploadProps = {
+		name: 'featured_image',
+		action: '/temp-upload',
+		listType: 'picture',
+		headers: {
+			'X-CSRF-Token':  csrfToken,
+		},
+		beforeUpload: (file) => {
+			const isPNG = file.type === 'image/png';
+			const isJPG = file.type === 'image/jpeg';
+
+			if (!isPNG && !isJPG) {
+			  message.error(`${file.name} is not a png/jpg file`);
+			}
+			return isPNG || isJPG || Upload.LIST_IGNORE;
+		},
+		onChange(info) {
+			// if (info.file.status !== 'uploading') {
+			// 	console.log(info.file, info.fileList);
+			// }
+			if (info.file.status === 'done') {
+				message.success(`${info.file.name} file uploaded successfully`);
+				form.setFieldValue('featured_image', info.file.response)
+				console.log('set fields ', form)
+			} else if (info.file.status === 'error') {
+				message.error(`${info.file.name} file upload failed.`);
+			}
+		},
+		onRemove(info){
+			console.log('filename', info.response);
+			axios.post('/temp-remove/' + info.response).then(res=>{
+				if(res.data.status === 'temp_deleted'){
+					message.success('File removed.');
+				}
+			})
+		}
+	};
+
 
     // this for notifcation
 	const [api, contextHolder] = notification.useNotification();
@@ -82,19 +132,26 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
     };
 
 
-    const submit = async (values:any) =>{
-		console.log(values)
+    const submit = async (values:object) =>{
+		// setLoading(true)
+		//console.log(values)
+		setErrors({})
+
 		if(id > 0){
 			try{
-				const res = await axios.post('/admin/articles-update/' + id, values)
-				if(res.data.status === 'saved'){
+				const res = await axios.patch('/admin/articles/' + id, values)
+				if(res.data.status === 'updated'){
 					openNotification('bottomRight', 'Updated!', 'User successfully update.')
 					form.resetFields()
+					setLoading(false)
+
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
-	
+					setErrors(err.response.data.errors)
+					
 				}
+				setLoading(false)
 			}
 		}else{
 			try{
@@ -102,14 +159,17 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 				if(res.data.status === 'saved'){
 					openNotification('bottomRight', 'Saved!', 'User successfully save.')
 					form.resetFields()
+					setLoading(false)
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
-	
+					setErrors(err.response.data.errors)
 				}
+				setLoading(false)
 			}
 		}
 	}
+	
 
 	// Load Categories
 	const loadCategories = async ()  =>{
@@ -125,89 +185,97 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 	}
 
 
+	const onChangePublishDate = () => {
+		console.log('change date');
+		
+	}
+
 	return (
 		<Authenticated user={auth.user}>
 
 			<div className='flex justify-center mt-6'>
 
 				{/* card */}
-				<div className='w-full sm:w-[990px] bg-white p-6'>
+				<div className='w-full sm:w-[990px] bg-white p-6 mx-2'>
 
 					<Form layout='vertical'
-						form={form} autoComplete='off'
+						form={form} 
+						autoComplete='off'
 						onFinish={submit}
 						initialValues={{
 							title: '',
 							author: '',
 							content: '',
+							featured_image: '',
+							category: '',
+							date_published: null,
+							is_featured: false,
+							is_published: false,
+							upload: null
                         }}>
 						
-
 						<Form.Item
 							name="title"
 							label="Title"
 							validateStatus={errors.title ? 'error' : ''}
-							help={errors.title ? errors.title[0] : ''}
-							rules={[
-								{
-									required: true,
-									message: 'Please input title',
-								}
-							]}>
-
+							help={errors.title ? errors.title[0] : ''}>
 							<Input placeholder="Title"/>
-
 						</Form.Item>
 
+						<div className="flex gap-2">
+							<Form.Item
+								name="author"
+								className='w-full'
+								label="Author"
+								validateStatus={errors.author ? 'error' : ''}
+								help={errors.author ? errors.author[0] : ''}>
+								<Input placeholder="Author"/>
+							</Form.Item>
+
+							<Form.Item
+								name="category"
+								className='w-full'
+								label="Select Category"
+								validateStatus={errors.category ? 'error' : ''}
+								help={errors.category ? errors.category[0] : ''}>
+								<Select>
+									{
+										categories?.map(cat => (
+											<Select.Option key={cat.category_id} value={cat.category}>
+												{cat.category}
+											</Select.Option>
+										))
+									}
+								</Select>
+							</Form.Item>
+						</div>
+
+						<Form.Item
+							name="upload"
+							valuePropName="fileList"
+							className='w-full'
+							label="Select Featured Image"
+							getValueFromEvent={(e) => {
+								// Normalize the value to fit what the Upload component expects
+								if (Array.isArray(e)) {
+								return e;
+								}
+								return e?.fileList;
+							}}
+							validateStatus={errors.upload ? 'error' : ''}
+							help={errors.upload ? errors.upload[0] : ''}>
+								<Upload maxCount={1} {...uploadProps}>
+									<Button icon={<UploadOutlined />}>Click to Upload</Button>
+								</Upload>
+						</Form.Item>
 						
-						<Form.Item
-							name="author"
-							label="Author"
-							validateStatus={errors.author ? 'error' : ''}
-							help={errors.author ? errors.author[0] : ''}
-							rules={[
-								{
-									required: true,
-									message: 'Please input author',
-								}
-							]}>
-
-							<Input placeholder="Author"/>
-						</Form.Item>
-
-						<Form.Item
-							name="category"
-							label="Select Category"
-							validateStatus={errors.category ? 'error' : ''}
-							help={errors.category ? errors.category[0] : ''}
-							rules={[
-								{
-									required: true,
-									message: 'Please select category'
-								}
-							]}>
-
-							<Select>
-
-								{
-									categories?.map(cat => (
-										<Select.Option key={cat.category_id} value={cat.category}>
-											{cat.category}
-										</Select.Option>
-									))
-								}
-							</Select>
-							
-
-						</Form.Item>
-
+						
 						{/* EDITOR CK WYSIWYG */}
 						<Form.Item
 							label="Content"
 							name="content"
 							validateStatus={errors.content ? 'error' : ''}
-							help={errors.content ? errors.content[0] : ''}
-							rules={[{ required: true, message: 'Please input the content!' }]}>
+							help={errors.content ? errors.content[0] : ''}>
 
 							<CKEditor
 								editor={ ClassicEditor }
@@ -231,7 +299,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 											'link',
 											'uploadImage',
 											'resizeImage',
-											'ckbox',
+											// 'ckbox',
 											'blockQuote',
 											'mediaEmbed',
 											'|',
@@ -356,9 +424,50 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 							/>
 						</Form.Item>
 
-						<Button htmlType='submit' className='mt-4' type='primary'>
+						<Flex gap="middle">
+							<Form.Item
+								name="date_published"
+								label="Date Publish"
+								validateStatus={errors.date_published ? 'error' : ''}
+								help={errors.date_published ? errors.date_published[0] : ''}
+							>
+								<DatePicker onChange={onChangePublishDate} />
+							</Form.Item>
+
+							<Form.Item
+								name='is_published'
+								valuePropName='checked'
+								label="Publish"
+								validateStatus={errors.is_published ? 'error' : ''}
+								help={errors.is_published ? errors.is_published[0] : ''}
+							>
+								<Checkbox>Publish</Checkbox>
+								
+							</Form.Item>
+
+							<Form.Item
+								name='is_featured'
+								valuePropName='checked'
+								label="Featured"
+								validateStatus={errors.is_featured ? 'error' : ''}
+								help={errors.is_featured ? errors.is_featured[0] : ''}
+							>
+								<Checkbox>Featured Artlce</Checkbox>
+								
+							</Form.Item>
+						</Flex>
+						
+
+
+						<Button 
+							htmlType="submit"
+							className='mt-4' 
+							icon={<SaveOutlined />}
+							loading={loading}
+							type='primary'>
 							Save Article
 						</Button>
+
 					</Form>
 				</div>
 				{/* end card */}

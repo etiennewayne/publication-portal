@@ -22,8 +22,8 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({
-        username: '',
-        password: ''
+        username: [],
+        password: []
     });
 
     useEffect(() => {
@@ -34,10 +34,12 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const submit = (values: object) => {
         setLoading(true)
+
         setErrors({
-            username: '',
-            password: ''
+            username: [],
+            password: []
         })
+
         axios.post('/login', values).then(res=>{
 
             if(res.data.role === 'ADMINISTRATOR'){
@@ -85,29 +87,17 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
                             <Form.Item label="USERNAME" 
                                 name="username"
-                                required 
-                                tooltip="This is a required field"
-                                validateStatus={errors.username ? 'error' : ''}
+                                validateStatus={errors.username[0] ? 'error' : ''}
                                 help={errors.username ? errors.username[0] : ''}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Please input your Username!",
-                                    }
-                                ]}>
+                            >
                                 <Input placeholder="Username" size="large" />
                             </Form.Item>
 
                             <Form.Item label="PASSWORD" 
                                 name="password"
-                                required 
-                                tooltip="This is a required field"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Please input your Password!",
-                                    }
-                                ]}>
+                                validateStatus={errors.password[0] ? 'error' : ''}
+                                help={errors.password ? errors.password[0] : ''}
+                            >
                                 <Input.Password placeholder="Password" size="large"/>
                             </Form.Item>
 
