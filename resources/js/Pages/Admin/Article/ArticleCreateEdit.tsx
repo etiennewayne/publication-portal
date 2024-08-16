@@ -55,7 +55,7 @@ import {
 	DatePicker,
 	Flex} from 'antd';
 
-import { Article, Category, PageProps } from '@/types';
+import { Article, Category, PageProps, Status } from '@/types';
 
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
@@ -63,7 +63,7 @@ import axios from 'axios';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 
 
-export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PageProps}) {
+export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, auth:PageProps, statuses: Status[]}) {
 
 	const { props } = usePage<PageProps>();
 	const csrfToken: string = props.auth.csrf_token ?? ''; // Ensure csrfToken is a string
@@ -193,6 +193,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 	return (
 		<Authenticated user={auth.user}>
 
+			<Head title="Article" />
 			{contextHolder}
 
 			<div className='flex justify-center mt-6'>
@@ -207,9 +208,10 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 						initialValues={{
 							title: '',
 							author: '',
-							content: '',
+							article_content: '',
 							featured_image: '',
-							category: 0,
+							featured_image_caption: '',
+							category: null,
 							date_published: null,
 							is_featured: false,
 							is_published: false,
@@ -270,12 +272,21 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 									<Button icon={<UploadOutlined />}>Click to Upload</Button>
 								</Upload>
 						</Form.Item>
+
+						<Form.Item
+							name="featured_image_caption"
+							className='w-full'
+							label="Featured Image Caption"
+							validateStatus={errors.featured_image_caption ? 'error' : ''}
+							help={errors.featured_image_caption ? errors.featured_image_caption[0] : ''}>
+							<Input placeholder="Featured Image Caption"/>
+						</Form.Item>
 						
 						
 						{/* EDITOR CK WYSIWYG */}
 						<Form.Item
 							label="Content"
-							name="content"
+							name="article_content"
 							validateStatus={errors.content ? 'error' : ''}
 							help={errors.content ? errors.content[0] : ''}>
 
@@ -284,7 +295,7 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 								onChange={(event, editor) => {
 									const data = editor.getData();
 									//setEditorData(data);
-									form.setFieldsValue({ content: data });
+									form.setFieldsValue({ article_content: data });
 								}}
 								config={ {
 									toolbar: {
@@ -299,8 +310,8 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 											'underline',
 											'|',
 											'link',
-											'uploadImage',
-											'resizeImage',
+											// 'uploadImage',
+											// 'resizeImage',
 											// 'ckbox',
 											'blockQuote',
 											'mediaEmbed',
@@ -428,28 +439,36 @@ export default function ArticleCreateEdit({ id, auth }: {id:number, auth:PagePro
 
 						<Flex gap="middle">
 							<Form.Item
-								name="date_published"
-								label="Date Publish"
-								validateStatus={errors.date_published ? 'error' : ''}
-								help={errors.date_published ? errors.date_published[0] : ''}
-							>
-								<DatePicker onChange={onChangePublishDate} />
+								name="status"
+								className='w-full'
+								label="Select Status"
+								validateStatus={errors.status ? 'error' : ''}
+								help={errors.status ? errors.status[0] : ''}>
+								<Select>
+									{
+										statuses?.map(item => (
+											<Select.Option key={item.status_id} value={item.status}>
+												{item.status}
+											</Select.Option>
+										))
+									}
+								</Select>
 							</Form.Item>
 
 							<Form.Item
-								name='is_published'
-								valuePropName='checked'
-								label="Publish"
-								validateStatus={errors.is_published ? 'error' : ''}
-								help={errors.is_published ? errors.is_published[0] : ''}
+								name="date_published"
+								label="Date Publish"
+								className='w-full'
+								validateStatus={errors.date_published ? 'error' : ''}
+								help={errors.date_published ? errors.date_published[0] : ''}
 							>
-								<Checkbox>Publish</Checkbox>
-								
+								<DatePicker className='w-full' onChange={onChangePublishDate} />
 							</Form.Item>
 
 							<Form.Item
 								name='is_featured'
 								valuePropName='checked'
+								className='w-full'
 								label="Featured"
 								validateStatus={errors.is_featured ? 'error' : ''}
 								help={errors.is_featured ? errors.is_featured[0] : ''}

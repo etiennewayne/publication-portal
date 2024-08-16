@@ -18,12 +18,13 @@ return new class extends Migration
             
             $table->unsignedBigInteger('category_id');
 
-            $table->string('author')->nullable();
-            $table->string('encoded_by')->nullable();
-            $table->string('modified_by')->nullable();
+            $table->string('author', 100)->nullable();
+            $table->string('encoded_by', 100)->nullable();
+            $table->string('modified_by', 100)->nullable();
             $table->string('featured_image')->nullable();
+            $table->string('featured_image_caption')->nullable();
             $table->date('date_published')->nullable();
-            $table->tinyInteger('is_published')->default(0);
+            $table->string('status', 30)->nullable();
             $table->tinyInteger('is_featured')->default(0);
             $table->integer('views')->default(0);
             $table->timestamps();

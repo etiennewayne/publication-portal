@@ -41,3 +41,13 @@ export interface Category {
     active: boolean;
    
 }
+
+
+//statuses
+export interface Status {
+	// map(arg0: (item: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
+	data(data: any): unknown;
+    status_id: number;
+    status: string;
+    active: boolean;
+}

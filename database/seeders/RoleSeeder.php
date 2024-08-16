@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,25 +15,22 @@ class CategorySeeder extends Seeder
         //
         $data = [
             [
-                'category' => 'News',
+                'role' => 'ADMIN',
             ],
             [
-                'category' => 'Sports',
+                'role' => 'EDITOR',
             ],
             [
-                'category' => 'Editorial',
+                'role' => 'WRITER',
             ],
             [
-                'category' => 'Feature',
+                'role' => 'STUDENT',
             ],
             [
-                'category' => 'Literary',
-            ],
-            [
-                'category' => 'Science and Tech',
+                'role' => 'CONTRIBUTOR',
             ],
         ];
 
-        \App\Models\Category::insertOrIgnore($data);
+        \App\Models\Role::insertOrIgnore($data);
     }
 }

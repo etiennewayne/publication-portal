@@ -76,6 +76,17 @@ export default function UserIndex({ auth }: PageProps) {
     };
 
 
+	//truncate display content on table
+	const truncate = (text: string, limit: number) => {
+		const words = text.split(' ');
+		if (words.length > limit) {
+			return words.slice(0, limit).join(' ') + '...';
+		}
+		return text;
+	};
+	
+
+
 	const getUser = async (id:number) => {
 		try{
 			const response = await axios.get<Article>(`/admin/articles/${id}`);
@@ -126,6 +137,7 @@ export default function UserIndex({ auth }: PageProps) {
 					<div className="font-bold mb-4">List of Articles</div>
 					{/* card body */}
 					<div>
+
 						<Table dataSource={data}
 							loading={loading}
 							rowKey={(data) => data.article_id}
@@ -133,7 +145,14 @@ export default function UserIndex({ auth }: PageProps) {
 
 							<Column title="Id" dataIndex="article_id"/>
 							<Column title="Title" dataIndex="title" key="title"/>
-							<Column title="Name" dataIndex="article_content" key="article_content"/>
+							<Column title="Content" 
+								key="article_content"
+								render={(_, data: Article ) => (
+									<>
+										{data.article_content && (truncate(data.article_content, 20))}
+									</>
+								)} 
+							/>
 							<Column title="Author" dataIndex="author" key="author"/>
 						
 							<Column title="Active" dataIndex="active" key="active" render={(_, active)=>(

@@ -9,6 +9,7 @@ use Inertia\Response;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use App\Models\Status;
 
 use App\Utilities\AhoCorasick; // Import the AhoCorasick class
 
@@ -20,6 +21,8 @@ class AdminArticleController extends Controller
     public function index()
     {
         //
+       
+
         return Inertia::render('Admin/Article/ArticleIndex');
 
     }
@@ -30,8 +33,10 @@ class AdminArticleController extends Controller
     public function create()
     {
         //
+        $statuses = Status::orderBy('status', 'asc')->get();
         return Inertia::render('Admin/Article/ArticleCreateEdit', [
-            'id' => 0
+            'id' => 0,
+            'statuses' => $statuses
         ]);
 
     }
@@ -45,10 +50,13 @@ class AdminArticleController extends Controller
         $req->validate([
             'title' => ['required', 'string', 'unique:articles'],
             'author' => ['required', 'string'],
-            'content' => ['required'],
+            'article_content' => ['required'],
             'category' => ['required'],
+            'status' => ['required'],
             'date_published' => ['required'],
-            'upload' => ['required']
+            'upload' => ['required'],
+            'featured_image_caption' => ['required']
+
         ]);
 
       
@@ -58,14 +66,15 @@ class AdminArticleController extends Controller
 
         Article::create([
             'title' => ucfirst($req->title),
-            'article_content' => $req->article_content,
+            'article_content' => $req->content,
             'category_id' => $req->category,
             'author' => $req->author,
             'encoded_by' => $user->user_id,
             'featured_image' => $imgFilename,
+            'featured_image' => $req->featured_image_caption,
             'date_published' => $datePublished,
-            'is_published' => $user->is_published ? 1 : 0,
-            'is_featured' => $user->is_featured ? 1 : 0
+            'status' => $req->status,
+            'is_featured' => $req->is_featured ? 1 : 0
         ]);
 
         if (Storage::exists('public/temp/' . $imgFilename)) {

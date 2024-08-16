@@ -19,10 +19,20 @@ class Article extends Model
         'encoded_by',
         'modified_by',
         'featured_image',
+        'featured_image_caption',
         'date_published',
         'is_published',
         'is_featured',
         'views'
     ];
+
+
+    public function encoded(){
+        return $this->hasOne(User::class,'user_id', 'encoded_by');
+    }
+
+    public function category(){
+        return $this->hasOne(category::class,'category_id', 'category_id');
+    }
 
 }
