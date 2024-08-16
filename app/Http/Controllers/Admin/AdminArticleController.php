@@ -56,7 +56,6 @@ class AdminArticleController extends Controller
             'date_published' => ['required'],
             'upload' => ['required'],
             'featured_image_caption' => ['required']
-
         ]);
 
       
@@ -66,7 +65,7 @@ class AdminArticleController extends Controller
 
         Article::create([
             'title' => ucfirst($req->title),
-            'article_content' => $req->content,
+            'article_content' => $req->article_content,
             'category_id' => $req->category,
             'author' => $req->author,
             'encoded_by' => $user->user_id,
@@ -143,8 +142,13 @@ class AdminArticleController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id){
-        return Inertia::render('Admin/Article/AricleCreateEdit',[
-            'id' =>  $id
+        $statuses = Status::orderBy('status', 'asc')->get();
+        $article = Article::find($id);
+         
+        return Inertia::render('Admin/Article/ArticleCreateEdit', [
+            'id' =>  $id,
+            'statuses' => $statuses,
+            'article' => $article
         ]);
     }
 
@@ -153,7 +157,44 @@ class AdminArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $req->validate([
+            'title' => ['required', 'string', 'unique:articles,title,' . $id . ',article_id'],
+            'author' => ['required', 'string'],
+            'article_content' => ['required'],
+            'category' => ['required'],
+            'status' => ['required'],
+            'date_published' => ['required'],
+            'upload' => ['required'],
+            'featured_image_caption' => ['required']
+        ]);
+
+      
+        $user = Auth::user();
+        // $imgFilename = $req->upload[0]['response'];
+        // $datePublished = date('Y-m-d', strtotime($req->date_published));
+
+        Article::where('article_id', $id)->update([
+            'title' => ucfirst($req->title),
+            'article_content' => $req->article_content,
+            'category_id' => $req->category,
+            'author' => $req->author,
+            'encoded_by' => $user->user_id,
+            'featured_image' => $imgFilename,
+            'featured_image' => $req->featured_image_caption,
+            'date_published' => $datePublished,
+            'status' => $req->status,
+            'is_featured' => $req->is_featured ? 1 : 0
+        ]);
+
+        if (Storage::exists('public/temp/' . $imgFilename)) {
+            // Move the file
+            Storage::move('public/temp/' . $imgFilename, 'public/featured_images/' . $imgFilename); 
+            Storage::delete('public/temp/' . $imgFilename);
+        }
+
+        return response()->json([
+            'status' => 'saved'
+        ], 200);
     }
 
     /**
@@ -172,15 +213,10 @@ class AdminArticleController extends Controller
     }
 
 
-
-
     /* ================= */
     public function tempUpload(Request $req){
-        //return $req;
-        
         $file = $req->featured_image;
         $fileGenerated = md5($file->getClientOriginalName() . time());
-        //Storage::disk('local')->put($req);
         $imageName = $fileGenerated . '.' . $file->getClientOriginalExtension();
         $imagePath = $file->storeAs('temp', $imageName, 'public');
         $n = explode('/', $imagePath);
@@ -200,6 +236,21 @@ class AdminArticleController extends Controller
             'status' => 'temp_error'
         ], 200);
     }
+
+
+    //remove from featured_image folder
+    public function articleImageRemove($fileName){
+        if(Storage::exists('public/featured_images/' .$fileName)) {
+            Storage::delete('public/featured_images/' . $fileName);
+            return response()->json([
+                'status' => 'temp_deleted'
+            ], 200);
+        }
+        return response()->json([
+            'status' => 'temp_error'
+        ], 200);
+    }
+    
 
 
     

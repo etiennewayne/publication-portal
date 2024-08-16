@@ -70,12 +70,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
     Route::post('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'store'])->name('admin.articles.store');
-    Route::post('/admin/articles-update/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'update'])->name('admin.articles.update');
+    Route::get('/admin/articles/{id}/edit', [App\Http\Controllers\Admin\AdminArticleController::class, 'edit'])->name('admin.articles.edit');
+    Route::patch('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'update'])->name('admin.articles.update');
     Route::get('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'show'])->name('admin.articles.show');
     Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'getData'])->name('admin.articles.getdata');
     Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'destroy'])->name('admin.articles.destroy');
     Route::post('/temp-upload', [App\Http\Controllers\Admin\AdminArticleController::class, 'tempUpload']);
     Route::post('/temp-remove/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'removeUpload']);
+    Route::post('/article-image-remove/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'articleImageRemove']);
 
 
 });
@@ -101,4 +103,8 @@ Route::get('/applogout', function(Request $req){
 
 Route::get('/ck-editor', function () {
     return Inertia::render('CKEditor');
+});
+
+Route::get('/test', function () {
+    return Inertia::render('Test');
 });

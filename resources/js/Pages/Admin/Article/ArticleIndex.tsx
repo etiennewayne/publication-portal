@@ -87,24 +87,6 @@ export default function UserIndex({ auth }: PageProps) {
 	
 
 
-	const getUser = async (id:number) => {
-		try{
-			const response = await axios.get<Article>(`/admin/articles/${id}`);
-			form.setFields([
-				{ name: 'title', value: response.data.title },
-				{ name: 'article_content', value: response.data.article_content },
-				{ name: 'author', value: response.data.author },
-				{ name: 'encoded_by', value: response.data.encoded_by },
-				{ name: 'modified_by', value: response.data.modified_by },
-				{ name: 'date_published', value: response.data.date_published },
-				{ name: 'is_published', value: response.data.is_published },
-				{ name: 'views', value: response.data.views }
-			]);
-		}catch(err){
-            console.log(err);
-		}
-    }
-
 
 	const handClickNew = () => {
 		router.visit('/admin/articles/create');

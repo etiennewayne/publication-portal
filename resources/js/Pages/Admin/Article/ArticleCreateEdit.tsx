@@ -40,7 +40,7 @@ import {
 } from 'ckeditor5';
 
 import 'ckeditor5/ckeditor5.css';
-
+import moment from 'moment';
 import { 
 	UploadOutlined, SaveOutlined
 } from '@ant-design/icons';
@@ -48,12 +48,13 @@ import {
 import {
 	Button, Modal,
     Form, Input, Select, Checkbox,
-	UploadProps,
     notification, 
 	message,
 	Upload,
 	DatePicker,
 	Flex} from 'antd';
+
+import type { UploadFile, UploadProps } from 'antd';
 
 import { Article, Category, PageProps, Status } from '@/types';
 
@@ -61,9 +62,10 @@ import { NotificationPlacement } from 'antd/es/notification/interface';
 
 import axios from 'axios';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
+import { log } from 'console';
 
 
-export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, auth:PageProps, statuses: Status[]}) {
+export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:number, auth:PageProps, statuses: Status[], article:Article}) {
 
 	const { props } = usePage<PageProps>();
 	const csrfToken: string = props.auth.csrf_token ?? ''; // Ensure csrfToken is a string
@@ -78,14 +80,54 @@ export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, au
 
 
 	useEffect(()=>{
-		loadCategories()
-	},[])
 
-	
+		loadCategories()
+
+		if(id > 0){
+			getData()
+		}
+	},[])
+ 
+
+
+	const [fileList, setFileList] = useState<UploadFile[]>();
+
+	const getData = () => {
+
+		try{
+			setFileList([
+				{
+					uid: '-1', // Unique identifier
+					name: article.featured_image, // File name
+					status: 'done', // Initial status of the file
+					url: `/storage/featured_images/${article.featured_image}`, // URL to display the image
+					//url: `storage/featured_images/cf7bae55751fbfed198469d0810872d1.jpeg`, // URL to display the image
+				},
+			])
+			console.log('loaded', article.featured_image);
+			
+			console.log('file list', fileList);
+			
+			form.setFields([
+				{ name: 'title', value: article.title },
+				{ name: 'author', value: article.author },
+				{ name: 'category', value: article.category_id },
+				//{ name: 'featured_image', value: article.featured_image },
+				{ name: 'featured_image_caption', value: article.featured_image_caption },
+				{ name: 'article_content', value: article.article_content },
+				{ name: 'status', value: article.status },
+				{ name: 'date_published', value: moment(article.date_published, 'YYYY-MM-DD') },
+			]);
+
+
+		}catch(err){
+            console.log(err);
+		}
+	}
+
 	const uploadProps: UploadProps = {
 		name: 'featured_image',
 		action: '/temp-upload',
-		listType: 'picture',
 		headers: {
 			'X-CSRF-Token':  csrfToken,
 		},
@@ -98,25 +140,38 @@ export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, au
 			}
 			return isPNG || isJPG || Upload.LIST_IGNORE;
 		},
+
 		onChange(info) {
-			// if (info.file.status !== 'uploading') {
-			// 	console.log(info.file, info.fileList);
-			// }
-			if (info.file.status === 'done') {
-				message.success(`${info.file.name} file uploaded successfully`);
-				form.setFieldValue('featured_image', info.file.response)
-				console.log('set fields ', form)
-			} else if (info.file.status === 'error') {
-				message.error(`${info.file.name} file upload failed.`);
+			console.log('info onchange', info);
+			if(id > 0){
+
+			}else{
+				if (info.file.status === 'done') {
+					message.success(`${info.file.name} file uploaded successfully`);
+					form.setFieldValue('featured_image', info.file.response)
+				} else if (info.file.status === 'error') {
+					message.error(`${info.file.name} file upload failed.`);
+				}
 			}
 		},
 		onRemove(info){
-			console.log('filename', info.response);
-			axios.post('/temp-remove/' + info.response).then(res=>{
-				if(res.data.status === 'temp_deleted'){
-					message.success('File removed.');
-				}
-			})
+			console.log('remove', info);
+			if(id> 0){
+				//remove image if mode is update
+				axios.post('/article-image-remove/' + info.name).then(res=>{
+					if(res.data.status === 'temp_deleted'){
+						message.success('File removed.');
+					}
+				})
+			}else{
+				//remove image if mode is create
+				axios.post('/temp-remove/' + info.response).then(res=>{
+					if(res.data.status === 'temp_deleted'){
+						message.success('File removed.');
+					}
+				})
+			}
+			
 		}
 	};
 
@@ -133,19 +188,19 @@ export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, au
 
 
     const submit = async (values:object) =>{
-		// setLoading(true)
-		//console.log(values)
+		setLoading(true)
 		setErrors({})
 
 		if(id > 0){
 			try{
-				const res = await axios.patch('/admin/articles/' + id, values)
-				if(res.data.status === 'updated'){
-					openNotification('bottomRight', 'Updated!', 'Article successfully update.')
-					form.resetFields()
-					setLoading(false)
+				// const res = await axios.patch('/admin/articles/' + id, values)
+				// if(res.data.status === 'updated'){
+				// 	openNotification('bottomRight', 'Updated!', 'Article successfully update.')
+				// 	form.resetFields()
+				// 	setLoading(false)
 
-				}
+				// }
+				console.log('update data: ', values)
 			}catch(err:any){
 				if(err.response.status === 422){
 					setErrors(err.response.data.errors)
@@ -186,7 +241,7 @@ export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, au
 
 
 	const onChangePublishDate = () => {
-		console.log('change date');
+		//console.log('change date');
 		
 	}
 
@@ -256,19 +311,24 @@ export default function ArticleCreateEdit({ id, auth, statuses }: {id:number, au
 
 						<Form.Item
 							name="upload"
-							valuePropName="fileList"
+							// valuePropName="fileList"
 							className='w-full'
 							label="Select Featured Image"
 							getValueFromEvent={(e) => {
 								// Normalize the value to fit what the Upload component expects
 								if (Array.isArray(e)) {
-								return e;
+									return e;
 								}
 								return e?.fileList;
 							}}
+
 							validateStatus={errors.upload ? 'error' : ''}
 							help={errors.upload ? errors.upload[0] : ''}>
-								<Upload maxCount={1} {...uploadProps}>
+								<Upload 
+									maxCount={1}   
+									fileList={fileList} 
+									listType="picture"
+									{...uploadProps}>
 									<Button icon={<UploadOutlined />}>Click to Upload</Button>
 								</Upload>
 						</Form.Item>

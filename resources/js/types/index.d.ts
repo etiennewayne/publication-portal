@@ -25,10 +25,13 @@ export interface Article {
     title: string;
     article_content: string,
     author: string,
+    category_id: number;
     encoded_by: string;
     modified_by: string;
     date_published: string;
-    is_published: number;
+    featured_image: string;
+    featured_image_caption: string;
+    status: string;
     is_featured: number;
     views: number;
 }
