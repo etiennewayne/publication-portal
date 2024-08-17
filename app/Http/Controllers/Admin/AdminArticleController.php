@@ -70,7 +70,7 @@ class AdminArticleController extends Controller
             'author' => $req->author,
             'encoded_by' => $user->user_id,
             'featured_image' => $imgFilename,
-            'featured_image' => $req->featured_image_caption,
+            'featured_image_caption' => $req->featured_image_caption,
             'date_published' => $datePublished,
             'status' => $req->status,
             'is_featured' => $req->is_featured ? 1 : 0
@@ -85,6 +85,7 @@ class AdminArticleController extends Controller
         return response()->json([
             'status' => 'saved'
         ], 200);
+
         // Build the Trie
         // $badWords = Word::pluck('name')->toArray();//todo might change to word insted of name
         // $ahoCorasick = new AhoCorasick();
@@ -155,7 +156,7 @@ class AdminArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
         $req->validate([
             'title' => ['required', 'string', 'unique:articles,title,' . $id . ',article_id'],
@@ -164,28 +165,29 @@ class AdminArticleController extends Controller
             'category' => ['required'],
             'status' => ['required'],
             'date_published' => ['required'],
-            'upload' => ['required'],
+            'upload.*' => ['required'],
             'featured_image_caption' => ['required']
         ]);
 
       
         $user = Auth::user();
-        // $imgFilename = $req->upload[0]['response'];
-        // $datePublished = date('Y-m-d', strtotime($req->date_published));
+        $imgFilename = $req->upload ? $req->upload[0]['response'] : null;
+        $datePublished = date('Y-m-d', strtotime($req->date_published));
 
-        Article::where('article_id', $id)->update([
-            'title' => ucfirst($req->title),
-            'article_content' => $req->article_content,
-            'category_id' => $req->category,
-            'author' => $req->author,
-            'encoded_by' => $user->user_id,
-            'featured_image' => $imgFilename,
-            'featured_image' => $req->featured_image_caption,
-            'date_published' => $datePublished,
-            'status' => $req->status,
-            'is_featured' => $req->is_featured ? 1 : 0
+        Article::where('article_id', $id)
+            ->update([
+                'title' => ucfirst($req->title),
+                'article_content' => $req->article_content,
+                'category_id' => $req->category,
+                'author' => $req->author,
+                'encoded_by' => $user->user_id,
+                'featured_image' => $imgFilename,
+                'featured_image_caption' => $req->featured_image_caption,
+                'date_published' => $datePublished,
+                'status' => $req->status,
+                'is_featured' => $req->is_featured ? 1 : 0
         ]);
-
+        
         if (Storage::exists('public/temp/' . $imgFilename)) {
             // Move the file
             Storage::move('public/temp/' . $imgFilename, 'public/featured_images/' . $imgFilename); 
@@ -193,22 +195,41 @@ class AdminArticleController extends Controller
         }
 
         return response()->json([
-            'status' => 'saved'
+            'status' => 'updated'
         ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
         //
+        Article::destroy($id);
+
+        $data = Article::find($id);
+        if(Storage::exists('public/featured_images/' .$fileName)) {
+            Storage::delete('public/featured_images/' . $fileName);
+
+            if(Storage::exists('public/temp/' .$fileName)) {
+                Storage::delete('public/temp/' . $fileName);
+            }
+
+            return response()->json([
+                'status' => 'temp_deleted'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 'deleted'
+        ], 200);
     }
 
     public function getData(Request $req){
 
         return Article::with('encoded', 'category')
             ->where('title', 'like', $req->search . '%')
+            ->orderBy('article_id', 'desc')
             ->paginate($req->perpage);
     }
 
@@ -226,26 +247,39 @@ class AdminArticleController extends Controller
     public function removeUpload($fileName){
        
         if(Storage::exists('public/temp/' .$fileName)) {
+
             Storage::delete('public/temp/' . $fileName);
 
             return response()->json([
                 'status' => 'temp_deleted'
             ], 200);
         }
+
         return response()->json([
             'status' => 'temp_error'
         ], 200);
     }
 
 
-    //remove from featured_image folder
-    public function articleImageRemove($fileName){
+    // //remove from featured_image folder
+    public function articleImageRemove($id, $fileName){
+
+        $data = Article::find($id);
+        $data->featured_image = null;
+        $data->save();
+
         if(Storage::exists('public/featured_images/' .$fileName)) {
             Storage::delete('public/featured_images/' . $fileName);
+
+            if(Storage::exists('public/temp/' .$fileName)) {
+                Storage::delete('public/temp/' . $fileName);
+            }
+
             return response()->json([
                 'status' => 'temp_deleted'
             ], 200);
         }
+
         return response()->json([
             'status' => 'temp_error'
         ], 200);

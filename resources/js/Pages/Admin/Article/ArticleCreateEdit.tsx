@@ -87,37 +87,36 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 			getData()
 		}
 	},[])
- 
 
 
-	const [fileList, setFileList] = useState<UploadFile[]>();
-
+	
 	const getData = () => {
 
 		try{
-			setFileList([
+			
+			const fileList = [
 				{
 					uid: '-1', // Unique identifier
 					name: article.featured_image, // File name
 					status: 'done', // Initial status of the file
 					url: `/storage/featured_images/${article.featured_image}`, // URL to display the image
-					//url: `storage/featured_images/cf7bae55751fbfed198469d0810872d1.jpeg`, // URL to display the image
 				},
-			])
-			console.log('loaded', article.featured_image);
-			
-			console.log('file list', fileList);
+			];
+		
 			
 			form.setFields([
 				{ name: 'title', value: article.title },
 				{ name: 'author', value: article.author },
 				{ name: 'category', value: article.category_id },
-				//{ name: 'featured_image', value: article.featured_image },
+				{ name: 'upload', value: article.featured_image ? fileList : [] },
 				{ name: 'featured_image_caption', value: article.featured_image_caption },
 				{ name: 'article_content', value: article.article_content },
 				{ name: 'status', value: article.status },
 				{ name: 'date_published', value: moment(article.date_published, 'YYYY-MM-DD') },
 			]);
+
+			//console.log(imageFromDb);
+			
 
 
 		}catch(err){
@@ -126,6 +125,7 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 	}
 
 	const uploadProps: UploadProps = {
+
 		name: 'featured_image',
 		action: '/temp-upload',
 		headers: {
@@ -158,7 +158,7 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 			console.log('remove', info);
 			if(id> 0){
 				//remove image if mode is update
-				axios.post('/article-image-remove/' + info.name).then(res=>{
+				axios.post(`/article-image-remove/${id}/${info.name}`).then(res=>{
 					if(res.data.status === 'temp_deleted'){
 						message.success('File removed.');
 					}
@@ -171,7 +171,6 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 					}
 				})
 			}
-			
 		}
 	};
 
@@ -193,18 +192,17 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 
 		if(id > 0){
 			try{
-				// const res = await axios.patch('/admin/articles/' + id, values)
-				// if(res.data.status === 'updated'){
-				// 	openNotification('bottomRight', 'Updated!', 'Article successfully update.')
-				// 	form.resetFields()
-				// 	setLoading(false)
-
-				// }
+				const res = await axios.patch('/admin/articles/' + id, values)
+				if(res.data.status === 'updated'){
+					openNotification('bottomRight', 'Updated!', 'Article successfully update.')
+					//form.resetFields()
+					//setLoading(false)
+					router.visit('/admin/articles');
+				}
 				console.log('update data: ', values)
 			}catch(err:any){
 				if(err.response.status === 422){
-					setErrors(err.response.data.errors)
-					
+					setErrors(err.response.data.errors)	
 				}
 				setLoading(false)
 			}
@@ -213,8 +211,9 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 				const res = await axios.post('/admin/articles', values)
 				if(res.data.status === 'saved'){
 					openNotification('bottomRight', 'Saved!', 'Article successfully save.')
-					form.resetFields()
-					setLoading(false)
+					//form.resetFields()
+					//setLoading(false)
+					router.visit('/admin/articles');
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
@@ -264,13 +263,12 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 							title: '',
 							author: '',
 							article_content: '',
-							featured_image: '',
+							upload: [],
 							featured_image_caption: '',
 							category: null,
 							date_published: null,
 							is_featured: false,
-							is_published: false,
-							upload: null
+							status: ''
                         }}>
 						
 						<Form.Item
@@ -311,7 +309,7 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 
 						<Form.Item
 							name="upload"
-							// valuePropName="fileList"
+							valuePropName="fileList"
 							className='w-full'
 							label="Select Featured Image"
 							getValueFromEvent={(e) => {
@@ -324,9 +322,10 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 
 							validateStatus={errors.upload ? 'error' : ''}
 							help={errors.upload ? errors.upload[0] : ''}>
+								
 								<Upload 
 									maxCount={1}   
-									fileList={fileList} 
+									// fileList={fileList}
 									listType="picture"
 									{...uploadProps}>
 									<Button icon={<UploadOutlined />}>Click to Upload</Button>

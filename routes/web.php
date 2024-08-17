@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/articles/{id}', [App\Http\Controllers\Admin\AdminArticleController::class, 'destroy'])->name('admin.articles.destroy');
     Route::post('/temp-upload', [App\Http\Controllers\Admin\AdminArticleController::class, 'tempUpload']);
     Route::post('/temp-remove/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'removeUpload']);
-    Route::post('/article-image-remove/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'articleImageRemove']);
+    Route::post('/article-image-remove/{id}/{filename}', [App\Http\Controllers\Admin\AdminArticleController::class, 'articleImageRemove']);
 
 
 });

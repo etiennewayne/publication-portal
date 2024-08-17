@@ -18,11 +18,12 @@ class Article extends Model
         'author',
         'encoded_by',
         'modified_by',
-        'featured_image',
+        'featured_image', //upload on frontend
         'featured_image_caption',
         'date_published',
         'is_published',
         'is_featured',
+        'status',
         'views'
     ];
 
