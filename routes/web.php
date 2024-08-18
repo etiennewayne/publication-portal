@@ -33,6 +33,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/load-categories', [App\Http\Controllers\OpenController::class, 'loadCategories'])->name('load.categories');
 
+Route::get('/load-featured-article', [App\Http\Controllers\ArticleController::class, 'loadFeaturedArtice']);
+Route::get('/load-side-articles', [App\Http\Controllers\ArticleController::class, 'loadSideArticles']);
 
 
 Route::middleware('auth')->group(function () {

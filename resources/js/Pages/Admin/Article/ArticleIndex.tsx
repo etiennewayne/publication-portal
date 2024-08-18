@@ -1,5 +1,5 @@
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { Article, PageProps } from '@/types'
+import { Article, PageProps, User } from '@/types'
 import { Head, router } from '@inertiajs/react'
 
 import { FileAddOutlined, LikeOutlined, 
@@ -87,7 +87,6 @@ export default function UserIndex({ auth }: PageProps) {
 	
 
 
-
 	const handClickNew = () => {
 		router.visit('/admin/articles/create');
     }
@@ -135,7 +134,15 @@ export default function UserIndex({ auth }: PageProps) {
 									</>
 								)} 
 							/>
-							<Column title="Author" dataIndex="author" key="author"/>
+							<Column title="Author" dataIndex="author" key="author"
+								render={(_, data:any) => {
+									return (
+										<>
+											{data.author?.lname ? data.author?.lname + ',' : ''} {data.author?.fname}
+										</>
+									)
+								}}
+							/>
 						
 							<Column title="Active" dataIndex="active" key="active" render={(_, active)=>(
 								active ? (

@@ -6,6 +6,9 @@ export interface User {
     username: string,
     sex: string,
     name: string;
+    lname: string;
+    fname: string;
+    mname: string;
     email: string;
     email_verified_at: string;
     active: boolean
@@ -23,11 +26,16 @@ export interface Article {
 	data(data: any): unknown;
     article_id: number;
     title: string;
+    slug: string;
     article_content: string,
-    author: string,
+    author: {lname: string; fname: string; mname: string};
+    author_id: number,
     category_id: number;
+    category: {category_id: number; category: string; active: number};
     encoded_by: string;
+    encoded: {lname: string; fname: string; mname: string};
     modified_by: string;
+    modified: {lname: string; fname: string; mname: string};
     date_published: string;
     featured_image: string;
     featured_image_caption: string;

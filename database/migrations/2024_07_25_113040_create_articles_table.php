@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id('article_id');
             $table->string('title')->nullable();
+            $table->string('slug')->nullable();
             $table->text('article_content')->nullable();
             
             $table->unsignedBigInteger('category_id');
 
             $table->string('author', 100)->nullable();
+            $table->unsignedBigInteger('author_id');
             $table->string('encoded_by', 100)->nullable();
             $table->string('modified_by', 100)->nullable();
             $table->string('featured_image')->nullable();

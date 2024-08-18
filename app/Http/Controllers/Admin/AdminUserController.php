@@ -20,7 +20,7 @@ class AdminUserController extends Controller
     public function getData(Request $req){
 
         return User::where('username', 'like', $req->name . '%')
-            ->where('name', 'like', $req->name . '%')
+            ->where('lname', 'like', $req->name . '%')
             ->paginate($req->perpage);
 
     }

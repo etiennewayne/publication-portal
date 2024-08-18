@@ -365,9 +365,13 @@ footer small {
 
 
 /* Start of Main */
+.debug {
+    border: 1px solid red;
+}
 .main {
     display: flex;
     width: 100%;
+    border: 1px solid red;
 }
 
 .main .featured_container {
@@ -419,9 +423,7 @@ footer small {
     color: var(--tertiary_color);
 }
 
-.featured_title small {
-    font-style: italic;
-}
+
 
 /* Start Main side Post  */
 
@@ -470,11 +472,11 @@ footer small {
     color: var(--tertiary_color);
 }
 
-small {
+/* small {
     color: var(--tertiary_color);
     font-size: 0.9rem;
     text-transform: capitalize;
-}
+} */
 /* End Main side Post  */
 
 /* ==================================== */

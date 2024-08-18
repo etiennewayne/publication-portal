@@ -3,87 +3,39 @@ import MenuBtn from '@/Components/MenuBtn';
 import { Link, Head } from '@inertiajs/react';
 import '../../css/welcome.css';
 import GuestLayout from '@/Layouts/GuestLayout';
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
+import FeaturedArticle from '@/Components/Article/FeaturedArticle';
+import SideArticles from '@/Components/Article/SideArticles';
 
 export default function Welcome() {
+
+   
+
+    const loadArticles = () => {
+
+    }
+
+
+
     return (
         <>
         <GuestLayout>
 
             <Head title="Welcome" />
             
-            <main className="main">
-                <div className="featured_container">
-                    <div className="featured_content">
-                        <div className="img_container featured">
-                            <img
-                                src="/img/image.png"
-                                alt="THIS IS A FEATURED ARTICLE IMAGE"
-                            />
-                        </div>
-                        <div className="featured_title">
-                            <div className="featured_btns">
-                                <h4>FEATURED ARTICLE</h4>
-                                <a className="title" href="/article.html"
-                                    >Barangay Canibungan Proper Residents to Benefit
-                                    From New KALAHI-Funded Road</a
-                                >
-                            </div>
-                            <small>By <span>Jessel Zapanta</span></small>
-                        </div>
-                    </div>
+            <main className="flex flex-col mx-2 md:flex-row mt-6 gap-6">
+
+                <div className='w-full md:w-[65%]'>
+                    <FeaturedArticle />
                 </div>
+
+
                 {/* <!-- Main side post (most popular) --> */}
-                <div className="main_post_container">
-                    {/* <!--  --> */}
-                    <div className="post">
-                        <div className="img_container side_post">
-                            <img src="/img/image.png" alt="" />
-                        </div>
-                        <div className="post_info">
-                            <div className="post_btns">
-                                <a href="" className="category_title">NEWS</a>
-                                <a href="" className="post_title">
-                                    most viewed,like,comment, ratings,reading
-                                    time(sa article, with analytics sa admin og sa
-                                    ga publish)
-                                </a>
-                            </div>
-                            <small>By <span>Jessel Zapanta</span></small>
-                        </div>
-                    </div>
-                    {/* <!--  --> */}
-                    <div className="post">
-                        <div className="img_container side_post">
-                            <img src="/img/TORCH INFOGRAPHICS (1).png" alt="" />
-                        </div>
-                        <div className="post_info">
-                            <div className="post_btns">
-                                <a href="" className="category_title">NEWS</a>
-                                <a href="" className="post_title">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Impedit, illo!
-                                </a>
-                            </div>
-                            <small>By <span>Jessel Zapanta</span></small>
-                        </div>
-                    </div>
-                    {/* <!--  --> */}
-                    <div className="post">
-                        <div className="img_container side_post">
-                            <img src="/img/bg_new.png" alt="" />
-                        </div>
-                        <div className="post_info">
-                            <div className="post_btns">
-                                <a href="" className="category_title">NEWS</a>
-                                <a href="" className="post_title">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Impedit, illo!
-                                </a>
-                            </div>
-                            <small>By <span>Jessel Zapanta</span></small>
-                        </div>
-                    </div>
-                </div>
+               <div className='w-full md:w-[35%]'>
+                    <SideArticles />
+               </div>
             </main>
             <div className="to_top">
                 <i className="bx bx-up-arrow-alt"></i>

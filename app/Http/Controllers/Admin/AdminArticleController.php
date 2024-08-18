@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Models\Status;
+use App\Models\User;
 
 use App\Utilities\AhoCorasick; // Import the AhoCorasick class
 
@@ -34,9 +35,11 @@ class AdminArticleController extends Controller
     {
         //
         $statuses = Status::orderBy('status', 'asc')->get();
+        $users = User::orderBy('lname', 'asc')->get();
         return Inertia::render('Admin/Article/ArticleCreateEdit', [
             'id' => 0,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'users' => $users
         ]);
 
     }
@@ -49,7 +52,7 @@ class AdminArticleController extends Controller
         //
         $req->validate([
             'title' => ['required', 'string', 'unique:articles'],
-            'author' => ['required', 'string'],
+            'author' => ['required'],
             'article_content' => ['required'],
             'category' => ['required'],
             'status' => ['required'],
@@ -57,6 +60,18 @@ class AdminArticleController extends Controller
             'upload' => ['required'],
             'featured_image_caption' => ['required']
         ]);
+
+        if($req->has('upload')){
+            if(!isset($req->upload[0]) && $req->upload[0]['response' == '']){
+
+                return response()->json([
+                    'errors' => [
+                        'upload' => ['Please upload featured image.'],
+                        'message' => 'Empty field.'
+                    ]
+                ], 422);
+            }
+        }
 
       
         $user = Auth::user();
@@ -67,7 +82,7 @@ class AdminArticleController extends Controller
             'title' => ucfirst($req->title),
             'article_content' => $req->article_content,
             'category_id' => $req->category,
-            'author' => $req->author,
+            'author_id' => $req->author,
             'encoded_by' => $user->user_id,
             'featured_image' => $imgFilename,
             'featured_image_caption' => $req->featured_image_caption,
@@ -145,11 +160,13 @@ class AdminArticleController extends Controller
     public function edit($id){
         $statuses = Status::orderBy('status', 'asc')->get();
         $article = Article::find($id);
+        $users = User::orderBy('lname', 'asc')->get();
          
         return Inertia::render('Admin/Article/ArticleCreateEdit', [
             'id' =>  $id,
             'statuses' => $statuses,
-            'article' => $article
+            'article' => $article,
+            'users' => $users
         ]);
     }
 
@@ -160,15 +177,26 @@ class AdminArticleController extends Controller
     {
         $req->validate([
             'title' => ['required', 'string', 'unique:articles,title,' . $id . ',article_id'],
-            'author' => ['required', 'string'],
+            'author' => ['required'],
             'article_content' => ['required'],
             'category' => ['required'],
             'status' => ['required'],
             'date_published' => ['required'],
-            'upload.*' => ['required'],
+            'upload' => ['required'],
             'featured_image_caption' => ['required']
         ]);
 
+        if($req->has('upload')){
+            if(!isset($req->upload[0]) && $req->upload[0]['response' == '']){
+
+                return response()->json([
+                    'errors' => [
+                        'upload' => ['Please upload featured image.'],
+                        'message' => 'Empty field.'
+                    ]
+                ], 422);
+            }
+        }
       
         $user = Auth::user();
         $imgFilename = $req->upload ? $req->upload[0]['response'] : null;
@@ -179,7 +207,7 @@ class AdminArticleController extends Controller
                 'title' => ucfirst($req->title),
                 'article_content' => $req->article_content,
                 'category_id' => $req->category,
-                'author' => $req->author,
+                'author_id' => $req->author,
                 'encoded_by' => $user->user_id,
                 'featured_image' => $imgFilename,
                 'featured_image_caption' => $req->featured_image_caption,
@@ -205,20 +233,21 @@ class AdminArticleController extends Controller
     public function destroy($id)
     {
         //
-        Article::destroy($id);
-
+      
         $data = Article::find($id);
-        if(Storage::exists('public/featured_images/' .$fileName)) {
-            Storage::delete('public/featured_images/' . $fileName);
+        $fileName = $data->featured_image;
 
-            if(Storage::exists('public/temp/' .$fileName)) {
-                Storage::delete('public/temp/' . $fileName);
+        if($data->featured_image != '' || $data->featured_image != null){
+            if(Storage::exists('public/featured_images/' .$fileName)) {
+                Storage::delete('public/featured_images/' . $fileName);
+    
+                if(Storage::exists('public/temp/' .$fileName)) {
+                    Storage::delete('public/temp/' . $fileName);
+                }
             }
-
-            return response()->json([
-                'status' => 'temp_deleted'
-            ], 200);
         }
+
+        Article::destroy($id);
 
         return response()->json([
             'status' => 'deleted'
@@ -227,7 +256,7 @@ class AdminArticleController extends Controller
 
     public function getData(Request $req){
 
-        return Article::with('encoded', 'category')
+        return Article::with('encoded', 'category', 'author')
             ->where('title', 'like', $req->search . '%')
             ->orderBy('article_id', 'desc')
             ->paginate($req->perpage);

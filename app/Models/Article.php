@@ -16,6 +16,7 @@ class Article extends Model
         'article_content',
         'category_id',
         'author',
+        'author_id',
         'encoded_by',
         'modified_by',
         'featured_image', //upload on frontend
@@ -30,6 +31,10 @@ class Article extends Model
 
     public function encoded(){
         return $this->hasOne(User::class,'user_id', 'encoded_by');
+    }
+
+    public function author(){
+        return $this->hasOne(User::class,'user_id', 'author_id');
     }
 
     public function category(){

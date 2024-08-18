@@ -56,7 +56,7 @@ import {
 
 import type { UploadFile, UploadProps } from 'antd';
 
-import { Article, Category, PageProps, Status } from '@/types';
+import { Article, Category, PageProps, Status, User } from '@/types';
 
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
@@ -65,7 +65,20 @@ import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { log } from 'console';
 
 
-export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:number, auth:PageProps, statuses: Status[], article:Article}) {
+export default function ArticleCreateEdit(
+	{ 
+		id, 
+		auth, 
+		statuses, 
+		article,
+		users
+	}: {
+		id:number, 
+		auth:PageProps, 
+		statuses: Status[], 
+		article:Article
+		users: User[]
+	}) {
 
 	const { props } = usePage<PageProps>();
 	const csrfToken: string = props.auth.csrf_token ?? ''; // Ensure csrfToken is a string
@@ -100,13 +113,14 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 					name: article.featured_image, // File name
 					status: 'done', // Initial status of the file
 					url: `/storage/featured_images/${article.featured_image}`, // URL to display the image
+					response: article.featured_image, // response, name from db
 				},
 			];
 		
 			
 			form.setFields([
 				{ name: 'title', value: article.title },
-				{ name: 'author', value: article.author },
+				{ name: 'author', value: article.author_id },
 				{ name: 'category', value: article.category_id },
 				{ name: 'upload', value: article.featured_image ? fileList : [] },
 				{ name: 'featured_image_caption', value: article.featured_image_caption },
@@ -187,7 +201,7 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 
 
     const submit = async (values:object) =>{
-		setLoading(true)
+		// setLoading(true)
 		setErrors({})
 
 		if(id > 0){
@@ -261,7 +275,7 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 						onFinish={submit}
 						initialValues={{
 							title: '',
-							author: '',
+							author: null,
 							article_content: '',
 							upload: [],
 							featured_image_caption: '',
@@ -280,13 +294,30 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 						</Form.Item>
 
 						<div className="flex gap-2">
-							<Form.Item
+							{/* <Form.Item
 								name="author"
 								className='w-full'
 								label="Author"
 								validateStatus={errors.author ? 'error' : ''}
 								help={errors.author ? errors.author[0] : ''}>
 								<Input placeholder="Author"/>
+							</Form.Item> */}
+
+							<Form.Item
+								name="author"
+								className='w-full'
+								label="Select Auhtor"
+								validateStatus={errors.author ? 'error' : ''}
+								help={errors.author ? errors.author[0] : ''}>
+								<Select placeholder="Author">
+									{
+										users?.map(item => (
+											<Select.Option key={item.user_id} value={item.user_id}>
+												{item.lname}, {item.fname} {item.mname}
+											</Select.Option>
+										))
+									}
+								</Select>
 							</Form.Item>
 
 							<Form.Item
@@ -346,8 +377,8 @@ export default function ArticleCreateEdit({ id, auth, statuses, article }: {id:n
 						<Form.Item
 							label="Content"
 							name="article_content"
-							validateStatus={errors.content ? 'error' : ''}
-							help={errors.content ? errors.content[0] : ''}>
+							validateStatus={errors.article_content ? 'error' : ''}
+							help={errors.article_content ? errors.article_content[0] : ''}>
 
 							<CKEditor
 								editor={ ClassicEditor }

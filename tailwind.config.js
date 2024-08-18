@@ -21,7 +21,7 @@ export default {
                 page: ['background-color', '#d9dcdb']
             },
             textColor: {
-                textColorDefault: ['color', '#063223d8']
+                textColorDefault: ['color', '#063223d8'],
             }
         },
     },
