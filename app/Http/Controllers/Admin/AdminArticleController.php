@@ -155,7 +155,7 @@ class AdminArticleController extends Controller
         // comment jessel zapanta gwapo edit 1
         //balos ko gwapo sad ko
         //akoa ning update eshen
-        //new line
+        //new line edit
     }
 
     /**
