@@ -152,7 +152,7 @@ class AdminArticleController extends Controller
     {
         //
         return Article::find($id);
-        // comment jessel zapanta gwapo edit
+        // comment jessel zapanta gwapo edit 1
         //balos ko gwapo sad ko
         //akoa ning update eshen
         //akoa ni eshen
