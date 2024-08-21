@@ -148,7 +148,7 @@ class AdminArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show($id)
     {
         //
         return Article::find($id);
