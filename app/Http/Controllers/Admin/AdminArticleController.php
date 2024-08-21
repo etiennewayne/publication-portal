@@ -76,8 +76,9 @@ class AdminArticleController extends Controller
       
         $user = Auth::user();
         $imgFilename = $req->upload[0]['response'];
+        // return $imgFilename;
         $datePublished = date('Y-m-d', strtotime($req->date_published));
-
+        
         Article::create([
             'title' => ucfirst($req->title),
             'article_content' => $req->article_content,
@@ -124,7 +125,7 @@ class AdminArticleController extends Controller
         //     return redirect()->back()->withErrors(['caption' => 'The caption contains inappropriate content.']);
         // }
 
-        return $req;
+        // return $req;
 
         //parseFunction
         //Article::create();
