@@ -13,6 +13,7 @@ class Article extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'article_content',
         'category_id',
         'author',
@@ -22,9 +23,8 @@ class Article extends Model
         'featured_image', //upload on frontend
         'featured_image_caption',
         'date_published',
-        'is_published',
-        'is_featured',
         'status',
+        'is_featured',
         'views'
     ];
 

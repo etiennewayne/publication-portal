@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->text('article_content')->nullable();
-            
             $table->unsignedBigInteger('category_id');
-
             $table->string('author', 100)->nullable();
             $table->unsignedBigInteger('author_id');
             $table->string('encoded_by', 100)->nullable();

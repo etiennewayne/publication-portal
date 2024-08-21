@@ -15,7 +15,7 @@ class ArticleSeeder extends Seeder
         //
         $data = [
             [
-                'title' => 'IT\'S FOR SINAG 2024',
+                'title' => 'ITS FOR SINAG 2024',
                 'slug' => 'its-for-sinag-2024',
                 'article_content' => '<p>Our sincere gratitude to the Lux Mundis, the newly inducted students of Tangub City Global College, for their enthusiastic involvement in the two-day SINAG 2024 with the theme "STEP UP!" Your enthusiasm and dedication have really made this event come to life. We especially thank the City Mayor, Ben Canama, for his unfailing support. This event was a great success thanks to the leadership and commitment of our College President, Dr. Maricelle M. Nueva, Executive Vice President, Prof. Niel C. Enerio, Vice Presidents Sir Redford Quiros, Sir Jay Mar Requina, Ma\'am Rosmarie Duhaylungsod, and Ma\'am Ilyn Daguman.</p> 
                     <p>The Supreme Student Council would also like to extend their sincerest thanks to all the committees and facilitators who worked tirelessly behind the scenes to ensure the smooth execution of every detail. Your collective efforts have left an indelible mark on everyone present, inspiring us all to step up and shine brighter.</p>
@@ -26,10 +26,10 @@ class ArticleSeeder extends Seeder
                 'encoded_by' => 1,
                 'modified_by' => null,
                 'featured_image' => '455240938_960728346069115_2889022754362211218_n.jpg',
+                'featured_image_caption' => 'SINAG 2024',
                 'date_published' => '2024-08-16',
                 'status' => 'PUBLIC',
                 'is_featured' => 1,
-                'featured_image_caption' => 'SINAG 2024',
                 'views' => 20
             ],
 
@@ -45,10 +45,10 @@ class ArticleSeeder extends Seeder
                 'encoded_by' => 1,
                 'modified_by' => null,
                 'featured_image' => '455350566_959780886163861_5257418279773513911_n.jpg',
+                'featured_image_caption' => 'TOP FINALIST SINAG 2024',
                 'date_published' => '2024-08-16',
                 'status' => 'PUBLIC',
                 'is_featured' => 0,
-                'featured_image_caption' => 'TOP FINALIST SINAG 2024',
                 'views' => 20
             ],
 
@@ -62,13 +62,14 @@ class ArticleSeeder extends Seeder
                     <p>See you soon!</p>',
                 'category_id' => 1,
                 'author' => 'JEZZEL ZAPANTA',
+                'author_id' => 1,
                 'encoded_by' => 1,
                 'modified_by' => null,
                 'featured_image' => '067ab9ae7933c9347cd58d9996073f03.jpg',
+                'featured_image_caption' => 'TOP FINALIST SINAG 2024',
                 'date_published' => '2024-08-16',
                 'status' => 'PUBLIC',
                 'is_featured' => 0,
-                'featured_image_caption' => 'TOP FINALIST SINAG 2024',
                 'views' => 20
             ],
 
