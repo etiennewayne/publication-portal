@@ -152,6 +152,7 @@ class AdminArticleController extends Controller
     {
         //
         return Article::find($id);
+        // comment zapanta gwapo
     }
 
     /**
@@ -197,7 +198,6 @@ class AdminArticleController extends Controller
                 ], 422);
             }
         }
-      
         $user = Auth::user();
         $imgFilename = $req->upload ? $req->upload[0]['response'] : null;
         $datePublished = date('Y-m-d', strtotime($req->date_published));
