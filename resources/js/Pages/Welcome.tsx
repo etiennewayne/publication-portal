@@ -43,7 +43,6 @@ export default function Welcome() {
                 <LatestArticle />
             </div>
            
-            
         </GuestLayout>
           
         </>
