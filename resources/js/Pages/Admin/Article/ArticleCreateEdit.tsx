@@ -140,8 +140,6 @@ export default function ArticleCreateEdit(
 			]);
 
 			// console.log(moment(article.date_published, 'YYYY-MM-DD') );
-			
-
 
 		}catch(err){
             console.log(err);
@@ -265,7 +263,6 @@ export default function ArticleCreateEdit(
 
 	const onChangePublishDate = () => {
 		//console.log('change date');
-		
 	}
 
 	return (
@@ -321,14 +318,6 @@ export default function ArticleCreateEdit(
 						</Form.Item>
 
 						<div className="flex gap-2">
-							{/* <Form.Item
-								name="author"
-								className='w-full'
-								label="Author"
-								validateStatus={errors.author ? 'error' : ''}
-								help={errors.author ? errors.author[0] : ''}>
-								<Input placeholder="Author"/>
-							</Form.Item> */}
 
 							<Form.Item
 								name="author"

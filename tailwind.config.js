@@ -18,10 +18,14 @@ export default {
                 secondary: ['Poppins', 'sans-serif'],
             },
             backgroundColor: {
-                page: ['background-color', '#d9dcdb']
+                primary: ['none', '#d9dcdb'],
+                gradient: ['none', 'var(--gradient)']
             },
             textColor: {
-                textColorDefault: ['color', '#063223d8'],
+                textColorDefault: ['#063223d8'],
+            },
+            colors: {
+                primary: ['#d9dcdb']
             }
         },
     },

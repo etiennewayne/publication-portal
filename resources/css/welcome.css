@@ -7,25 +7,7 @@
     font-family: "Poppins", sans-serif;
 } */
 
- :root {
-    --primary_color: #0c251c;
-    --primary_variant: #063223d8;
-    --secondary_color: #063223;
-    --tertiary_color: #a7b9b3;
-    --white: #d9dcdb;
-    --dark: #000000;
 
-    --gradiant: linear-gradient(
-        to right,
-        #0c251c 0%,
-        #0c251c 25%,
-        #1a3a3d 50%,
-        #1a3a3d 100%
-    );
-
-    --danger: #d2042d;
-    --gray: #a7b9b34d;
-} 
 
 html {
     background-color: var(--white);
@@ -104,7 +86,7 @@ html {
     right: -15rem;
     width: 15rem;
     z-index: 5;
-    background: var(--gradiant);
+    background: var(--gradient);
     padding: 0 1rem;
     transition: all 300ms ease;
 }
@@ -181,7 +163,7 @@ html {
 /* start of nav */
 
 .custom-nav {
-    background: var(--gradiant);
+    background: var(--gradient);
     width: 100%;
     border-radius: 10px;
     padding: 1.5rem;
@@ -256,7 +238,7 @@ html {
     gap: 1rem;
     padding: 10px;
     border-radius: 5px;
-    background: var(--gradiant);
+    background: var(--gradient);
 }
 
 .options a {
@@ -267,22 +249,15 @@ html {
     text-decoration-line: underline;
 }
 
+
+
 /* end Dashboard lower nav */
 /* Start Footer Section */
 
-footer {
-    margin-top: 2rem;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background: var(--gradiant);
-    padding: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.bg-gradient {
+    background: var(--gradient); 
 }
-
+/* 
 footer .line {
     width: 100%;
     height: 1px;
@@ -290,18 +265,13 @@ footer .line {
     background-color: var(--white);
 }
 
-footer .footer_content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+.footer-container {
+   display: flex;
+   justify-content: space-evenly;
 }
-footer h2 {
-    font-size: 1rem;
-    color: var(--white);
-}
+
 footer p {
     margin-top: 0.5rem;
-    font-size: 0.6rem;
     color: var(--white);
     text-align: justify;
 }
@@ -323,14 +293,12 @@ footer .social {
 }
 footer .social a {
     color: var(--white);
-    font-size: 0.8rem;
 }
 
 footer small {
     margin-top: 2rem;
-    font-size: 0.7rem;
     color: var(--tertiary_color);
-}
+} */
 
 /* ==================================== */
 /* Main Media Queries */

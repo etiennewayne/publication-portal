@@ -12,14 +12,14 @@ class ViewController extends Controller
     //
 
     public function index($slug){
-        $content = Article::where('slug', $slug)
+        $article = Article::where('slug', $slug)
             ->where('status', 'PUBLIC')
             ->first();
             
             //return $content;
 
         return Inertia::render('View',[
-            'content' => $content
+            'article' => $article
         ]);
     }
 }

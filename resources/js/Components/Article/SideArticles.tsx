@@ -38,21 +38,33 @@ export default function SideArticles() {
                         </div>
                         <div>
                             {/* image container */}
-                            <div className="h-[200px] overflow-hidden flex justify-center 
-                                items-center rounded-2xl shadow-md flex-col">
+                           
                                 {article.featured_image ? (
-                                    <img
-                                    src={`/storage/featured_images/${article?.featured_image}`}
-                                        alt="featured image"
-                                    />
+                                    <Link
+                                        href={`/view/${article.slug}`}>
+                                        <div className="h-[200px] overflow-hidden flex justify-center 
+                                            items-center rounded-2xl shadow-md flex-col"
+                                            style={{
+                                                background: `url(/storage/featured_images/${article?.featured_image.trim()}) no-repeat`,
+                                                backgroundPosition: 'center',
+                                                backgroundSize: 'cover'
+                                            }}></div>
+                                    </Link>
                                 
                                 ): (
-                                    <img
-                                        src='/img/default.jpg'
-                                        alt="featured image"
-                                    />
+                                    <div className="h-[200px] overflow-hidden flex justify-center 
+                                        items-center rounded-2xl shadow-md flex-col"
+                                        style={{
+                                            background: `url('/img/default.jpg') no-repeat`,
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }}></div>
+                                    // <img
+                                    //     src='/img/default.jpg'
+                                    //     alt="featured image"
+                                    // />
                                 )}
-                            </div>
+                            
                         </div>
 
                         <div className="">

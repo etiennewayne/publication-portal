@@ -35,22 +35,30 @@ export default function FeaturedArticle() {
                 <div className="">
 
                     {/* image container */}
-                    <div className="h-[500px] overflow-hidden flex justify-center 
-                        items-center rounded-2xl shadow-md flex-col">
+                
                         {featuredArticle.featured_image ? (
-                            <img
-                                src={`/storage/featured_images/${featuredArticle?.featured_image}`}
-                                alt="featured image"
-                            />
-                        
+                          <Link
+                            href={`/view/${featuredArticle.slug}`}>
+                                <div className="h-[500px] overflow-hidden flex justify-center 
+                                    items-center rounded-2xl shadow-md flex-col"
+                                    style={{
+                                        background: `url(/storage/featured_images/${featuredArticle?.featured_image.trim()}) no-repeat`,
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover'
+                                    }}
+                                ></div>
+
+                            </Link>
+                          
                         ): (
-                            <img
-                                src='/img/default.jpg'
-                                alt="featured image"
-                            />
+                            <div className="h-[500px] overflow-hidden flex justify-center 
+                            items-center rounded-2xl shadow-md flex-col"
+                            style={{
+                                background: `url(/img/default.jpg) no-repeat`,
+                                backgroundPosition: 'center',
+                                backgroundSize: 'cover'
+                            }}></div>
                         )}
-                    </div>
-                    
                 </div>
 
                 <div className='my-2'>

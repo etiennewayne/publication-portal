@@ -1,8 +1,33 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=UnifrakturCook:wght@700&display=swap"); */
+:root {
+  --primary-color: #0c251c;
+  --primary_variant: #063223d8;
+  --secondary_color: #063223;
+  --tertiary_color: #a7b9b3;
+  --white: #d9dcdb;
+  --dark: #000000;
+
+  --gradient: linear-gradient(
+      to right,
+      #0c251c 0%,
+      #0c251c 25%,
+      #1a3a3d 50%,
+      #1a3a3d 100%
+  );
+
+  --danger: #d2042d;
+  --gray: #a7b9b34d;
+} 
+
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
 
 
 
