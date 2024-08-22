@@ -19,10 +19,24 @@ class ArticleController extends Controller
 
     public function loadSideArticles(){
         return Article::with('author', 'category')
-            ->orderBy('date_published', 'desc')
+            ->orderBy('views', 'desc')
             ->where('status', 'PUBLIC')
             ->get()
             ->take(2); 
+    }
+
+    public function loadaLatestArtcles(Request $req){
+        return Article::with('author', 'category')
+            ->orderBy('date_published', 'desc')
+            ->where('status', 'PUBLIC')
+            ->get()
+            ->take(9); 
+    }
+
+    public function incrementView($id){
+        $data = Article::find($id);
+        $data->increment('views');
+        $data->save();
     }
 
 

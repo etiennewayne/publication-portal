@@ -6,6 +6,7 @@ import GuestLayout from '@/Layouts/GuestLayout';
 
 import FeaturedArticle from '@/Components/Article/FeaturedArticle';
 import SideArticles from '@/Components/Article/SideArticles';
+import LatestArticle from '@/Components/Article/LatestArticle';
 
 export default function Welcome() {
 
@@ -22,7 +23,7 @@ export default function Welcome() {
 
             <Head title="Welcome" />
             
-            <main className="flex flex-col mx-2 md:flex-row mt-6 gap-8">
+            <div className="flex flex-col mx-2 md:flex-row mt-6 gap-8">
 
                 <div className='w-full md:w-[65%]'>
                     <FeaturedArticle />
@@ -33,7 +34,14 @@ export default function Welcome() {
                <div className='w-full md:w-[35%]'>
                     <SideArticles />
                </div>
-            </main>
+
+            </div>
+
+            <div className='h-[1px] bg-gradient my-6'></div>
+
+            <div>
+                <LatestArticle />
+            </div>
            
             
         </GuestLayout>

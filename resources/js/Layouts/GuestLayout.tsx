@@ -6,10 +6,10 @@ import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
-        <div className="bg-primary-1 h-full">
+        <div className="bg-primary-1">
 
             {/* page container */}
-            <div className='relative w-full
+            <div className='relative w-full h-full
                 xl:max-w-screen-xl xl:mx-auto
                 '>
 
@@ -27,10 +27,8 @@ export default function Guest({ children }: PropsWithChildren) {
                 
                 <div className="custom-nav">
                     <Link href="/" className="">Home</Link>
-                    <a href="/reccommedation">Recommendation</a>
-                    <a href="/torch-feed">The Torch Articles</a>
-                    <a href="/studentFeed.html">Students Feed</a>
-                    <a href="/freedomWall.html">Freedom Wall</a>
+                    <Link href="/categories">Categories</Link>
+                    <Link href="/freedowm-wall">Freedom Wall</Link>
                 </div>
 
                 {children}
@@ -42,7 +40,7 @@ export default function Guest({ children }: PropsWithChildren) {
                 
                 <div className="my-4 bg-white h-[1px] w-full"></div>
 
-                <div className="flex flex-col justify-between gap-6 lg:flex-row">
+                <div className="flex flex-col justify-around gap-6 lg:flex-row">
                     <div className='flex-1'>
                         <h1 className='font-bold text-white mb-4'>TCGC</h1>
                         <ul className='text-white'>

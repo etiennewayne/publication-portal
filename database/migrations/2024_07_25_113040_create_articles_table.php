@@ -27,7 +27,7 @@ return new class extends Migration
             $table->date('date_published')->nullable();
             $table->string('status', 30)->nullable();
             $table->tinyInteger('is_featured')->default(0);
-            $table->integer('views')->default(0);
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
         });
     }

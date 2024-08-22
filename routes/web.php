@@ -40,7 +40,9 @@ Route::get('/load-categories', [App\Http\Controllers\OpenController::class, 'loa
 
 Route::get('/load-featured-article', [App\Http\Controllers\ArticleController::class, 'loadFeaturedArtice']);
 Route::get('/load-side-articles', [App\Http\Controllers\ArticleController::class, 'loadSideArticles']);
+Route::get('/load-latest-articles', [App\Http\Controllers\ArticleController::class, 'loadaLatestArtcles']);
 
+Route::post('/count-view/{id}', [App\Http\Controllers\ArticleController::class, 'incrementView']);
 
 Route::middleware('auth')->group(function () {
 

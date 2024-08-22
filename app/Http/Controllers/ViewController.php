@@ -12,7 +12,8 @@ class ViewController extends Controller
     //
 
     public function index($slug){
-        $article = Article::where('slug', $slug)
+        $article = Article::with('category')
+            ->where('slug', $slug)
             ->where('status', 'PUBLIC')
             ->first();
             

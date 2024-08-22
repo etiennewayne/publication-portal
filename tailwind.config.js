@@ -25,7 +25,7 @@ export default {
                 textColorDefault: ['#063223d8'],
             },
             colors: {
-                primary: ['#d9dcdb']
+                primary: ['none', '#d9dcdb']
             }
         },
     },
