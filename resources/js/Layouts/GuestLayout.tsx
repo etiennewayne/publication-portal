@@ -1,6 +1,8 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import MenuBtn from '@/Components/MenuBtn';
 import { PropsWithChildren } from 'react';
+import '../../css/welcome.css';
+import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
@@ -24,7 +26,7 @@ export default function Guest({ children }: PropsWithChildren) {
                 </header>
                 
                 <div className="custom-nav">
-                    <a href="/" className="active">Home</a>
+                    <Link href="/" className="">Home</Link>
                     <a href="/reccommedation">Recommendation</a>
                     <a href="/torch-feed">The Torch Articles</a>
                     <a href="/studentFeed.html">Students Feed</a>

@@ -1,11 +1,9 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import MenuBtn from '@/Components/MenuBtn';
 import { Link, Head } from '@inertiajs/react';
-import '../../css/welcome.css';
-import GuestLayout from '@/Layouts/GuestLayout';
-import { useEffect, useState } from 'react';
 
-import axios from 'axios';
+import GuestLayout from '@/Layouts/GuestLayout';
+
 import FeaturedArticle from '@/Components/Article/FeaturedArticle';
 import SideArticles from '@/Components/Article/SideArticles';
 
@@ -17,7 +15,7 @@ export default function Welcome() {
 
     }
 
-    
+
     return (
         <>
         <GuestLayout>

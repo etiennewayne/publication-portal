@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Models\Status;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 use App\Utilities\AhoCorasick; // Import the AhoCorasick class
 
@@ -22,10 +23,7 @@ class AdminArticleController extends Controller
     public function index()
     {
         //
-       
-
         return Inertia::render('Admin/Article/ArticleIndex');
-
     }
 
     /**
@@ -52,6 +50,7 @@ class AdminArticleController extends Controller
         //
         $req->validate([
             'title' => ['required', 'string', 'unique:articles'],
+            'excerpt' => ['required'],
             'author' => ['required'],
             'article_content' => ['required'],
             'category' => ['required'],
@@ -81,6 +80,8 @@ class AdminArticleController extends Controller
         
         Article::create([
             'title' => ucfirst($req->title),
+            'slug' => Str::slug($req->title),
+            'excerpt' => $req->excerpt,
             'article_content' => $req->article_content,
             'category_id' => $req->category,
             'author_id' => $req->author,
@@ -183,6 +184,7 @@ class AdminArticleController extends Controller
     {
         $req->validate([
             'title' => ['required', 'string', 'unique:articles,title,' . $id . ',article_id'],
+            'excerpt' => ['required'],
             'author' => ['required'],
             'article_content' => ['required'],
             'category' => ['required'],
@@ -210,6 +212,8 @@ class AdminArticleController extends Controller
         Article::where('article_id', $id)
             ->update([
                 'title' => ucfirst($req->title),
+                'slug' => Str::slug($req->title),
+                'excerpt' => $req->excerpt,
                 'article_content' => $req->article_content,
                 'category_id' => $req->category,
                 'author_id' => $req->author,

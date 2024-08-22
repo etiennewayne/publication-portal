@@ -17,6 +17,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 import { NotificationPlacement } from 'antd/es/notification/interface';
+import { spawn } from 'child_process';
 
 const { Column } = Table;
 
@@ -80,11 +81,16 @@ export default function UserIndex({ auth }: PageProps) {
 
 	//truncate display content on table
 	const truncate = (text: string, limit: number) => {
-		const words = text.split(' ');
-		if (words.length > limit) {
-			return words.slice(0, limit).join(' ') + '...';
+
+		if(text.length > 0){
+			const words = text.split(' ');
+			if (words.length > limit) {
+				return words.slice(0, limit).join(' ') + '...';
+			}
+			return text;
+		}else{
+			return ''
 		}
-		return text;
 	};
 	
 
@@ -128,14 +134,14 @@ export default function UserIndex({ auth }: PageProps) {
 
 							<Column title="Id" dataIndex="article_id"/>
 							<Column title="Title" dataIndex="title" key="title"/>
-							<Column title="Content" 
-								key="article_content"
-								render={(_, data: Article ) => (
-									<>
-										{data.article_content && (truncate(data.article_content, 20))}
-									</>
+							<Column title="Excerpt" 
+								dataIndex="excerpt"
+								key="excerpt"
+								render={(excerpt) => (
+									<span>{ excerpt ? truncate(excerpt, 10) : '' }</span>
 								)} 
 							/>
+							
 							<Column title="Author" dataIndex="author" key="author"
 								render={(_, data:any) => {
 									return (

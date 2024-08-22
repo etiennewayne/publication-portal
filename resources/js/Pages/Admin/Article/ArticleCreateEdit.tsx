@@ -63,6 +63,7 @@ import { NotificationPlacement } from 'antd/es/notification/interface';
 import axios from 'axios';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { log } from 'console';
+import TextArea from 'antd/es/input/TextArea';
 
 
 export default function ArticleCreateEdit(
@@ -120,6 +121,8 @@ export default function ArticleCreateEdit(
 			
 			form.setFields([
 				{ name: 'title', value: article.title },
+				{ name: 'slug', value: article.slug },
+				{ name: 'excerpt', value: article.excerpt },
 				{ name: 'author', value: article.author_id },
 				{ name: 'category', value: article.category_id },
 				{ name: 'upload', value: article.featured_image ? fileList : [] },
@@ -276,6 +279,7 @@ export default function ArticleCreateEdit(
 						onFinish={submit}
 						initialValues={{
 							title: '',
+							excerpt: '',
 							author: null,
 							article_content: '',
 							upload: [],
@@ -292,6 +296,22 @@ export default function ArticleCreateEdit(
 							validateStatus={errors.title ? 'error' : ''}
 							help={errors.title ? errors.title[0] : ''}>
 							<Input placeholder="Title"/>
+						</Form.Item>
+
+						<Form.Item
+							name="slug"
+							label="Slug (Read Only)"
+							validateStatus={errors.slug ? 'error' : ''}
+							help={errors.slug ? errors.slug[0] : ''}>
+							<Input disabled placeholder="Slug"/>
+						</Form.Item>
+
+						<Form.Item
+							name="excerpt"
+							label="Excerpt"
+							validateStatus={errors.excerpt ? 'error' : ''}
+							help={errors.excerpt ? errors.excerpt[0] : ''}>
+							<TextArea rows={4} placeholder="Excerpt"/>
 						</Form.Item>
 
 						<div className="flex gap-2">

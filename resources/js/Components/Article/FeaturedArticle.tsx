@@ -1,4 +1,5 @@
 import { Article } from '@/types';
+import { Link } from '@inertiajs/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
@@ -60,9 +61,9 @@ export default function FeaturedArticle() {
                 <div className="mt-4">
                     {/* title */}
                     <div className='font-bold text-[2rem]'>
-                        <a className="title" href={`/view/${featuredArticle?.slug}`}>
+                        <Link className="title" href={`/view/${featuredArticle?.slug}`}>
                             {featuredArticle.title}
-                        </a>
+                        </Link>
                     </div>
                     {/* author */}
                     <div className='mb-4'>
@@ -84,7 +85,7 @@ export default function FeaturedArticle() {
                     <div
                         className="text-justify prose !max-w-none"
                         dangerouslySetInnerHTML={{
-                            __html: truncate(featuredArticle.article_content, 50)
+                            __html: truncate(featuredArticle.excerpt, 50)
                         }}
                     ></div>
                         

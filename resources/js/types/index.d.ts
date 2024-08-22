@@ -27,6 +27,7 @@ export interface Article {
 	data(data: any): unknown;
     article_id: number;
     title: string;
+    excerpt: string;
     slug: string;
     article_content: string,
     author: {lname: string; fname: string; mname: string};

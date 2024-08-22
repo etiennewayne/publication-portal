@@ -1,4 +1,5 @@
 import { Article } from '@/types';
+import { Link } from '@inertiajs/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
@@ -57,9 +58,9 @@ export default function SideArticles() {
                         <div className="">
                             {/* title */}
                             <div className='font-bold text-[1.6rem] mt-2'>
-                                <a className="title" href={`/view/${article.slug}`}>
+                                <Link className="title" href={`/view/${article.slug}`}>
                                     {article.title}
-                                </a>
+                                </Link>
                             </div>
                             {/* author */}
                             <div className='mb-4'>
@@ -77,9 +78,9 @@ export default function SideArticles() {
 
                             {/* content */}
                             <div
-                                className="text-justify prose !max-w-none"
+                                className="text-justify"
                                 dangerouslySetInnerHTML={{
-                                    __html: truncate(article.article_content, 20)
+                                    __html: article.excerpt ? truncate(article.excerpt, 20) : ''
                                 }}>
 
                             </div>
