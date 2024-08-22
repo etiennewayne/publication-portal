@@ -75,7 +75,7 @@ export default function SideArticles() {
                                 </Link>
                             </div>
                             {/* author */}
-                            <div className='mb-4'>
+                            <div className=''>
                                 <small>
                                     By: &nbsp;
                                 
@@ -83,6 +83,16 @@ export default function SideArticles() {
                                             <span>
                                                 {article.author?.lname}, &nbsp;
                                                 {article.author?.fname}
+                                            </span>
+                                        )}
+                                </small>
+                            </div>
+                            <div className='mb-4'>
+                                <small>
+                                    DATE PUBLISHED: &nbsp;
+                                        {article.date_published && (
+                                            <span>
+                                                {article.date_published}
                                             </span>
                                         )}
                                 </small>

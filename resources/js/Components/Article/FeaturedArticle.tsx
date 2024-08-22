@@ -25,7 +25,6 @@ export default function FeaturedArticle() {
 		return text;
 	};
 
-    
   return (
     <>
         {featuredArticle ? (
@@ -74,7 +73,7 @@ export default function FeaturedArticle() {
                         </Link>
                     </div>
                     {/* author */}
-                    <div className='mb-4'>
+                    <div className=''>
                         <small>
                             By: &nbsp;
                         
@@ -84,9 +83,17 @@ export default function FeaturedArticle() {
                                         {featuredArticle.author?.fname}
                                     </span>
                                 )}
-                                
                         </small>
-
+                    </div>
+                    <div className='mb-4'>
+                        <small>
+                            DATE PUBLISHED: &nbsp;
+                                {featuredArticle.date_published && (
+                                    <span>
+                                        {featuredArticle.date_published}
+                                    </span>
+                                )}
+                        </small>
                     </div>
 
                     {/* content */}
