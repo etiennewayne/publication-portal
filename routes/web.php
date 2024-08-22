@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 
 
+    Route::resource('/admin/academic-years', App\Http\Controllers\Admin\AdminAcademicYearController::class);
+    Route::get('/admin/get-academic-years', [App\Http\Controllers\Admin\AdminAcademicYearController::class, 'index'])->name('academic-years.getdata');
+
     Route::get('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin/categories/create', [App\Http\Controllers\Admin\AdminCategoryController::class, 'create'])->name('admin.categories.create');
     Route::post('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'store'])->name('admin.categories.store');

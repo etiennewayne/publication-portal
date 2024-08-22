@@ -64,3 +64,13 @@ export interface Status {
     status: string;
     active: boolean;
 }
+
+//academic year
+export interface AcademicYear {
+	// map(arg0: (item: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
+	data(data: any): unknown;
+    academic_year_id: number;
+    academic_year_code: string;
+    academic_year_description: string;
+    active: boolean;
+}
