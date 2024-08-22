@@ -66,6 +66,12 @@ import { log } from 'console';
 import TextArea from 'antd/es/input/TextArea';
 
 
+
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
+
 export default function ArticleCreateEdit(
 	{ 
 		id, 
@@ -129,11 +135,11 @@ export default function ArticleCreateEdit(
 				{ name: 'featured_image_caption', value: article.featured_image_caption },
 				{ name: 'article_content', value: article.article_content },
 				{ name: 'status', value: article.status },
-				{ name: 'date_published', value: moment(article.date_published, 'YYYY-MM-DD') },
+				{ name: 'date_published', value: dayjs(article.date_published, 'YYYY-MM-DD') },
 				{ name: 'is_featured', value: article.is_featured ? true : false },
 			]);
 
-			//console.log(imageFromDb);
+			// console.log(moment(article.date_published, 'YYYY-MM-DD') );
 			
 
 
@@ -575,7 +581,7 @@ export default function ArticleCreateEdit(
 								validateStatus={errors.date_published ? 'error' : ''}
 								help={errors.date_published ? errors.date_published[0] : ''}
 							>
-								<DatePicker className='w-full' onChange={onChangePublishDate} />
+								<DatePicker value={article.date_published} className='w-full' onChange={onChangePublishDate} />
 							</Form.Item>
 
 							<Form.Item
