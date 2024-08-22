@@ -93,7 +93,7 @@ export default function UserIndex({ auth }: PageProps) {
 			const response = await axios.get<Category>(`/admin/categories/${id}`);
 			form.setFields([
 				{ name: 'category', value: response.data.category },
-				{ name: 'active', value: response.data.active },
+				{ name: 'active', value: response.data.active ? true : false },
 				
 			]);
 		}catch(err){
@@ -109,6 +109,7 @@ export default function UserIndex({ auth }: PageProps) {
     }
 
 	const handleEditClick = (id:number) => {
+		setErrors({})
 		setId(id);
         setOpen(true);
         getUser(id);
@@ -124,6 +125,8 @@ export default function UserIndex({ auth }: PageProps) {
 	
 
 	const onFinish = async (values:Category) =>{
+		console.log(id);
+		
 		if(id > 0){
 			try{
 				const res = await axios.put('/admin/categories/' + id, values)
@@ -135,7 +138,7 @@ export default function UserIndex({ auth }: PageProps) {
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
-	
+					setErrors(err.response.data.errors)
 				}
 			}
 		}else{
@@ -149,7 +152,8 @@ export default function UserIndex({ auth }: PageProps) {
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
-	
+					setErrors(err.response.data.errors)
+
 				}
 			}
 		}
@@ -186,7 +190,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 							<Column title="Id" dataIndex="category_id"/>
 							<Column title="Category" dataIndex="category" key="category"/>
-							<Column title="Active" dataIndex="active" key="active" render={(active:boolean)=>(
+							<Column title="Active" dataIndex="active" key="active" render={(active)=>(
 								active ? (
 									<span className='bg-green-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>YES</span>
 								) : (
@@ -271,12 +275,6 @@ export default function UserIndex({ auth }: PageProps) {
                     label="Category"
                     validateStatus={errors.category ? 'error' : ''}
                     help={errors.category ? errors.category[0] : ''}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input category!',
-                        },
-                    ]}
                 >
                     <Input placeholder="Category"/>
                 </Form.Item>

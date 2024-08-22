@@ -37,6 +37,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/load-categories', [App\Http\Controllers\OpenController::class, 'loadCategories'])->name('load.categories');
+Route::get('/load-acacemic-years', [App\Http\Controllers\OpenController::class, 'loadAcademicYears']);
+
 
 Route::get('/load-featured-article', [App\Http\Controllers\ArticleController::class, 'loadFeaturedArtice']);
 Route::get('/load-side-articles', [App\Http\Controllers\ArticleController::class, 'loadSideArticles']);
@@ -68,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('/admin/academic-years', App\Http\Controllers\Admin\AdminAcademicYearController::class);
-    Route::get('/admin/get-academic-years', [App\Http\Controllers\Admin\AdminAcademicYearController::class, 'index'])->name('academic-years.getdata');
+    Route::get('/admin/get-academic-years', [App\Http\Controllers\Admin\AdminAcademicYearController::class, 'getData']);
 
     Route::get('/admin/categories', [App\Http\Controllers\Admin\AdminCategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin/categories/create', [App\Http\Controllers\Admin\AdminCategoryController::class, 'create'])->name('admin.categories.create');

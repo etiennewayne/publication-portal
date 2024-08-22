@@ -56,7 +56,7 @@ import {
 
 import type { UploadFile, UploadProps } from 'antd';
 
-import { Article, Category, PageProps, Status, User } from '@/types';
+import { AcademicYear, Article, Category, PageProps, Status, User } from '@/types';
 
 import { NotificationPlacement } from 'antd/es/notification/interface';
 
@@ -77,12 +77,14 @@ export default function ArticleCreateEdit(
 		id, 
 		auth, 
 		statuses, 
+		academicYears, 
 		article,
 		users
 	}: {
 		id:number, 
 		auth:PageProps, 
 		statuses: Status[], 
+		academicYears: AcademicYear[],
 		article:Article
 		users: User[]
 	}) {
@@ -126,6 +128,7 @@ export default function ArticleCreateEdit(
 		
 			
 			form.setFields([
+				{ name: 'academic_year', value: article.academic_year_id },
 				{ name: 'title', value: article.title },
 				{ name: 'slug', value: article.slug },
 				{ name: 'excerpt', value: article.excerpt },
@@ -216,10 +219,21 @@ export default function ArticleCreateEdit(
 			try{
 				const res = await axios.patch('/admin/articles/' + id, values)
 				if(res.data.status === 'updated'){
-					openNotification('bottomRight', 'Updated!', 'Article successfully update.')
+					// openNotification('bottomRight', 'Updated!', 'Article successfully update.')
+					Modal.info({
+						title: 'Updated!',
+						content: (
+							<div>
+								Article successfully updated.
+							</div>
+						),
+						onOk() {
+							router.visit('/admin/articles');
+						},
+					});
 					//form.resetFields()
 					//setLoading(false)
-					router.visit('/admin/articles');
+					
 				}
 				console.log('update data: ', values)
 			}catch(err:any){
@@ -232,10 +246,20 @@ export default function ArticleCreateEdit(
 			try{
 				const res = await axios.post('/admin/articles', values)
 				if(res.data.status === 'saved'){
-					openNotification('bottomRight', 'Saved!', 'Article successfully save.')
+					//openNotification('bottomRight', 'Saved!', 'Article successfully save.')
+					Modal.info({
+						title: 'Saved!',
+						content: (
+							<div>
+								Article successfully saved.
+							</div>
+						),
+						onOk() {
+							router.visit('/admin/articles');
+						},
+					});
 					//form.resetFields()
 					//setLoading(false)
-					router.visit('/admin/articles');
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
@@ -281,6 +305,7 @@ export default function ArticleCreateEdit(
 						autoComplete='off'
 						onFinish={submit}
 						initialValues={{
+							academic_year: null,
 							title: '',
 							excerpt: '',
 							author: null,
@@ -292,6 +317,24 @@ export default function ArticleCreateEdit(
 							is_featured: false,
 							status: ''
                         }}>
+
+							<Form.Item
+								name="academic_year"
+								className='w-full'
+								label="Select A.Y."
+								validateStatus={errors.academic_year ? 'error' : ''}
+								help={errors.academic_year ? errors.academic_year[0] : ''}>
+								<Select placeholder="Academic Year">
+									{
+										academicYears?.map(item => (
+											<Select.Option key={item.academic_year_id} value={item.academic_year_id}>
+												{item.academic_year_code}, {item.academic_year_description}
+											</Select.Option>
+										))
+									}
+								</Select>
+							</Form.Item>
+
 						
 						<Form.Item
 							name="title"

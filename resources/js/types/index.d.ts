@@ -25,6 +25,8 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
 
 export interface Article {
 	data(data: any): unknown;
+    academic_year_id: number;
+    academic_year: {academic_year_id: number; academic_year_code: string; academic_year_description: string; active: number};
     article_id: number;
     title: string;
     excerpt: string;

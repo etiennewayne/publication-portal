@@ -17,7 +17,7 @@ class AdminAcademicYearController extends Controller
     }
 
     public function getData(Request $req){
-        return AcademicYear::where('academic_year_desc', 'like', $req->search . '%')
+        return AcademicYear::where('academic_year_description', 'like', $req->search . '%')
             ->paginate($req->perpage);
     }
 
@@ -27,15 +27,15 @@ class AdminAcademicYearController extends Controller
 
 
     public function store(Request $req){
-        
+
         $req->validate([
             'academic_year_code' => ['required','string', 'unique:academic_years'],
             'academic_year_description' => ['required','string']
         ]);
 
         AcademicYear::create([
-            'academic_year_code' => $req->academi_year_code,
-            'academic_year_description' => strtoupper($req->academi_year_description),
+            'academic_year_code' => strtoupper($req->academic_year_code),
+            'academic_year_description' => strtoupper($req->academic_year_description),
             'active' => $req->active ? 1 : 0
         ]);
 
@@ -54,7 +54,7 @@ class AdminAcademicYearController extends Controller
 
         $data = AcademicYear::find($id);
         $data->academic_year_code = strtoupper($req->academic_year_code);
-        $data->academic_year_description = $req->academic_year_description;
+        $data->academic_year_description = strtoupper($req->academic_year_description);
         $data->active = $req->active ? 1 : 0;
         $data->save();
 

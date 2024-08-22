@@ -47,7 +47,7 @@ class AdminCategoryController extends Controller
     public function update(Request $req, $id){
 
         $req->validate([
-            'category' => ['required','string', 'unique:categories,category,' . $id . ',category_id']
+            'category' => ['required','unique:categories,category,'.$id.',category_id']
         ]);
 
         $data = Category::find($id);

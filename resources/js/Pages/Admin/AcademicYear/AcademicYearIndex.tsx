@@ -45,6 +45,7 @@ export default function AcademicYearIndex({auth} : PageProps) {
         setLoading(true)
         const params = [
             `perpage=${perPage}`,
+            `search=${search}`,
             `page=${page}`
         ].join('&');
 
@@ -106,7 +107,7 @@ export default function AcademicYearIndex({auth} : PageProps) {
 	}
 
 	const handleDeleteClick = async (id:number) => {
-		const res = await axios.delete('/admin/academic-years/{id}');
+		const res = await axios.delete('/admin/academic-years/' + id);
 		if(res.data.status === 'deleted'){
 			getData()
 		}
@@ -133,10 +134,13 @@ export default function AcademicYearIndex({auth} : PageProps) {
 			try{
 				const res = await axios.post('/admin/academic-years', values)
 				if(res.data.status === 'saved'){
-					openNotification('bottomRight', 'Saved!', 'User successfully save.')
+					openNotification('bottomRight', 'Saved!', 'User successfully saved.')
 					form.resetFields()
 					setOpen(false)
 					getData()
+
+					
+					
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
@@ -159,7 +163,7 @@ export default function AcademicYearIndex({auth} : PageProps) {
 					sm:w-[740px]
 					md:w-[990px]'>
 					{/* card header */}
-					<div className="font-bold mb-4">List of Users</div>
+					<div className="font-bold mb-4">List of Academic Year</div>
 					{/* card body */}
 					<div>
 						<Table dataSource={data}
@@ -167,10 +171,10 @@ export default function AcademicYearIndex({auth} : PageProps) {
 							rowKey={(data) => data.academic_year_id}
 							pagination={false}>
 
-							<Column title="Id" dataIndex="user_id"/>
+							<Column title="Id" dataIndex="academic_year_id"/>
 							<Column title="Code" dataIndex="academic_year_code" key="academic_year_code"/>
 							<Column title="Description" dataIndex="academic_year_description" key="academic_year_description"/>
-							<Column title="Active" dataIndex="active" key="active" render={(_, active)=>(
+							<Column title="Active" dataIndex="active" key="active" render={(active)=>(
 								active ? (
 									<span className='bg-green-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>YES</span>
 								) : (
@@ -266,10 +270,10 @@ export default function AcademicYearIndex({auth} : PageProps) {
                 </Form.Item>
 
                 <Form.Item
-                    name="academic_year_desctiption"
+                    name="academic_year_description"
                     label="Academic Year Description"
-                    validateStatus={errors.academic_year_desctiption ? 'error' : ''}
-                    help={errors.academic_year_desctiption ? errors.academic_year_desctiption[0] : ''}
+                    validateStatus={errors.academic_year_description ? 'error' : ''}
+                    help={errors.academic_year_description ? errors.academic_year_description[0] : ''}
                     rules={[
                         {
                             required: true,

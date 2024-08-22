@@ -12,6 +12,7 @@ use Auth;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\AcademicYear;
 
 use App\Utilities\AhoCorasick; // Import the AhoCorasick class
 
@@ -32,12 +33,14 @@ class AdminArticleController extends Controller
     public function create()
     {
         //
+        $academicYears = AcademicYear::orderBy('academic_year_code', 'desc')->get();
         $statuses = Status::orderBy('status', 'asc')->get();
         $users = User::orderBy('lname', 'asc')->get();
         return Inertia::render('Admin/Article/ArticleCreateEdit', [
             'id' => 0,
             'statuses' => $statuses,
-            'users' => $users
+            'users' => $users,
+            'academicYears' => $academicYears
         ]);
 
     }
@@ -49,6 +52,7 @@ class AdminArticleController extends Controller
     { 
         //
         $req->validate([
+            'academic_year' => ['required'],
             'title' => ['required', 'string', 'unique:articles'],
             'excerpt' => ['required'],
             'author' => ['required'],
@@ -79,6 +83,7 @@ class AdminArticleController extends Controller
         $datePublished = date('Y-m-d', strtotime($req->date_published));
         
         Article::create([
+            'academic_year_id' => $req->academic_year,
             'title' => ucfirst($req->title),
             'slug' => Str::slug($req->title),
             'excerpt' => $req->excerpt,
@@ -165,6 +170,8 @@ class AdminArticleController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id){
+
+        $academicYears = AcademicYear::orderBy('academic_year_code', 'desc')->get();
         $statuses = Status::orderBy('status', 'asc')->get();
         $article = Article::find($id);
         $users = User::orderBy('lname', 'asc')->get();
@@ -173,16 +180,20 @@ class AdminArticleController extends Controller
             'id' =>  $id,
             'statuses' => $statuses,
             'article' => $article,
-            'users' => $users
+            'users' => $users,
+            'academicYears' => $academicYears
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+    /*
+    * Update the specified resource in storage.
+    */
+
     public function update(Request $req, $id)
     {
         $req->validate([
+            'academic_year' => ['required'],
             'title' => ['required', 'string', 'unique:articles,title,' . $id . ',article_id'],
             'excerpt' => ['required'],
             'author' => ['required'],
@@ -211,6 +222,7 @@ class AdminArticleController extends Controller
 
         Article::where('article_id', $id)
             ->update([
+                'academic_year_id' => $req->academic_year,
                 'title' => ucfirst($req->title),
                 'slug' => Str::slug($req->title),
                 'excerpt' => $req->excerpt,
@@ -265,7 +277,7 @@ class AdminArticleController extends Controller
 
     public function getData(Request $req){
 
-        return Article::with('encoded', 'category', 'author')
+        return Article::with('encoded', 'category', 'author', 'academic_year')
             ->where('title', 'like', $req->search . '%')
             ->orderBy('article_id', 'desc')
             ->paginate($req->perpage);

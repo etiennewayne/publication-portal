@@ -133,6 +133,15 @@ export default function UserIndex({ auth }: PageProps) {
 							pagination={false}>
 
 							<Column title="Id" dataIndex="article_id"/>
+							<Column title="Author" dataIndex="author" key="author"
+								render={(_, data:any) => {
+									return (
+										<>
+											{data.academic_year ? data.academic_year?.academic_year_code : ''}
+										</>
+									)
+								}}
+							/>
 							<Column title="Title" dataIndex="title" key="title"/>
 							<Column title="Excerpt" 
 								dataIndex="excerpt"

@@ -1,1 +1,0 @@
-import{j as r}from"./app-CTjephMg.js";import{A as i}from"./AuthenticatedLayout-Cl0K5sJX.js";import"./ApplicationLogo-Cv4g-gda.js";import"./transition-DFZtJfNP.js";function a({auth:t}){return r.jsx(r.Fragment,{children:r.jsx(i,{user:t.user,children:r.jsx("div",{children:"Admin Dashboard"})})})}export{a as default};
