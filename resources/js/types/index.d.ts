@@ -22,6 +22,7 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     
 };
 
+
 export interface Article {
 	data(data: any): unknown;
     article_id: number;

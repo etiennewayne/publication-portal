@@ -110,3 +110,8 @@ Route::get('/ck-editor', function () {
 Route::get('/test', function () {
     return Inertia::render('Test');
 });
+
+
+Route::get('/basic', function () {
+    return Inertia::render('Admin/Article/Basic');
+});

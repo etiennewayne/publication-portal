@@ -36,7 +36,7 @@ export default function FeaturedArticle() {
                     {/* image container */}
                     <div className="h-[500px] overflow-hidden flex justify-center 
                         items-center rounded-2xl shadow-md flex-col">
-                        {featuredArticle.featured_image != "" ? (
+                        {featuredArticle.featured_image ? (
                             <img
                                 src={`/storage/featured_images/${featuredArticle?.featured_image}`}
                                 alt="featured image"

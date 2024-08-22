@@ -45,7 +45,6 @@ export default function UserIndex({ auth }: PageProps) {
 		data: T;
 	}
 
-
 	const getData = async () => {
 
         setLoading(true)
@@ -59,6 +58,7 @@ export default function UserIndex({ auth }: PageProps) {
 		try{
 			const res = await axios.get<ApiResponse<Category[]>>(`/admin/get-categories?${params}`);
 			setData(res.data.data)
+
 			setLoading(false)
 		}catch(err){
 			setLoading(false)
@@ -193,6 +193,7 @@ export default function UserIndex({ auth }: PageProps) {
 									<span className='bg-red-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>NO</span>
 								)
 							)}/>
+							
 							<Column title="Action" key="action" 
 								render={(_, data:Category) => (
 									<Space size="small">
