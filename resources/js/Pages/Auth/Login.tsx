@@ -21,10 +21,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
     const [form] = Form.useForm();
 
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState({
-        username: [],
-        password: []
-    });
+    const [errors, setErrors] = useState<any>({});
 
     useEffect(() => {
         return () => {
@@ -35,10 +32,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
     const submit = (values: object) => {
         setLoading(true)
 
-        setErrors({
-            username: [],
-            password: []
-        })
+        setErrors({})
 
         axios.post('/login', values).then(res=>{
 
@@ -87,16 +81,16 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
                             <Form.Item label="USERNAME" 
                                 name="username"
-                                validateStatus={errors.username[0] ? 'error' : ''}
-                                help={errors.username ? errors.username[0] : ''}
+                                validateStatus={errors?.username ? 'error' : ''}
+                                help={errors?.username ? errors?.username[0] : ''}
                             >
                                 <Input placeholder="Username" size="large" />
                             </Form.Item>
 
                             <Form.Item label="PASSWORD" 
                                 name="password"
-                                validateStatus={errors.password[0] ? 'error' : ''}
-                                help={errors.password ? errors.password[0] : ''}
+                                validateStatus={errors?.password ? 'error' : ''}
+                                help={errors?.password ? errors?.password[0] : ''}
                             >
                                 <Input.Password placeholder="Password" size="large"/>
                             </Form.Item>
