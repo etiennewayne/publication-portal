@@ -127,6 +127,7 @@ export default function ArticleCreateEdit(
 				{ name: 'article_content', value: article.article_content },
 				{ name: 'status', value: article.status },
 				{ name: 'date_published', value: moment(article.date_published, 'YYYY-MM-DD') },
+				{ name: 'is_featured', value: article.is_featured ? true : false },
 			]);
 
 			//console.log(imageFromDb);
@@ -377,10 +378,12 @@ export default function ArticleCreateEdit(
 						<Form.Item
 							label="Content"
 							name="article_content"
+							className="prose-lg !max-w-none"
 							validateStatus={errors.article_content ? 'error' : ''}
 							help={errors.article_content ? errors.article_content[0] : ''}>
 
 							<CKEditor
+								data={article?.article_content}
 								editor={ ClassicEditor }
 								onChange={(event, editor) => {
 									const data = editor.getData();

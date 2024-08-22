@@ -82,7 +82,7 @@ export default function FeaturedArticle() {
 
                     {/* content */}
                     <div
-                        className="text-justify"
+                        className="text-justify prose !max-w-none"
                         dangerouslySetInnerHTML={{
                             __html: truncate(featuredArticle.article_content, 50)
                         }}

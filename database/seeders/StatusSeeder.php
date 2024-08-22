@@ -27,7 +27,7 @@ class StatusSeeder extends Seeder
                 'status' => 'EDITED',
             ],
             [
-                'status' => 'PUBLISHED',
+                'status' => 'PUBLIC',
             ],
         ];
 

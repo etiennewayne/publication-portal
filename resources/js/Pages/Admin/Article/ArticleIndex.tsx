@@ -47,10 +47,12 @@ export default function UserIndex({ auth }: PageProps) {
 		try{
 			const res = await axios.get<{ data: Article[] }>(`/admin/get-articles?${params}`);
 			setData(res.data.data)
+			//console.log(res.data.data);
+			
 			setLoading(false)
 		}catch(err){
 			setLoading(false)
-			console.log(err)
+			//console.log(err)
 		}
     }
 
@@ -150,6 +152,17 @@ export default function UserIndex({ auth }: PageProps) {
 								) : (
 									<span className='bg-red-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>NO</span>
 								)
+							)}/>
+							
+							<Column title="Featured" dataIndex="is_featured" key="is_featured" render={(is_featured)=>(
+								
+								is_featured ? (
+									<span className='bg-green-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>YES</span>
+									
+								) : (
+									<span className='bg-red-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>NO</span>
+								)
+								
 							)}/>
 							<Column title="Action" key="action" 
 								render={(_, data: Article) => (

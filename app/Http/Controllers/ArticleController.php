@@ -22,8 +22,7 @@ class ArticleController extends Controller
             ->orderBy('date_published', 'desc')
             ->where('status', 'PUBLIC')
             ->get()
-            ->take(2);
-            
+            ->take(2); 
     }
 
 
