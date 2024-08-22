@@ -93,7 +93,7 @@ export default function FeaturedArticle() {
                     <div
                         className="text-justify prose !max-w-none"
                         dangerouslySetInnerHTML={{
-                            __html: featuredArticle.excerpt ? truncate(featuredArticle.excerpt, 20) : ''
+                            __html: featuredArticle.excerpt ? truncate(featuredArticle.excerpt, 40) : ''
                         }}
                     ></div>
                         
