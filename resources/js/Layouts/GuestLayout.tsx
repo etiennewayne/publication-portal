@@ -6,14 +6,14 @@ import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
-        <div className="bg-primary-1">
+        <div className="bg-primary-1 h-full">
 
             {/* page container */}
-            <div className='relative w-full h-full
+            <div className='relative w-full border
                 xl:max-w-screen-xl xl:mx-auto
                 '>
 
-                <header className="flex items-center justify-between z-10 bg-primary-1
+                <div className="flex items-center justify-between z-10 bg-primary-1
                     w-full px-4
                     fixed top-0 h-[100px]  
                     sm:px-0 sm:mx-auto
@@ -23,7 +23,7 @@ export default function Guest({ children }: PropsWithChildren) {
                     <div className="">
                         <MenuBtn  />
                     </div>
-                </header>
+                </div>
                 
                 <div className="custom-nav">
                     <Link href="/" className="">Home</Link>

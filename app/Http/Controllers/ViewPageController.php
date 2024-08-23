@@ -7,7 +7,7 @@ use Inertia\Response;
 use Inertia\Inertia;
 use App\Models\Article;
 
-class ViewController extends Controller
+class ViewPageController extends Controller
 {
     //
 

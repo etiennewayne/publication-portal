@@ -17,4 +17,9 @@ class Category extends Model
         'active'
     ];
 
+
+    public function articles(){
+        $this->hasMany(Articles::class, 'category_id', 'category_id');
+    }
+
 }

@@ -28,7 +28,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/view/{slug}', [App\Http\Controllers\ViewController::class, 'index'])->name('view');
+// Pages
+Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
+
+Route::get('/view/{slug}', [App\Http\Controllers\ViewPageController::class, 'index'])->name('view');
 
 
 
