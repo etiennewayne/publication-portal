@@ -13,9 +13,8 @@ export default function Authenticated(
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-
         <div className="min-h-screen bg-gray-100">
-            <nav className="bg-white border-b border-gray-100 py-4">
+            <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -25,8 +24,7 @@ export default function Authenticated(
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
-
-                            <NavLink href={route('admin.dashboard')} active={route().current('admin.dashboard*')}>
+                            <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                 Dashboard
                             </NavLink>
 
@@ -163,51 +161,16 @@ export default function Authenticated(
                 </div>
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
-                    <div className="pt-2 space-y-1">
-                        <ResponsiveNavLink className='mt-4' href={route('dashboard')} active={route().current('dashboard')}>
-                            DASHBOARD
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                            Dashboard
                         </ResponsiveNavLink>
                     </div>
-
-                    <div className="">
-                        <ResponsiveNavLink className='mt-4' href="#">
-                            SETTINGS
-                        </ResponsiveNavLink>
-
-                        <div className="">
-                            <ResponsiveNavLink className='text-[.9rem]' href='/admin/academic-years' 
-                                active={route().current('academic-years*')}>
-                                    <span className='ml-4'>Academic Year</span>
-                            </ResponsiveNavLink>
-
-                            <ResponsiveNavLink className='text-[.9rem]' 
-                                href='/admin/categories' 
-                                active={route().current('admin.categories*')}>
-                                    <span className='ml-4'>Categories</span>
-                            </ResponsiveNavLink>
-                        </div>
-
-                        <ResponsiveNavLink className='mt-4' href="#">
-                            MANAGE ARTICLE
-                        </ResponsiveNavLink>
-                        <div className="">
-                            <ResponsiveNavLink className='text-[.9rem]' href='/admin/articles' 
-                                active={route().current('admin.articles*')}>
-                                    <span className='ml-4'>Article</span>
-                            </ResponsiveNavLink>
-                        </div>
-
-                        <ResponsiveNavLink className='mt-4' href="/users"
-                            active={route().current('admin.users*')}>
-                            Users
-                        </ResponsiveNavLink>
-                    </div>
-                 
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800">
-                                {user.lname}, {user.fname[0]}
+                                {user.name}
                             </div>
                             <div className="font-medium text-sm text-gray-500">{user.email}</div>
                         </div>
@@ -222,7 +185,11 @@ export default function Authenticated(
                 </div>
             </nav>
 
-          
+            {header && (
+                <header className="bg-white shadow">
+                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+                </header>
+            )}
 
             <main>{children}</main>
         </div>
