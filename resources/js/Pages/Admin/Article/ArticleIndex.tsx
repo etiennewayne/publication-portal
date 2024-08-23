@@ -42,6 +42,7 @@ export default function UserIndex({ auth }: PageProps) {
         setLoading(true)
         const params = [
             `perpage=${perPage}`,
+            `search=${search}`,
             `page=${page}`
         ].join('&');
 
@@ -59,7 +60,7 @@ export default function UserIndex({ auth }: PageProps) {
 
     useEffect(()=>{
         getData()
-    },[perPage, search, page])
+    },[perPage, page])
 
 
     const onPageChange = (index:number, perPage:number) => {
@@ -109,6 +110,13 @@ export default function UserIndex({ auth }: PageProps) {
 	}
 	
 
+	const handSearchClick = () => {
+		getData()
+	}
+	const handleSearchKeydown = () => {
+		
+	}
+
 	
 
 	return (
@@ -125,6 +133,12 @@ export default function UserIndex({ auth }: PageProps) {
 					{/* card header */}
 					<div className="font-bold mb-4">List of Articles</div>
 					{/* card body */}
+
+					<div className='flex gap-2 mb-2'>
+						<Input placeholder="Search Title" value={search} onChange={ (e) => setSearch(e.target.value)}/>
+						<Button type='primary' onClick={handSearchClick}>SEARCH</Button>
+					</div>
+					
 					<div>
 
 						<Table dataSource={data}

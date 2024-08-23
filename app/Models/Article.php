@@ -12,6 +12,7 @@ class Article extends Model
     protected $primaryKey = 'article_id';
 
     protected $fillable = [
+        'academic_year_id',
         'title',
         'excerpt',
         'slug',
