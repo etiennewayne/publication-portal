@@ -1,0 +1,1 @@
+import{j as r}from"./app-B_mFRvJE.js";import{G as t}from"./GuestLayout-C-1DVtBc.js";import"./ApplicationLogo-B1Ul7giX.js";function e(){return r.jsx(t,{children:r.jsx("div",{className:"h-full",children:r.jsx("div",{children:"On Going Construction ...."})})})}export{e as default};
