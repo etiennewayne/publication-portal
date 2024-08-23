@@ -33,13 +33,18 @@ export default function AcademicYearIndex({auth} : PageProps) {
     const [open, setOpen] = useState(false); //for modal
 
 
-	const [perPage, setPerPage] = useState(10);
+	const [perPage, setPerPage] = useState(5);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState('');
     const [errors, setErrors] = useState<any>({});
 
     const [id, setId] = useState(0);
 	
+	interface PaginateResponse {
+		data: AcademicYear[];
+		total: number;
+	}
+
 	const getData = async () => {
 
         setLoading(true)
@@ -50,8 +55,9 @@ export default function AcademicYearIndex({auth} : PageProps) {
         ].join('&');
 
 		try{
-			const res = await axios.get<{ data: AcademicYear[] }>(`/admin/get-academic-years?${params}`);
+			const res = await axios.get<PaginateResponse>(`/admin/get-academic-years?${params}`);
 			setData(res.data.data)
+			setTotal(res.data.total)
 			setLoading(false)
 		}catch(err){
 			console.log(err)

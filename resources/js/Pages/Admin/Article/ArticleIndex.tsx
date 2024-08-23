@@ -37,6 +37,12 @@ export default function UserIndex({ auth }: PageProps) {
 
     const [id, setId] = useState(0);
 	
+
+	interface ArticlesResponse {
+		data: Article[];
+		total: number;
+	}
+
 	const getData = async () => {
 
         setLoading(true)
@@ -47,10 +53,10 @@ export default function UserIndex({ auth }: PageProps) {
         ].join('&');
 
 		try{
-			const res = await axios.get<{ data: Article[] }>(`/admin/get-articles?${params}`);
+			const res = await axios.get<ArticlesResponse>(`/admin/get-articles?${params}`);
 			setData(res.data.data)
 			//console.log(res.data.data);
-			
+            setTotal(res.data.total)
 			setLoading(false)
 		}catch(err){
 			setLoading(false)
@@ -125,7 +131,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 			{contextHolder}
 			
-			<div className='flex mt-10 justify-center items-center'>
+			<div className='flex my-10 justify-center items-center'>
 				{/* card */}
 				<div className='p-6 w-full overflow-auto mx-2 bg-white shadow-sm rounded-md
 					sm:w-[740px]

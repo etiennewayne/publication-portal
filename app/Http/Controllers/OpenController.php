@@ -11,6 +11,7 @@ class OpenController extends Controller
 
     public function loadCategories(Request $req){
         return Category::orderBy('category', 'asc')
+            ->where('active', 1)
             ->get();
     }
 

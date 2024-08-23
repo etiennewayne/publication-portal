@@ -40,6 +40,12 @@ export default function UserIndex({ auth }: PageProps) {
 
     const [id, setId] = useState(0);
 	
+
+	interface PaginateResponse {
+		data: User[],
+		total: number;
+	}
+
 	const getData = async () => {
 
         setLoading(true)
@@ -49,8 +55,9 @@ export default function UserIndex({ auth }: PageProps) {
         ].join('&');
 
 		try{
-			const res = await axios.get<{ data: User[] }>(`/admin/get-users?${params}`);
+			const res = await axios.get<PaginateResponse>(`/admin/get-users?${params}`);
 			setData(res.data.data)
+			setTotal(res.data.total)
 			setLoading(false)
 		}catch(err){
 			console.log(err)

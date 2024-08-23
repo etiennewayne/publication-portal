@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" href="/img/the-torch-ico.png" type="image/png">
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -13,6 +13,12 @@
             href="/css/boxicons.min.css"
             rel="stylesheet" /> -->
         <!-- Scripts -->
+
+        <style>
+            html {
+                background: #dbdbdb;
+            }
+        </style>
         @routes
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])

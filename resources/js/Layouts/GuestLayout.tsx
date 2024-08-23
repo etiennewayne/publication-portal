@@ -6,10 +6,11 @@ import { Link } from '@inertiajs/react';
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
+
         <div className="bg-primary-1 h-full">
 
             {/* page container */}
-            <div className='relative w-full border
+            <div className='relative w-full
                 xl:max-w-screen-xl xl:mx-auto
                 '>
 

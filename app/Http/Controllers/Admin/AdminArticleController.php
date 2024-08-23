@@ -286,6 +286,9 @@ class AdminArticleController extends Controller
 
     /* ================= */
     public function tempUpload(Request $req){
+        $req->validate([
+            'featured_image' => ['required', 'mimes:jpg,jpeg,png']
+        ]);
         $file = $req->featured_image;
         $fileGenerated = md5($file->getClientOriginalName() . time());
         $imageName = $fileGenerated . '.' . $file->getClientOriginalExtension();

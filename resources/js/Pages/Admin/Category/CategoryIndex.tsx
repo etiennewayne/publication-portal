@@ -34,15 +34,17 @@ export default function UserIndex({ auth }: PageProps) {
     const [open, setOpen] = useState(false); //for modal
 	const [passwordVisible, setPasswordVisible] = React.useState(false);
 
-	const [perPage, setPerPage] = useState(10);
+	const [perPage, setPerPage] = useState(5);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState('');
     const [errors, setErrors] = useState<any>({});
 
     const [id, setId] = useState(0);
 	
-	interface ApiResponse<T> {
-		data: T;
+	
+	interface CategoryResponse {
+		data: Category[];
+		total: number;
 	}
 
 	const getData = async () => {
@@ -56,9 +58,9 @@ export default function UserIndex({ auth }: PageProps) {
         ].join('&');
 
 		try{
-			const res = await axios.get<ApiResponse<Category[]>>(`/admin/get-categories?${params}`);
+			const res = await axios.get<CategoryResponse>(`/admin/get-categories?${params}`);
 			setData(res.data.data)
-
+			setTotal(res.data.total)
 			setLoading(false)
 		}catch(err){
 			setLoading(false)

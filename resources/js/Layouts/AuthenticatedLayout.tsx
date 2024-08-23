@@ -14,7 +14,7 @@ export default function Authenticated(
 
     return (
 
-        <div className="min-h-screen bg-gray-100">
+        <>
             <nav className="bg-white border-b border-gray-100 py-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -59,7 +59,7 @@ export default function Authenticated(
                                     <Dropdown.Link href={route('academic-years.index')}>Academic Years</Dropdown.Link>
                                     <Dropdown.Link href={route('admin.categories.index')}>Categories</Dropdown.Link>
                                     {/* <Dropdown.Link href={route('admin.articles.create')}>Sample</Dropdown.Link> */}
-                                   
+                                    
                                 </Dropdown.Content>
                             </Dropdown>
 
@@ -91,7 +91,7 @@ export default function Authenticated(
                                 <Dropdown.Content>
                                     <Dropdown.Link href={route('admin.articles.index')}>Article</Dropdown.Link>
                                     <Dropdown.Link href={route('admin.articles.create')}>New Article</Dropdown.Link>
-                                   
+                                    
                                 </Dropdown.Content>
                             </Dropdown>
 
@@ -203,7 +203,7 @@ export default function Authenticated(
                             USERS
                         </ResponsiveNavLink>
                     </div>
-                 
+                    
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
@@ -223,9 +223,10 @@ export default function Authenticated(
                 </div>
             </nav>
 
-          
+            <main className='h-full mb-10'>{children}</main>
 
-            <main>{children}</main>
-        </div>
+        </>
+
+       
     );
 }
