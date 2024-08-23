@@ -30,7 +30,7 @@ class ArticleController extends Controller
             ->orderBy('date_published', 'desc')
             ->where('status', 'PUBLIC')
             ->get()
-            ->take(9); 
+            ->take(10); 
     }
 
     public function incrementView($id){

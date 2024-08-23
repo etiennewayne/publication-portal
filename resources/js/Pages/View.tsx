@@ -2,6 +2,7 @@ import GuestLayout from '@/Layouts/GuestLayout'
 import { Article, PageProps } from '@/types'
 import { Head } from '@inertiajs/react'
 import axios from 'axios'
+import moment from 'moment'
 
 import React, { useEffect, useState } from 'react'
 
@@ -11,6 +12,7 @@ export default function View(
     
 ) {
 
+    const datePublished = new Date(article.date_published);
     useEffect(() => {
 
         if(article){
@@ -37,27 +39,46 @@ export default function View(
 
         <div className='my-6'>
 
+            {/* image */}
             <div className='mb-10'>
                 <img className='mx-auto rounded-2xl' src={`/storage/featured_images/${article?.featured_image}`} />
                 <div className='text-center'>{article.featured_image_caption}</div>
             </div>
 
-            <div className='font-bold text-green-950 text-2xl'>{article.category.category}</div>
-            <div className='font-bold text-[2.4rem]'>
+            {/* category */}
+            <div className='font-bold text-green-950 text-xl'>{article.category.category}</div>
+
+            {/* title */}
+            <div className='font-bold text-[2.4rem] mb-6'>
                 {article.title}
             </div>
+
+            {/* horizontal line */}
             <div className='bg-green-950 h-[1px]'></div>
 
-            <div className='font-bold text-[1.5rem]'>
+            {/* excerpt */}
+            <div className='font-bold text-[1.5rem] my-6'>
                 {article?.excerpt}
             </div>
 
+            {/* horizontal line */}
+            <div className='bg-green-950 h-[1px]'></div>
+            
+            {/* extra details */}
+            <div className='mt-2'>
+                <div>Date Published: { article.date_published }</div>
+                <div>Author: {article.author.lname}, {article.author.fname}</div>
+                <div>Views: {article.views}</div>
+            </div>
+
+            {/* content */}
             <div
-                className="text-justify mt-6 prose !max-w-none"
+                className="text-justify text-xl mt-6 prose !max-w-none"
                 dangerouslySetInnerHTML={{
                     __html: article.article_content
-                }}
-            ></div>
+                }}>
+            </div>
+
         </div>
 
     </GuestLayout>

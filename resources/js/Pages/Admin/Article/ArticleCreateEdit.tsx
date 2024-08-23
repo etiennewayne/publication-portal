@@ -295,7 +295,7 @@ export default function ArticleCreateEdit(
 			<Head title="Article" />
 			{contextHolder}
 
-			<div className='flex justify-center mt-6'>
+			<div className='flex justify-center mt-10'>
 
 				{/* card */}
 				<div className='w-full sm:w-[990px] bg-white p-6 mx-2'>

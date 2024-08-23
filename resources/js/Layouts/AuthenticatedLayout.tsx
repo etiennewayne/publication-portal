@@ -177,29 +177,30 @@ export default function Authenticated(
                         <div className="">
                             <ResponsiveNavLink className='text-[.9rem]' href='/admin/academic-years' 
                                 active={route().current('academic-years*')}>
-                                    <span className='ml-4'>Academic Year</span>
+                                <span className='ml-4'>Academic Years</span>
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink className='text-[.9rem]' 
                                 href='/admin/categories' 
                                 active={route().current('admin.categories*')}>
-                                    <span className='ml-4'>Categories</span>
+                                <span className='ml-4'>Categories</span>
                             </ResponsiveNavLink>
                         </div>
 
                         <ResponsiveNavLink className='mt-4' href="#">
                             MANAGE ARTICLE
                         </ResponsiveNavLink>
+
                         <div className="">
                             <ResponsiveNavLink className='text-[.9rem]' href='/admin/articles' 
                                 active={route().current('admin.articles*')}>
-                                    <span className='ml-4'>Article</span>
+                                <span className='ml-4'>Article</span>
                             </ResponsiveNavLink>
                         </div>
 
                         <ResponsiveNavLink className='mt-4' href="/users"
                             active={route().current('admin.users*')}>
-                            Users
+                            USERS
                         </ResponsiveNavLink>
                     </div>
                  
