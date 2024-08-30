@@ -28,7 +28,10 @@ Route::get('/', function () {
 });
 
 
-// Pages
+/** =======================================
+ * CATEGORY PAGES HERE
+ * ========================================
+ */
 Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
 
 Route::get('/view/{slug}', [App\Http\Controllers\ViewPageController::class, 'index'])->name('view');
@@ -48,6 +51,8 @@ Route::get('/load-side-articles', [App\Http\Controllers\ArticleController::class
 Route::get('/load-latest-articles', [App\Http\Controllers\ArticleController::class, 'loadaLatestArtcles']);
 
 Route::post('/count-view/{id}', [App\Http\Controllers\ArticleController::class, 'incrementView']);
+
+
 
 Route::middleware('auth')->group(function () {
 

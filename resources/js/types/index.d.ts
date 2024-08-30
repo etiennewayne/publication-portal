@@ -48,6 +48,14 @@ export interface Article {
     views: number;
 }
 
+export interface CategoryArticles {
+    category_id: number;
+    category: string;
+    active: number;
+    articles: Article[]
+}
+
+
 // cateogires
 export interface Category {
 	data(data: any): unknown;

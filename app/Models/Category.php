@@ -19,7 +19,7 @@ class Category extends Model
 
 
     public function articles(){
-        $this->hasMany(Articles::class, 'category_id', 'category_id');
+        return $this->hasMany(Article::class, 'category_id', 'category_id');
     }
 
 }
