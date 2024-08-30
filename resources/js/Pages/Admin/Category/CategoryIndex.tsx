@@ -192,6 +192,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 							<Column title="Id" dataIndex="category_id"/>
 							<Column title="Category" dataIndex="category" key="category"/>
+							<Column title="Slug" dataIndex="slug" key="slug"/>
 							<Column title="Active" dataIndex="active" key="active" render={(active)=>(
 								active ? (
 									<span className='bg-green-600 font-bold text-white text-[10px] px-2 py-1 rounded-full'>YES</span>

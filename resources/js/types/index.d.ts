@@ -61,6 +61,7 @@ export interface Category {
 	data(data: any): unknown;
     category_id: number;
     category: string;
+    slug:string;
     active: boolean;
    
 }

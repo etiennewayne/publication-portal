@@ -7,8 +7,9 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import FeaturedArticle from '@/Components/Article/FeaturedArticle';
 import SideArticles from '@/Components/Article/SideArticles';
 import LatestArticle from '@/Components/Article/LatestArticle';
+import { Category } from '@/types';
 
-export default function Welcome() {
+export default function WelcomePage( {categories}: {categories:Category[]}) {
 
    
 
@@ -19,7 +20,7 @@ export default function Welcome() {
 
     return (
         <>
-        <GuestLayout>
+        <GuestLayout categories={categories}>
 
             <Head title="Welcome" />
             

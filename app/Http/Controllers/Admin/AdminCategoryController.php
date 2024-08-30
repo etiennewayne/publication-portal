@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Response;
 use Inertia\Inertia;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 
 class AdminCategoryController extends Controller
@@ -35,6 +36,7 @@ class AdminCategoryController extends Controller
 
         Category::create([
             'category' => strtoupper($req->category),
+            'slug' => Str::slug($req->category),
             'active' => $req->active ? 1 : 0
         ]);
 
@@ -52,6 +54,7 @@ class AdminCategoryController extends Controller
 
         $data = Category::find($id);
         $data->category = strtoupper($req->category);
+        $data->slug = Str::slug($req->category);
         $data->active = $req->active ? 1 : 0;
         $data->save();
 

@@ -18,23 +18,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+    
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 
 /** =======================================
  * CATEGORY PAGES HERE
  * ========================================
  */
+Route::get('/', [App\Http\Controllers\WelcomePageController::class, 'index'])->name('welcome');
+
 Route::get('/view/{slug}', [App\Http\Controllers\ViewPageController::class, 'index'])->name('view');
 
-Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
+// Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
+
+Route::get('/category/{slug}', [App\Http\Controllers\CategorySlugPageController::class, 'index']);
 
 Route::get('/freedom-wall', [App\Http\Controllers\FreedomWallPageController::class, 'index']);
 

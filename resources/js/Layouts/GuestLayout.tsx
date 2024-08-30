@@ -3,12 +3,18 @@ import MenuBtn from '@/Components/MenuBtn';
 import { PropsWithChildren } from 'react';
 import '../../css/welcome.css';
 import { Link } from '@inertiajs/react';
+import { Category } from '@/types';
 
-export default function Guest({ children }: PropsWithChildren) {
+export default function Guest({ categories, children  }: 
+
+    PropsWithChildren<{categories:Category[]}>) 
+
+    {
+
+
     return (
 
         <div className="bg-primary-1 h-full">
-
             {/* page container */}
             <div className='relative w-full
                 xl:max-w-screen-xl xl:mx-auto
@@ -27,9 +33,16 @@ export default function Guest({ children }: PropsWithChildren) {
                 </div>
                 
                 <div className="custom-nav">
-                    <Link href="/" className="">Home</Link>
-                    <Link href="/categories">Categories</Link>
-                    <Link href="/freedom-wall">Freedom Wall</Link>
+                    <Link href="/" className="">HOME</Link>
+                    {
+                        categories.map(category => {
+                            return(
+                                <Link key={category.category_id} href={`/category/${category.slug}`}>{category.category}</Link>
+                            )
+                        })
+                    }
+                    <Link href="/freedom-wall">FREEDOM WALL</Link>
+
                 </div>
 
                 {children}
