@@ -29,7 +29,7 @@ export default function Guest({ children }: PropsWithChildren) {
                 <div className="custom-nav">
                     <Link href="/" className="">Home</Link>
                     <Link href="/categories">Categories</Link>
-                    <Link href="/freedowm-wall">Freedom Wall</Link>
+                    <Link href="/freedom-wall">Freedom Wall</Link>
                 </div>
 
                 {children}

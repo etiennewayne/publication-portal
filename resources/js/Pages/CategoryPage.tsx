@@ -1,6 +1,6 @@
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Article, CategoryArticles } from '@/types'
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import React from 'react'
 
 export default function CategoryPage(
@@ -21,6 +21,7 @@ export default function CategoryPage(
     return (
         <GuestLayout>
             <div className="h-full">
+                <Head title="Categories Page" />
                 
                 {categoryArticles.map((category) => {
                     return(
@@ -57,10 +58,10 @@ export default function CategoryPage(
 
                                                     )}
                                                 <div className='font-bold my-2'>
-                                                    {article.title}
+                                                    {article?.title}
                                                 </div>
                                                 <div className='text-justify'>
-                                                    { truncate(article.excerpt, 20)}
+                                                    { truncate(article?.excerpt, 20)}
                                                 </div>
                                             </div>
                                         )

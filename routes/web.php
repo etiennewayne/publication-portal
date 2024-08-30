@@ -32,10 +32,11 @@ Route::get('/', function () {
  * CATEGORY PAGES HERE
  * ========================================
  */
-Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
-
 Route::get('/view/{slug}', [App\Http\Controllers\ViewPageController::class, 'index'])->name('view');
 
+Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
+
+Route::get('/freedom-wall', [App\Http\Controllers\FreedomWallPageController::class, 'index']);
 
 
 Route::get('/dashboard', function () {
