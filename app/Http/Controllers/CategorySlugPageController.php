@@ -13,7 +13,6 @@ class CategorySlugPageController extends Controller
     public function index($slug){
         $categories = Category::where('active', 1)->get();
 
-
         $categoryArticles = Category::with(['articles'])
             ->whereHas('articles', function($q) {
                 $q->orderBy('views', 'desc'); //this will prevent to display articles with no category
