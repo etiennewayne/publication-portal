@@ -1,5 +1,5 @@
 import GuestLayout from '@/Layouts/GuestLayout'
-import { Article, PageProps } from '@/types'
+import { Article, Category, PageProps } from '@/types'
 import { Head } from '@inertiajs/react'
 import axios from 'axios'
 import moment from 'moment'
@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function View(
     
-    { article } : { article: Article }
+    { article, categories } : { article: Article, categories:Category[] }
     
 ) {
 
@@ -33,7 +33,7 @@ export default function View(
 
   return (
 
-    <GuestLayout>
+    <GuestLayout categories={categories}>
 
         <Head title="View Article" />
 

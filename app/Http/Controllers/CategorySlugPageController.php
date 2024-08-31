@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Article;
 use Inertia\Response;
 use Inertia\Inertia;
 
@@ -12,19 +13,27 @@ class CategorySlugPageController extends Controller
     //
     public function index($slug){
         $categories = Category::where('active', 1)->get();
-
-        $categoryArticles = Category::with(['articles'])
-            ->whereHas('articles', function($q) {
-                $q->orderBy('views', 'desc'); //this will prevent to display articles with no category
-            })
-            ->where('slug', $slug)
-            ->orderBy('category', 'asc')
-            ->get();
+        $category = Category::where('slug', $slug)->first();
 
         return Inertia::render('CategorySlugPage',[
-            'categoryArticles' => $categoryArticles,
-            'categories' => $categories
+            'categories' => $categories,
+            'slug' => $slug,
+            'propCategory' => $category
         ]);
+    }
 
+
+    public function getArticlesByCategory(Request $req){
+        //return $req->search;
+        
+        $category = Article::with('category')
+            ->whereHas('category', function($q) use($req){
+                $q->where('slug', $req->slug);
+            })
+            ->where('title', 'like', '%' . $req->search . '%')
+            ->orderBy('date_published', 'desc')
+            ->get();
+
+        return $category;
     }
 }

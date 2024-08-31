@@ -36,16 +36,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
         axios.post('/login', values).then(res=>{
 
-            if(res.data.role === 'ADMINISTRATOR'){
-                router.visit('/admin/dashboard')
-            }
-
-            if(res.data.role === 'USER'){
-                router.visit('/dashboard')
-            }
-
-            //console.log(res.data)
-            setLoading(false)
+            router.visit('/login')
 
         }).catch(err => {
             setErrors(err.response.data.errors)

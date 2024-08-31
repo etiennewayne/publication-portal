@@ -40,6 +40,7 @@ Route::get('/view/{slug}', [App\Http\Controllers\ViewPageController::class, 'ind
 // Route::get('/categories', [App\Http\Controllers\CategoryPageController::class, 'index']);
 
 Route::get('/category/{slug}', [App\Http\Controllers\CategorySlugPageController::class, 'index']);
+Route::get('/get-articles-by-category', [App\Http\Controllers\CategorySlugPageController::class, 'getArticlesByCategory']);
 
 Route::get('/freedom-wall', [App\Http\Controllers\FreedomWallPageController::class, 'index']);
 

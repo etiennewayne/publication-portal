@@ -63,6 +63,7 @@ export interface Category {
     category: string;
     slug:string;
     active: boolean;
+    articles: Article[]
    
 }
 
