@@ -1,6 +1,6 @@
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Article, Category, CategoryArticles } from '@/types'
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { Button, Input } from 'antd';
 import Search from 'antd/es/input/Search';
 import axios from 'axios';
@@ -23,6 +23,8 @@ export default function CategoryPage(
     const [articles, setArtcles] = useState<Article[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
+    
+    const  user:any = usePage().props;
 
     const getArticlesByCategory = () => {
         const params = [
@@ -30,7 +32,7 @@ export default function CategoryPage(
             `search=${search}`
         ].join('&')
 
-        axios.get<Category>(`/get-articles-by-category?${params}`).then(res=>{
+        axios.get<Article[]>(`/get-articles-by-category?${params}`).then(res=>{
             setArtcles(res.data)
             setLoading(false)
         })

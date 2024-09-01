@@ -28,7 +28,10 @@ class RedirectIfAuthenticated
                     return redirect('/admin/dashboard');
 
                 if(strtolower($role) == 'user')
-                    return redirect('/user/dashboard');
+                    return redirect('/');
+
+                if(strtolower($role) == 'editor')
+                    return redirect('/editor/dashboard');
             }
         }
 

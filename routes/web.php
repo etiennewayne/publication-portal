@@ -73,7 +73,6 @@ Route::middleware('auth')->group(function () {
     // Route::get('/admin/articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'index'])->name('admin.articles.index');
     // Route::get('/admin/articles/create', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
     // Route::get('/admin/get-articles', [App\Http\Controllers\Admin\AdminArticleController::class, 'create'])->name('admin.articles.create');
-  
 
     Route::get('/admin/users', [App\Http\Controllers\Admin\AdminUserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/users/create', [App\Http\Controllers\Admin\AdminUserController::class, 'create'])->name('admin.users.create');
@@ -115,6 +114,15 @@ require __DIR__.'/auth.php';
 
 
 
+
+
+
+Route::middleware('auth', 'user')->group(function () {
+
+    Route::get('/user/dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index']);;
+
+
+});
 
 // logout auth (use for debuggin only)
 Route::get('/applogout', function(Request $req){

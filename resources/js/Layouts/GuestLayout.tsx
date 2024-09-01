@@ -2,15 +2,17 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import MenuBtn from '@/Components/MenuBtn';
 import { PropsWithChildren } from 'react';
 import '../../css/welcome.css';
-import { Link } from '@inertiajs/react';
-import { Category } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import { Category, User } from '@/types';
+import { useAppProps } from 'antd/es/app/context';
 
 export default function Guest({ categories, children  }: 
 
-    PropsWithChildren<{categories:Category[]}>) 
-
+    PropsWithChildren<{categories:Category[]}> ) 
+        
     {
-
+        //get the user on page props
+        const  user:any = usePage().props;
 
     return (
 
@@ -27,7 +29,7 @@ export default function Guest({ categories, children  }:
                     xl:max-w-screen-xl">
                     <ApplicationLogo />
                     
-                    <div className="">
+                    <div className="relative">
                         <MenuBtn  />
                     </div>
                 </div>
@@ -43,6 +45,7 @@ export default function Guest({ categories, children  }:
                     }
                     <Link href="/freedom-wall">FREEDOM WALL</Link>
 
+                    <Link href="/freedom-wall"></Link>
                 </div>
 
                 {children}
