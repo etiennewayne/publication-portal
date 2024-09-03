@@ -5,15 +5,16 @@ import '../../css/welcome.css';
 import { Link, usePage } from '@inertiajs/react';
 import { Category, User } from '@/types';
 import { useAppProps } from 'antd/es/app/context';
+import { log } from 'console';
 
-export default function Guest({ categories, children  }: 
+export default function Guest({ children  }: 
 
-    PropsWithChildren<{categories:Category[]}> ) 
+    PropsWithChildren ) 
         
     {
         //get the user on page props
-        const  user:any = usePage().props;
-
+        const  categories:any = usePage().props?.categories;
+        
     return (
 
         <div className="bg-primary-1 h-full">
@@ -37,9 +38,10 @@ export default function Guest({ categories, children  }:
                 <div className="custom-nav">
                     <Link href="/" className="">HOME</Link>
                     {
-                        categories.map(category => {
+                        categories.map((category:Category) => {
                             return(
-                                <Link key={category.category_id} href={`/category/${category.slug}`}>{category.category}</Link>
+                                <Link key={category.category_id} 
+                                    href={`/category/${category.slug}`}>{category.category}</Link>
                             )
                         })
                     }

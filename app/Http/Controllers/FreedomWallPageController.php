@@ -12,10 +12,7 @@ class FreedomWallPageController extends Controller
     //
 
     public function index(){
-        $categories = Category::where('active', 1)->get();
 
-        return Inertia::render('FreedomWallPage', [
-            'categories' => $categories
-        ]);
+        return Inertia::render('FreedomWallPage');
     }
 }

@@ -9,7 +9,7 @@ import SideArticles from '@/Components/Article/SideArticles';
 import LatestArticle from '@/Components/Article/LatestArticle';
 import { Category } from '@/types';
 
-export default function WelcomePage( {categories}: {categories:Category[]}) {
+export default function WelcomePage() {
 
    
 
@@ -20,7 +20,7 @@ export default function WelcomePage( {categories}: {categories:Category[]}) {
 
     return (
         <>
-        <GuestLayout categories={categories}>
+        <GuestLayout>
 
             <Head title="Welcome" />
             

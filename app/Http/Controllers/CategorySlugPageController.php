@@ -12,11 +12,9 @@ class CategorySlugPageController extends Controller
 {
     //
     public function index($slug){
-        $categories = Category::where('active', 1)->get();
         $category = Category::where('slug', $slug)->first();
 
         return Inertia::render('CategorySlugPage',[
-            'categories' => $categories,
             'slug' => $slug,
             'propCategory' => $category
         ]);

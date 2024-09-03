@@ -15,12 +15,6 @@ class WelcomePageController extends Controller
 
     public function index(){
         
-        $categories = Category::where('active', 1)
-            ->take(10)
-            ->get();
-    
-        return Inertia::render('WelcomePage',[
-            'categories' => $categories,
-        ]);
+        return Inertia::render('WelcomePage');
     }
 }

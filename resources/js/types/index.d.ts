@@ -86,3 +86,13 @@ export interface AcademicYear {
     academic_year_description: string;
     active: boolean;
 }
+
+export interface ArticleComment {
+    data(data: any): unknown;
+    comment_id: number;
+    article_id: number;
+    user_id: number;
+    comment: string;
+    article: {title:string};
+    user: {lname:string, fname:string, mname:string};
+}

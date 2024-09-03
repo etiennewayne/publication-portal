@@ -1,6 +1,9 @@
+import TextInput from '@/Components/TextInput'
+import Comment from '@/Components/View/Comment'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Article, Category, PageProps } from '@/types'
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
+import { Button, Input } from 'antd'
 import axios from 'axios'
 import moment from 'moment'
 
@@ -8,11 +11,14 @@ import React, { useEffect, useState } from 'react'
 
 export default function View(
     
-    { article, categories } : { article: Article, categories:Category[] }
+    { article } : { article: Article }
     
 ) {
+    const  user:any = usePage().props;
 
+    const  [comment, setComment]= useState<string>('');
     const datePublished = new Date(article.date_published);
+
     useEffect(() => {
 
         if(article){
@@ -33,11 +39,11 @@ export default function View(
 
   return (
 
-    <GuestLayout categories={categories}>
+    <GuestLayout>
 
         <Head title="View Article" />
 
-        <div className='my-6'>
+        <div className='my-6 mx-4 '>
 
             {/* image */}
             <div className='mb-10'>
@@ -78,6 +84,9 @@ export default function View(
                     __html: article.article_content
                 }}>
             </div>
+            
+            <Comment articleId={article.article_id} />
+   
 
         </div>
 

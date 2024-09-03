@@ -14,7 +14,6 @@ class CategoryPageController extends Controller
 
     public function index(){
         //$ay = AcademicYear::where('active', 1)->first();
-        $categories = Category::where('active', 1)->get();
         // $categoryArticles = Category::with(['articles' => function($q) use ($ay) {
         //         $q->where('academic_year_id', $ay->academic_year_id); //this will display all categories but not have articles
         //     }])
@@ -34,7 +33,6 @@ class CategoryPageController extends Controller
 
         return Inertia::render('CategoryPage',[
             'categoryArticles' => $categoryArticles,
-            'categories' => $categories
         ]);
     }
 

@@ -11,10 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('freedowm_walls', function (Blueprint $table) {
-            $table->id('freedom_wall_id');
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id('comment_id');
 
-            $table->text('content')->nullable();
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')->references('article_id')->on('articles')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->text('comment')->nullable();
 
             $table->unsignedBigInteger('like')->default(0);
             $table->unsignedBigInteger('unlike')->default(0);
@@ -22,7 +30,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sad')->default(0);
             $table->unsignedBigInteger('care')->default(0);
             $table->unsignedBigInteger('angry')->default(0);
-
 
             $table->timestamps();
         });
@@ -33,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('freedowm_walls');
+        Schema::dropIfExists('comments');
     }
 };

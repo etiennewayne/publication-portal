@@ -1,0 +1,1 @@
+import{j as e,Y as r}from"./app-C_35CnGi.js";import{G as s}from"./GuestLayout-CO6m0HAK.js";import"./ApplicationLogo-41eVRYNn.js";function m({categories:t}){return e.jsxs(s,{children:[e.jsx(r,{title:"Freedom Wall"}),e.jsx("div",{className:"min-h-screen",children:e.jsx("div",{})})]})}export{m as default};

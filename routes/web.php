@@ -121,8 +121,14 @@ Route::middleware('auth', 'user')->group(function () {
 
     Route::get('/user/dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index']);;
 
+    Route::resource('/comment', App\Http\Controllers\User\UserCommentController::class);
 
 });
+
+//get commebt by article
+/** leave it open since comment will be loaded even without auth */
+Route::get('/get-comment-by-article/{id}', [App\Http\Controllers\User\UserCommentController::class, 'getCommentByArticle']);
+
 
 // logout auth (use for debuggin only)
 Route::get('/applogout', function(Request $req){
