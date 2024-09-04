@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                 'sex' => 'FEMALE',
                 'email' => 'user@publication.org',
                 'password' => Hash::make('1'),
-                'role' => 'USER',
+                'role' => 'STUDENT',
             ],
            
         ];

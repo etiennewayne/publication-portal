@@ -230,7 +230,7 @@ export default function UserIndex({ auth }: PageProps) {
 
 						<div className='flex flex-end mt-2'>
 							<Button className='ml-auto' 
-								shape="round" icon={<FileAddOutlined />} 
+								icon={<FileAddOutlined />} 
 								type="primary" onClick={handClickNew}>
 								New
 							</Button>     

@@ -25,23 +25,23 @@ createInertiaApp({
                     },
 
                     Button: {
-                        defaultBg: '#244a3d',
-                        defaultActiveBg: '#3d8069', //color when hover after click
-                        defaultHoverBorderColor: '#244a3d',
-                        defaultHoverColor: 'white', //Text color of default button when hover
-                        linkHoverBg: '#244a3d', //Background color of link button when hover
-                        defaultHoverBg: '#1b382e', //Background color of default button when hover
+                        // defaultBg: '#244a3d',
+                        // defaultActiveBg: '#3d8069', //color when hover after click
+                        // defaultHoverBorderColor: '#244a3d',
+                        // defaultHoverColor: 'white', //Text color of default button when hover
+                        // linkHoverBg: '#244a3d', //Background color of link button when hover
+                        // defaultHoverBg: '#1b382e', //Background color of default button when hover
 
-                        defaultActiveBorderColor: '#244a3d',
-                        defaultGhostBorderColor: '#244a3d',
-                        textHoverBg: 'white', //	Background color of text button when hover
-                        primaryColor: '#244a3d',
-                        defaultColor: 'white'
+                        // defaultActiveBorderColor: '#244a3d',
+                        // defaultGhostBorderColor: '#244a3d',
+                        // textHoverBg: 'white', //	Background color of text button when hover
+                        // primaryColor: '#244a3d',
+                        // defaultColor: 'white'
                     }
                 },
                 token: {
                     // Seed Token
-                    colorPrimary: '#d9dcdb',
+                    colorPrimary: '#244a3d',
                     borderRadius: 2,
                   
             

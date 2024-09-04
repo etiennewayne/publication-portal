@@ -66,7 +66,7 @@ export default function AcademicYearIndex({auth} : PageProps) {
 
     useEffect(()=>{
         getData()
-    },[perPage, search, page])
+    },[perPage, page])
 
 
     const onPageChange = (index:number, perPage:number) => {
@@ -144,9 +144,6 @@ export default function AcademicYearIndex({auth} : PageProps) {
 					form.resetFields()
 					setOpen(false)
 					getData()
-
-					
-					
 				}
 			}catch(err:any){
 				if(err.response.status === 422){
@@ -155,7 +152,6 @@ export default function AcademicYearIndex({auth} : PageProps) {
 			}
 		}
 		
-
 		//throw new Error('Function not implemented.');
 	}
 
@@ -190,7 +186,8 @@ export default function AcademicYearIndex({auth} : PageProps) {
 							<Column title="Action" key="action" 
 								render={(_, data: AcademicYear) => (
 									<Space size="small">
-										<Button shape="circle" icon={<EditOutlined/>} onClick={ ()=> handleEditClick(data.academic_year_id) } />
+										<Button shape="circle" icon={<EditOutlined/>} 
+											onClick={ ()=> handleEditClick(data.academic_year_id) } />
 										
 										<Button danger shape="circle"
 											onClick={()=> (
@@ -218,15 +215,15 @@ export default function AcademicYearIndex({auth} : PageProps) {
 
 						<div className='flex flex-end mt-2'>
 							<Button className='ml-auto' 
-								shape="round" icon={<FileAddOutlined />} 
-								type="primary" onClick={handClickNew}>
+								type='primary'
+								icon={<FileAddOutlined />} 
+								onClick={handClickNew}>
 								New
 							</Button>     
 						</div>
 					</div>
 				</div>
 				{/* card */}
-
 			</div>
 
 
