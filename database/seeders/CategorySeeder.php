@@ -16,21 +16,32 @@ class CategorySeeder extends Seeder
         $data = [
             [
                 'category' => 'News',
+                'active' => 1
             ],
             [
                 'category' => 'Sports',
+                'active' => 1
+
             ],
             [
                 'category' => 'Editorial',
+                'active' => 1
+
             ],
             [
                 'category' => 'Feature',
+                'active' => 1
+
             ],
             [
                 'category' => 'Literary',
+                'active' => 1
+
             ],
             [
                 'category' => 'Science and Tech',
+                'active' => 1
+
             ],
         ];
 
