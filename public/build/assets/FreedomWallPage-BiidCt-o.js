@@ -1,0 +1,1 @@
+import{j as e,Y as r}from"./app-CzuViuCp.js";import{G as s}from"./GuestLayout-Dq2TFkfB.js";import"./ApplicationLogo-rT3vg_nV.js";function m({categories:t}){return e.jsxs(s,{children:[e.jsx(r,{title:"Freedom Wall"}),e.jsx("div",{className:"min-h-screen",children:e.jsx("div",{})})]})}export{m as default};

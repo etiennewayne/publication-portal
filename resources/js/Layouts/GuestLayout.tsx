@@ -4,8 +4,6 @@ import { PropsWithChildren } from 'react';
 import '../../css/welcome.css';
 import { Link, usePage } from '@inertiajs/react';
 import { Category, User } from '@/types';
-import { useAppProps } from 'antd/es/app/context';
-import { log } from 'console';
 
 export default function Guest({ children  }: 
 
@@ -14,7 +12,7 @@ export default function Guest({ children  }:
     {
         //get the user on page props
         const  categories:any = usePage().props?.categories;
-        
+        console.log(categories)
     return (
 
         <div className="bg-primary-1 h-full">
